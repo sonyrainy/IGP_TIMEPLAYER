@@ -1,0 +1,673 @@
+fileFormatVersion: 2
+guid: 7ee5b40e323d34c468bee778b76d2a2c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Checkpoint_Frame_0
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.84210527}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 177
+      width: 21
+      height: 19
+    spriteID: cc972486319efeb44b5748670a27e089
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 177}
+  - name: Checkpoint_Frame_1
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.8}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 149
+      width: 21
+      height: 20
+    spriteID: c533b918be32b834ba1ef090068d7208
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 149}
+  - name: Checkpoint_Frame_2
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.72727275}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 119
+      width: 21
+      height: 22
+    spriteID: 1e3d89e9fefb06b4abc5a63c9492ab2f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 119}
+  - name: Checkpoint_Frame_3
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.5925926}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 224
+      width: 21
+      height: 27
+    spriteID: c1588f77aa4298a4ba03c4729d029d40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 224}
+  - name: Checkpoint_Frame_4
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.4848485}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 176
+      width: 21
+      height: 33
+    spriteID: 9d9343483a5ebd94c85a7c94357b41e0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 176}
+  - name: Checkpoint_Frame_5
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.53333336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 44
+      width: 21
+      height: 30
+    spriteID: 2aee9477832f85f48a09d39d78374398
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 44}
+  - name: Checkpoint_Frame_6
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.55172414}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 82
+      width: 21
+      height: 29
+    spriteID: 3631cad6e4695fc42958b7f395ffee40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 82}
+  - name: Checkpoint_Frame_7
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 4
+      width: 21
+      height: 32
+    spriteID: 2081253817b536b41850551a23c3b0aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 4}
+  - name: Checkpoint_Frame_8
+    originalName: 
+    pivot: {x: 0.43478262, y: -0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 46
+      width: 23
+      height: 36
+    spriteID: aa6ecb03d09edaa49bb43c1da65e2f9a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 46}
+  - name: Checkpoint_Frame_9
+    originalName: 
+    pivot: {x: 0.4166667, y: -0.47058824}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 90
+      width: 24
+      height: 34
+    spriteID: 57703d059f502404aaf4258114fdb155
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 90}
+  - name: Checkpoint_Frame_10
+    originalName: 
+    pivot: {x: 0.39999998, y: -0.47058824}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 25
+      height: 34
+    spriteID: 088ca81a3cecca74aad46d2095837ddd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Checkpoint_Frame_11
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.47058824}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 134
+      width: 21
+      height: 34
+    spriteID: 29a0141645b6fed4b812e6defce9358b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 134}
+  - name: Checkpoint_Frame_12
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.45714286}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 48
+      width: 21
+      height: 35
+    spriteID: fdf5a40d995e77f419bd71a301ade57f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 48}
+  - name: Checkpoint_Frame_13
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.45714286}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 91
+      width: 21
+      height: 35
+    spriteID: ffb9e62315632464aaf72dc3ddd91def
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 91}
+  - name: Checkpoint_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: -0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 4
+      width: 22
+      height: 36
+    spriteID: 7e08c0b1b866d36408f7c39b516a5617
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 4}
+  - name: Checkpoint_Frame_15
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.42105263}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 132
+      width: 21
+      height: 38
+    spriteID: b1237d62d2327094e9360dd1b07aa01c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 132}
+  - name: Checkpoint_Frame_16
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.42105263}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 178
+      width: 21
+      height: 38
+    spriteID: 421a914fd3a1e2d498f0353392d8ab59
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 178}
+  - name: Checkpoint_Frame_17
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.4848485}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 217
+      width: 21
+      height: 33
+    spriteID: 4c7e4f2cb87003343bb2a95639fa8ee7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 217}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 2022671672
+    name: Checkpoint
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Checkpoint_Frame_0
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 19
+      spriteId: cc972486319efeb44b5748670a27e089
+    - name: Checkpoint_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 20
+      spriteId: c533b918be32b834ba1ef090068d7208
+    - name: Checkpoint_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 22
+      spriteId: 1e3d89e9fefb06b4abc5a63c9492ab2f
+    - name: Checkpoint_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 27
+      spriteId: c1588f77aa4298a4ba03c4729d029d40
+    - name: Checkpoint_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 33
+      spriteId: 9d9343483a5ebd94c85a7c94357b41e0
+    - name: Checkpoint_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 30
+      spriteId: 2aee9477832f85f48a09d39d78374398
+    - name: Checkpoint_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 29
+      spriteId: 3631cad6e4695fc42958b7f395ffee40
+    - name: Checkpoint_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 32
+      spriteId: 2081253817b536b41850551a23c3b0aa
+    - name: Checkpoint_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 23
+        height: 36
+      spriteId: aa6ecb03d09edaa49bb43c1da65e2f9a
+    - name: Checkpoint_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 24
+        height: 34
+      spriteId: 57703d059f502404aaf4258114fdb155
+    - name: Checkpoint_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 25
+        height: 34
+      spriteId: 088ca81a3cecca74aad46d2095837ddd
+    - name: Checkpoint_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 34
+      spriteId: 29a0141645b6fed4b812e6defce9358b
+    - name: Checkpoint_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 35
+      spriteId: fdf5a40d995e77f419bd71a301ade57f
+    - name: Checkpoint_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 35
+      spriteId: ffb9e62315632464aaf72dc3ddd91def
+    - name: Checkpoint_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 5
+        y: 16
+        width: 22
+        height: 36
+      spriteId: 7e08c0b1b866d36408f7c39b516a5617
+    - name: Checkpoint_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 38
+      spriteId: b1237d62d2327094e9360dd1b07aa01c
+    - name: Checkpoint_Frame_16
+      frameIndex: 16
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 38
+      spriteId: 421a914fd3a1e2d498f0353392d8ab59
+    - name: Checkpoint_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 6
+        y: 16
+        width: 21
+        height: 33
+      spriteId: 4c7e4f2cb87003343bb2a95639fa8ee7
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: Default
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 32, y: 64}
