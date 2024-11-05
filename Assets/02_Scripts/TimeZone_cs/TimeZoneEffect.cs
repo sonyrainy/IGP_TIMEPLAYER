@@ -11,13 +11,14 @@ public class TimeZoneEffect : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-                    Player player = other.GetComponent<Player>();
+            Player player = other.GetComponent<Player>();
 
-                    Debug.Log("Player TimeZone 입장");
+            Debug.Log("Player TimeZone 입장");
 
             if (player != null)
             {
-            player.moveSpeed *= speedMultiplier;
+                player.moveSpeed *= speedMultiplier;
+                
             }
         }
     }
@@ -26,9 +27,9 @@ public class TimeZoneEffect : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-                    Player player = other.GetComponent<Player>();
+            Player player = other.GetComponent<Player>();
 
-                    Debug.Log("Player TimeZone 퇴장");
+            Debug.Log("Player TimeZone 퇴장");
 
             if (player != null)
             {

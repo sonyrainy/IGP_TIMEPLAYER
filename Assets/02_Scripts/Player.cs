@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
+    [SerializeField] public float moveSpeed = 0;
+    [SerializeField] public float dashSpeed = 0;
 
-    public float moveSpeed = 0;
-
-    public float jumpForce = 10;
+    [SerializeField] public float jumpForce = 10;
 
     [SerializeField] float castSize;
 
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         GroundCheck();
+
         float i = Input.GetAxisRaw("Horizontal");
 
         if(!isGround)
@@ -41,15 +42,20 @@ public class Player : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = i;
             transform.localScale = scale;
-
         }
+
         Vector3 vel = rigidbody.velocity;
         vel.x = moveSpeed * i;
         rigidbody.velocity = vel;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            ani.SetTrigger("Dash");
         }
 
         ani.SetBool("Run", i != 0);
@@ -72,8 +78,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
     void Jump()
     {
         if (!isGround) return;
@@ -83,5 +87,10 @@ public class Player : MonoBehaviour
         rigidbody.velocity = vel;
         isGround = false;
         ani.SetTrigger("Jump");
+    }
+
+    void Dash()
+    {
+
     }
 }
