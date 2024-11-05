@@ -17,8 +17,8 @@ public class TimeZoneEffect : MonoBehaviour
 
             if (player != null)
             {
-                player.moveSpeed *= speedMultiplier;
-                
+                player.AdjustObjectSpeed(speedMultiplier);
+                player.isInTimeZone = true;
             }
         }
     }
@@ -33,7 +33,8 @@ public class TimeZoneEffect : MonoBehaviour
 
             if (player != null)
             {
-            player.moveSpeed /= speedMultiplier;
+                player.AdjustObjectSpeed(1f / speedMultiplier);
+                player.isInTimeZone = false;
             }
         }
     }

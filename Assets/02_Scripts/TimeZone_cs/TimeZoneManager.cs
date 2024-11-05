@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeZoneManager : MonoBehaviour
+public class TimeZoneManager : Time
 {
     public GameObject slowTimeZonePrefab; 
     public GameObject fastTimeZonePrefab;
@@ -21,18 +21,28 @@ public class TimeZoneManager : MonoBehaviour
     private void HandleTimeZoneCreation()
     {
 
+        if (!isCreatingTimeZone)
+        {
+            isSlow = false;
+            isFast = false;
+        }
+
         //Slow TimeZone, 좌클릭
         if (Input.GetMouseButtonDown(0) && !isCreatingTimeZone)
         {
-            CreateTimeZone(slowTimeZonePrefab, 0.5f);
+            CreateTimeZone(slowTimeZonePrefab, slowValue);
             isCreatingTimeZone = true;
+            isSlow = true;
+            isFast = false;
         }
 
         //Fast TimeZone, 우클릭
         else if (Input.GetMouseButtonDown(1) && !isCreatingTimeZone)
         {
-            CreateTimeZone(fastTimeZonePrefab, 2f); 
+            CreateTimeZone(fastTimeZonePrefab, fastValue); 
             isCreatingTimeZone = true;
+            isSlow = false;
+            isFast = true;
         }
 
         //동시 클릭 X
