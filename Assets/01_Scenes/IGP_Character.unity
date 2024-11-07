@@ -259,17 +259,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b7a921c2df4d64789e07c8e7447eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowValue: 0.5
-  fastValue: 2
   floorLayer:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 4
-  dashSpeed: 0
-  jumpForce: 2
-  defaultGravityScale: 7
-  targetJumpHeight: 5
-  castSize: 1.7
+  dashSpeed: 2
+  jumpForce: 27
+  castSize: 1.1
+  gravity: 9.8
+  yVelocity: 0
+  isGround: 0
+  isDash: 0
+  speedMultiplier: 1
   isInTimeZone: 0
   animationSpeed: 1
 --- !u!4 &399303438
@@ -303,7 +304,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -314,7 +315,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &399303440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -347,7 +348,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012255967, y: -0.76599747}
+  m_Offset: {x: -0.012255967, y: 0.8135585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -358,7 +359,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.63232124, y: 1.4779824}
+  m_Size: {x: 0.63232124, y: 1.7228748}
   m_EdgeRadius: 0
 --- !u!1 &566036010
 GameObject:

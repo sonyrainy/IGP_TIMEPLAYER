@@ -29,7 +29,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
 
-            Debug.Log("Player TimeZone 퇴장");
+            Debug.Log("Player TimeZone 퇴장"); 
 
             if (player != null)
             {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeZoneManager : Time
+public class TimeZoneManager : MonoBehaviour
 {
     public GameObject slowTimeZonePrefab; 
     public GameObject fastTimeZonePrefab;
@@ -20,29 +20,18 @@ public class TimeZoneManager : Time
 
     private void HandleTimeZoneCreation()
     {
-
-        if (!isCreatingTimeZone)
-        {
-            isSlow = false;
-            isFast = false;
-        }
-
         //Slow TimeZone, 좌클릭
         if (Input.GetMouseButtonDown(0) && !isCreatingTimeZone)
         {
-            CreateTimeZone(slowTimeZonePrefab, slowValue);
+            CreateTimeZone(slowTimeZonePrefab, 0.5f);
             isCreatingTimeZone = true;
-            isSlow = true;
-            isFast = false;
         }
 
         //Fast TimeZone, 우클릭
         else if (Input.GetMouseButtonDown(1) && !isCreatingTimeZone)
         {
-            CreateTimeZone(fastTimeZonePrefab, fastValue); 
+            CreateTimeZone(fastTimeZonePrefab, 2.0f); 
             isCreatingTimeZone = true;
-            isSlow = false;
-            isFast = true;
         }
 
         //동시 클릭 X
@@ -68,7 +57,7 @@ public class TimeZoneManager : Time
         mousePos.z = 0f;
 
         currentTimeZone = Instantiate(timeZonePrefab, mousePos, Quaternion.identity);
-        currentEffect = currentTimeZone.AddComponent<TimeZoneEffect>();
+        currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
         currentEffect.speedMultiplier = speedMultiplier;
     }
 
