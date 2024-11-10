@@ -1,3 +1,4 @@
+using Player_States;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,7 +6,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Animator ani;
+    public PlayerState prevPlayerState = PlayerState.Idle;
+    public PlayerState playerState = PlayerState.Idle;
+
+    private Animator animation;
     private Transform transform;
     private Rigidbody2D rigidbody;
 
@@ -21,14 +25,23 @@ public class Player : MonoBehaviour
     [SerializeField] bool isGround = false;
     [SerializeField] bool isDash = false;
 
+    public State<Player>[] states;
+
     public float speedMultiplier = 1f;
     public bool isInTimeZone = false; 
     public float animationSpeed = 1;
 
-    // Start is called before the first frame update
+    public void ChangeState(PlayerState state)
+    {
+        states[(int)playerState].Exit();
+        prevPlayerState = playerState;
+        playerState = state;
+        states[(int)playerState].Enter();
+    }
+
     void Start()
     {
-        ani =  GetComponentInChildren<Animator>();
+        animation =  GetComponentInChildren<Animator>();
         transform = GetComponentInChildren<Transform>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
@@ -39,23 +52,24 @@ public class Player : MonoBehaviour
         // 타임존에 있는 경우 애니메이터 속도 조절
         if (isInTimeZone)
         {
-            ani.speed = animationSpeed;
+            animation.speed = animationSpeed;
         }
         else
         {
-            ani.speed = 1.0f;
+            animation.speed = 1.0f;
         }
 
         GroundCheck();
 
         ApplyGravity();
 
-        float playerDirection = Input.GetAxisRaw("Horizontal");
 
         if (!isGround)
         {
-            ani.SetFloat("YSpeed", yVelocity);
+            animation.SetFloat("YSpeed", yVelocity);
         }
+
+        float playerDirection = Input.GetAxisRaw("Horizontal");
 
         if (playerDirection != 0)
         {
@@ -75,11 +89,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            ani.SetTrigger("Dash");
+            animation.SetTrigger("Dash");
             Dash(playerDirection);
         }
 
-        ani.SetBool("Run", playerDirection != 0);
+        animation.SetBool("Run", playerDirection != 0);
     }
 
     void GroundCheck()
@@ -93,7 +107,7 @@ public class Player : MonoBehaviour
             {
                 if (!isGround)
                 {
-                    ani.SetTrigger("OnGround");
+                    animation.SetTrigger("OnGround");
                     transform.position = rayHit.point;
                 }
                 isGround = true;
@@ -112,7 +126,7 @@ public class Player : MonoBehaviour
 
         yVelocity = jumpForce;
         isGround = false;
-        ani.SetTrigger("Jump");
+        animation.SetTrigger("Jump");
     }
 
     public void AdjustObjectSpeed(float speedMultiplier)
@@ -124,7 +138,7 @@ public class Player : MonoBehaviour
 
         // 애니메이터 속도 조정
         animationSpeed *= speedMultiplier;
-        ani.speed = animationSpeed;
+        animation.speed = animationSpeed;
     }
 
     private void ApplyGravity()
