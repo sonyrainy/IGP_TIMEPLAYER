@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     public PlayerState prevPlayerState = PlayerState.Idle;
     public PlayerState playerState = PlayerState.Idle;
 
-    private Animator animation;
-    private Transform transform;
-    private Rigidbody2D rigidbody;
+    public Animator animator;
+    public Transform transform;
+    public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
     [SerializeField] public float moveSpeed = 0;
@@ -20,10 +20,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] float castSize;
     [SerializeField] float gravity = 9.8f;
-    [SerializeField] float yVelocity = 0;
+    [SerializeField] public float yVelocity = 0;
 
-    [SerializeField] bool isGround = false;
-    [SerializeField] bool isDash = false;
+    [SerializeField] public bool isGround = false;
 
     public State<Player>[] states;
 
@@ -41,9 +40,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        animation =  GetComponentInChildren<Animator>();
+        animator =  GetComponentInChildren<Animator>();
         transform = GetComponentInChildren<Transform>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+        InitFSM();
     }
 
     // Update is called once per frame
@@ -52,50 +56,51 @@ public class Player : MonoBehaviour
         // 타임존에 있는 경우 애니메이터 속도 조절
         if (isInTimeZone)
         {
-            animation.speed = animationSpeed;
+            animator.speed = animationSpeed;
         }
         else
         {
-            animation.speed = 1.0f;
+            animator.speed = 1.0f;
         }
-
-        GroundCheck();
-
-        ApplyGravity();
-
-
-        if (!isGround)
-        {
-            animation.SetFloat("YSpeed", yVelocity);
-        }
-
-        float playerDirection = Input.GetAxisRaw("Horizontal");
-
-        if (playerDirection != 0)
-        {
-            Vector3 scale = transform.localScale;
-            scale.x = playerDirection;
-            transform.localScale = scale;
-        }
-
-        Vector3 vel = rigidbody.velocity;
-        vel.x = moveSpeed * playerDirection;
-        rigidbody.velocity = vel;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            ChangeState(PlayerState.Jump);
+        }
+
+        GroundCheck();
+        ApplyGravity();
+
+        states[(int)playerState].Execute();
+        states[(int)playerState].OnTransition();
+
+        if (!isGround)
+        {
+            animator.SetFloat("YSpeed", yVelocity);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            animation.SetTrigger("Dash");
-            Dash(playerDirection);
-        }
 
-        animation.SetBool("Run", playerDirection != 0);
+        }
     }
 
+    void InitFSM()
+    {
+        animator = GetComponentInChildren<Animator>();
+        playerState = PlayerState.Spawn;
+
+        states = new State<Player>[(int)PlayerState.Last];
+
+        states[(int)PlayerState.Idle] = new Idle(this);
+        states[(int)PlayerState.Spawn] = new Spawn(this);
+        states[(int)PlayerState.Run] = new Run(this);
+        states[(int)PlayerState.Jump] = new Jump(this);
+
+        states[(int)playerState].Enter();
+    }
+
+    // 플레이어가 지면과 닿아 있는지 확인
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -107,7 +112,7 @@ public class Player : MonoBehaviour
             {
                 if (!isGround)
                 {
-                    animation.SetTrigger("OnGround");
+                    animator.SetTrigger("OnGround");
                     transform.position = rayHit.point;
                 }
                 isGround = true;
@@ -120,15 +125,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jump()
-    {
-        if (!isGround) return;
-
-        yVelocity = jumpForce;
-        isGround = false;
-        animation.SetTrigger("Jump");
-    }
-
     public void AdjustObjectSpeed(float speedMultiplier)
     {
         this.speedMultiplier *= speedMultiplier;
@@ -138,9 +134,10 @@ public class Player : MonoBehaviour
 
         // 애니메이터 속도 조정
         animationSpeed *= speedMultiplier;
-        animation.speed = animationSpeed;
+        animator.speed = animationSpeed;
     }
 
+    // 중력 적용 함수
     private void ApplyGravity()
     {
         if (!isGround)
@@ -151,20 +148,9 @@ public class Player : MonoBehaviour
         Vector3 position = transform.position;
 
         // yVelocity * Time.deltaTime * speedMultiplier => 높이 고정
-        // yVelocity * Time.deltaTime => 시간 느릴 땐 낮게, 시간 빠를 땐 높게
+        // yVelocity * Time.deltaTime                   => 시간 느릴 땐 낮게, 시간 빠를 땐 높게
         position.y += yVelocity * Time.deltaTime * speedMultiplier;
         transform.position = position;
     }
 
-    void Dash(float direction)
-    {
-        if (!isGround)
-        {
-            yVelocity = 0;
-        }
-
-        Vector3 vel = rigidbody.velocity;
-        vel.x = moveSpeed * direction * dashSpeed;
-        rigidbody.velocity = vel;
-    }
 }
