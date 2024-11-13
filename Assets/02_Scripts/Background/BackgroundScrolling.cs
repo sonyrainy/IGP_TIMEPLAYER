@@ -22,15 +22,15 @@ public class BackgroundScrolling : MonoBehaviour
         {
             playerRigidbody = player.GetComponent<Rigidbody2D>();
 
-            // Rigidbody°¡ ¾øÀ» °æ¿ì °æ°í ¸Þ½ÃÁö Ãâ·Â
+            // Rigidbodyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             if (playerRigidbody == null)
             {
-                Debug.LogWarning("Player GameObject¿¡ Rigidbody°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning("Player GameObjectï¿½ï¿½ Rigidbodyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             }
         }
         else
         {
-            Debug.LogError("Player GameObject°¡ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("Player GameObjectï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
         }
     }
 
@@ -39,7 +39,7 @@ public class BackgroundScrolling : MonoBehaviour
     {
         if (playerRigidbody != null)
         {
-            backgroundTransform.Translate(new Vector3((playerRigidbody.velocity.x * (speed / 100)), 0, 0));
+            backgroundTransform.Translate(new Vector3(-1 * (playerRigidbody.velocity.x * (speed / 100)), 0, 0));
 
             if (backgroundTransform.position.x == -9.75f)
             {
