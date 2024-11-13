@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/01_Scenes/IGP_Title.unity
     guid: 751162723ad92784c89fded0e4f69121
   - enabled: 1
-    path: Assets/01_Scenes/IGP_Tutorial.unity
+    path: Assets/01_Scenes/IGP_Forest.unity
     guid: faf89db7afc0a6541b6b32dabbe1982e
   m_configObjects: {}
