@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         playerState = state;
         states[(int)playerState].Enter();
 
-        // 점프 상태로 변경될 때 점프 소리 재생 (단, 이미 점프 상태가 아닌 경우에만)
+        // 점프 상태로 변경될 때 한 번만 점프 소리 재생
         if (state == PlayerState.Jump && prevPlayerState != PlayerState.Jump)
         {
             SoundManager.Instance.PlaySFX("Jump", 0.2f, false);
