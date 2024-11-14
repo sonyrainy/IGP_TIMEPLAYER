@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scenes/IGP_Setting.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/01_Scenes/IGP_Title.unity
+    guid: 751162723ad92784c89fded0e4f69121
+  - enabled: 1
+    path: Assets/01_Scenes/IGP_Forest.unity
+    guid: faf89db7afc0a6541b6b32dabbe1982e
+  - enabled: 1
+    path: Assets/01_Scenes/IGP_Sound.unity
+    guid: 58d06628df6f39b478b36428be5fd416
   m_configObjects: {}
