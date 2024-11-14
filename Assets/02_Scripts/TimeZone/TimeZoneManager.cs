@@ -9,7 +9,7 @@ public class TimeZoneManager : MonoBehaviour
 
     private GameObject currentTimeZone;
 
-    //타임존 생성되어있는지
+    // 타임존 생성 상태
     private bool isCreatingTimeZone = false;
     private TimeZoneEffect currentEffect;
 
@@ -20,21 +20,20 @@ public class TimeZoneManager : MonoBehaviour
 
     private void HandleTimeZoneCreation()
     {
-        //Slow TimeZone, 좌클릭
+        // Slow TimeZone, 좌클릭
         if (Input.GetMouseButtonDown(0) && !isCreatingTimeZone)
         {
             CreateTimeZone(slowTimeZonePrefab, 0.5f);
             isCreatingTimeZone = true;
         }
-
-        //Fast TimeZone, 우클릭
+        // Fast TimeZone, 우클릭
         else if (Input.GetMouseButtonDown(1) && !isCreatingTimeZone)
         {
             CreateTimeZone(fastTimeZonePrefab, 2.0f); 
             isCreatingTimeZone = true;
         }
 
-        //동시 클릭 X
+        // 클릭 해제
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
             DestroyCurrentTimeZone();
@@ -49,16 +48,29 @@ public class TimeZoneManager : MonoBehaviour
 
     private void CreateTimeZone(GameObject timeZonePrefab, float speedMultiplier)
     {
+        // timeZonePrefab이 null인지 확인
+        if (timeZonePrefab == null)
+        {
+            Debug.LogError("TimeZone prefab is null. Assign the prefab in the Inspector.");
+            return;
+        }
+
         // 마우스 위치에 TimeZone 생성
-        //+) ScreenToWorldPoint를 통해
-        // 마우스 포인터 화면 좌표 월드 좌표로 변환하여 생성하도록 하기 위해서
-        // 만들었다네요 ^-^
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
         currentTimeZone = Instantiate(timeZonePrefab, mousePos, Quaternion.identity);
+
+        // TimeZoneEffect 컴포넌트가 존재하는지 확인
         currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
-        currentEffect.speedMultiplier = speedMultiplier;
+        if (currentEffect != null)
+        {
+            currentEffect.speedMultiplier = speedMultiplier;
+        }
+        else
+        {
+            Debug.LogError("TimeZone prefab does not contain a TimeZoneEffect component.");
+        }
     }
 
     private void UpdateTimeZonePosition()

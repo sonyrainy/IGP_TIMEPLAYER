@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaae33fa65151944da228fdc58076c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowTimeZonePrefab: {fileID: 7724087890132889713, guid: d53b6002eda0e5c44940616aab0cdbc5, type: 3}
-  fastTimeZonePrefab: {fileID: 1576951340735628263, guid: d4de71ea7a478d6438223875a60522d1, type: 3}
+  slowTimeZonePrefab: {fileID: 2542277593963403044, guid: b98985a41b506804093404f5cc6ceda6, type: 3}
+  fastTimeZonePrefab: {fileID: 1843158086716845431, guid: 6dc14d44a2db8244dbcb0ff3abd1327c, type: 3}
 --- !u!4 &1396635829
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b892a53d9409545b205a83e01e8163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
