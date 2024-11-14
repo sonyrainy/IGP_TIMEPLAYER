@@ -13,6 +13,11 @@ public class TimeZoneManager : MonoBehaviour
     private bool isCreatingTimeZone = false;
     private TimeZoneEffect currentEffect;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // 씬 전환 후에도 이 오브젝트가 유지되도록 설정
+    }
+
     void Update()
     {
         HandleTimeZoneCreation();
