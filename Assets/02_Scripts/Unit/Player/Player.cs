@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         states[(int)playerState].Enter();
     }
 
-    // �÷��̾ ����� ��� �ִ��� Ȯ��
+    // 플레이어가 바닥과 붙어 있는지 확인
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -134,15 +134,15 @@ public class Player : MonoBehaviour
     {
         this.speedMultiplier *= speedMultiplier;
 
-        // �̵� �ӵ� ����
+        // 이동속도 감속 및 가속
         moveSpeed *= speedMultiplier;
 
-        // �ִϸ����� �ӵ� ����
+        // 애니메이션 속도 감속 및 가속
         animationSpeed *= speedMultiplier;
         animator.speed = animationSpeed;
     }
 
-    // �߷� ���� �Լ�
+    // 플레이어 오브젝트에 중력 적용
     private void ApplyGravity()
     {
         if (!isGround)
@@ -152,8 +152,8 @@ public class Player : MonoBehaviour
         }
         Vector3 position = transform.position;
 
-        // yVelocity * Time.deltaTime * speedMultiplier => ���� ����
-        // yVelocity * Time.deltaTime                   => �ð� ���� �� ����, �ð� ���� �� ����
+        // yVelocity * Time.deltaTime * speedMultiplier => 점프 높이는 고정, 속도만 빠르고 느리게
+        // yVelocity * Time.deltaTime                   => 점프 높이도 고정
         position.y += yVelocity * Time.deltaTime * speedMultiplier;
         transform.position = position;
     }
