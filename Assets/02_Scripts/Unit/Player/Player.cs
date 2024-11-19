@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Å¸ÀÓÁ¸¿¡ ÀÖ´Â °æ¿ì ¾Ö´Ï¸ŞÀÌÅÍ ¼Óµµ Á¶Àı
+        // íƒ€ì„ì¡´ì— ë“¤ì–´ê°€ ìˆìœ¼ë©´ ì• ë‹ˆë©”ì´ì…˜ ì†ë„ ê°ì† ë° ê°€ì†
         if (isInTimeZone)
         {
             animator.speed = animationSpeed;
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         states[(int)playerState].Enter();
     }
 
-    // ÇÃ·¹ÀÌ¾î°¡ Áö¸é°ú ´ê¾Æ ÀÖ´ÂÁö È®ÀÎ
+    // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -129,15 +129,15 @@ public class Player : MonoBehaviour
     {
         this.speedMultiplier *= speedMultiplier;
 
-        // ÀÌµ¿ ¼Óµµ Á¶Á¤
+        // ï¿½Ìµï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         moveSpeed *= speedMultiplier;
 
-        // ¾Ö´Ï¸ŞÀÌÅÍ ¼Óµµ Á¶Á¤
+        // ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         animationSpeed *= speedMultiplier;
         animator.speed = animationSpeed;
     }
 
-    // Áß·Â Àû¿ë ÇÔ¼ö
+    // ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     private void ApplyGravity()
     {
         if (!isGround)
@@ -147,8 +147,8 @@ public class Player : MonoBehaviour
         }
         Vector3 position = transform.position;
 
-        // yVelocity * Time.deltaTime * speedMultiplier => ³ôÀÌ °íÁ¤
-        // yVelocity * Time.deltaTime                   => ½Ã°£ ´À¸± ¶© ³·°Ô, ½Ã°£ ºü¸¦ ¶© ³ô°Ô
+        // yVelocity * Time.deltaTime * speedMultiplier => ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // yVelocity * Time.deltaTime                   => ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         position.y += yVelocity * Time.deltaTime * speedMultiplier;
         transform.position = position;
     }
