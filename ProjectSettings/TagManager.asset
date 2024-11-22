@@ -44,11 +44,23 @@ TagManager:
   - name: Wall
     uniqueID: 586336335
     locked: 0
+  - name: Boss
+    uniqueID: 2075985735
+    locked: 0
+  - name: Telegraph
+    uniqueID: 3817291393
+    locked: 0
+  - name: Object
+    uniqueID: 3152880027
+    locked: 0
   - name: Ground
     uniqueID: 3014277089
     locked: 0
   - name: Grass
     uniqueID: 3473095753
+    locked: 0
+  - name: BossHand
+    uniqueID: 1449787161
     locked: 0
   - name: Player
     uniqueID: 3377007963
