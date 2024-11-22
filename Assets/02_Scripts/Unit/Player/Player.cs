@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
         {
             animator.speed = animationSpeed;
