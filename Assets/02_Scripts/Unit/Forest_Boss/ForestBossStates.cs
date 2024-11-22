@@ -11,6 +11,17 @@ namespace Forest_Boss_States
         Spawn, Idle, damaged, RockAttack, LogAttack, Dead, Last
     }
 
+    public enum ForestBossAnimation
+    {
+        ForestBoss_Spawn,
+        ForestBoss_Idle,
+        ForestBoss_Damaged,
+        ForestBoss_RockAttack,
+        ForestBoss_LogAttack,
+        ForestBoss_Dead,
+        Last
+    }
+
     public class Spawn : State<ForestBoss>
     {
         float timer = 0f;
@@ -20,6 +31,8 @@ namespace Forest_Boss_States
         {
             base.Enter();
             Debug.Log("Spawn State");
+            boss.ChangeAnimation(ForestBossAnimation.ForestBoss_Spawn);
+            
             timer = 0f;
         }
 
@@ -30,12 +43,12 @@ namespace Forest_Boss_States
 
         public override void Exit() 
         {
-
+            
         }
 
         public override void OnTransition()
         {
-            if (timer > 0.5f)
+            if (timer > 5f)
             {
                 user.ChangeState(ForestBossState.Idle);
             }

@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ForestBossSpawn
+  m_Name: ForestBoss_Spawn
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -34,7 +34,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ForestBossIdle
+  m_Name: ForestBoss_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -86,7 +86,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -1048191778634557775}
-    m_Position: {x: 530, y: 70, z: 0}
+    m_Position: {x: 300, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8962971438792159411}
     m_Position: {x: 300, y: 140, z: 0}
