@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Forest_Boss_States
 {
     [System.Serializable]
@@ -31,7 +30,7 @@ namespace Forest_Boss_States
         {
             base.Enter();
             Debug.Log("Spawn State");
-            boss.ChangeAnimation(ForestBossAnimation.ForestBoss_Spawn);
+            // boss.ChangeAnimation(ForestBossAnimation.ForestBoss_Spawn);
             
             timer = 0f;
         }
