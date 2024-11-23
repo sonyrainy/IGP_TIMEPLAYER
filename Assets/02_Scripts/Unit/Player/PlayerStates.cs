@@ -60,7 +60,8 @@ namespace Player_States
         {
             base.Enter();
             Debug.Log("Idle State");
-            user.animator.SetBool("isRun", false);
+            user.ChangeAnimation(PlayerAnimation.Player_Idle);
+            // user.animator.SetBool("isRun", false);
         }
 
         public override void Execute()
@@ -79,6 +80,16 @@ namespace Player_States
             {
                 user.ChangeState(PlayerState.Run);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                user.ChangeState(PlayerState.Jump);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+            }
         }
     }
 
@@ -90,6 +101,7 @@ namespace Player_States
         {
             base.Enter();
             Debug.Log("Run State");
+            user.ChangeAnimation("Player_Run");
         }
 
         public override void Execute()
@@ -117,6 +129,16 @@ namespace Player_States
             {
                 user.ChangeState(PlayerState.Idle);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                user.ChangeState(PlayerState.Jump);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+            }
         }
     }
 
@@ -136,9 +158,10 @@ namespace Player_States
         {
             if (!hasJumped && user.isGround)
             {
-                user.yVelocity = user.jumpForce;  // Á¡ÇÁ ½ÃÀÛ ½Ã yVelocity¸¦ jumpForce·Î ¼³Á¤
+                user.yVelocity = user.jumpForce;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ yVelocityï¿½ï¿½ jumpForceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 user.isGround = false;
-                user.animator.SetTrigger("Jump");
+                //user.animator.SetTrigger("Jump");
+                user.ChangeAnimation("Player_Jump");
                 hasJumped = true;
             }
         }
@@ -150,9 +173,22 @@ namespace Player_States
 
         public override void OnTransition()
         {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+            }
+
             if (user.isGround == true)
             {
-                user.ChangeState(PlayerState.Idle);
+                if (user.rigidbody.velocity.x == 0)
+                {
+                    user.ChangeState(PlayerState.Idle);
+                }
+                else
+                {
+                    user.ChangeState(PlayerState.Run);
+                }
+                
                 hasJumped = !hasJumped;
             }
         }
@@ -160,17 +196,50 @@ namespace Player_States
 
     public class Dash : State<Player>
     {
+        private bool isAnimationComplete = false;
+        private bool isExit = false;
+
         public Dash(Player user) : base(user) { }
 
         public override void Enter()
         {
             base.Enter();
             Debug.Log("Dash State");
+            user.ChangeAnimation(PlayerAnimation.Player_Dash);
+            isAnimationComplete = false;
+            isExit = false;
         }
 
         public override void Execute()
         {
-            
+            // Vector2 dashVec = new Vector2(user.rigidbody.velocity.x + user.dashFloat, user.rigidbody.velocity.y);
+
+            if (!isAnimationComplete)
+            {
+                // user.rigidbody.velocity = dashVec;
+
+                user.isDash = true;
+                user.yVelocity = 0;
+
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.IsName("Player_Dash") && stateInfo.normalizedTime >= 1.0f)
+                {
+                    isAnimationComplete = true;
+                }
+            }
+            else
+            {
+                user.isDash = false;
+                
+                if (user.isGround == false)
+                {
+                    user.ChangeAnimation("Fall");
+                }
+                else
+                {
+                    isExit = true;
+                }
+            }
         }
 
         public override void Exit()
@@ -180,7 +249,10 @@ namespace Player_States
 
         public override void OnTransition()
         {
-            
+            if (isExit)
+            {
+                user.ChangeState(PlayerState.Idle);
+            }
         }
     }
 
