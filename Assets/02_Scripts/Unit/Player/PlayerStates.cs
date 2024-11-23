@@ -308,14 +308,7 @@ namespace Player_States
             }
             else
             {
-                if (user.isGround == false)
-                {
-                    // user.ApplyGravity();
-                }
-                else
-                {
-                    isExit = true;
-                }
+                isExit = true;
             }
         }
 
