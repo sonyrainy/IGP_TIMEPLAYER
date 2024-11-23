@@ -101,11 +101,12 @@ public class Player : MonoBehaviour
         states[(int)PlayerState.Run] = new Run(this);
         states[(int)PlayerState.Jump] = new Jump(this);
         states[(int)PlayerState.Dash] = new Dash(this);
+        states[(int)PlayerState.Hit] = new Hit(this);
 
         states[(int)playerState].Enter();
     }
 
-    // �÷��̾ ����� ��� �ִ��� Ȯ��
+    // 플레이어가 바닥에 붙어 있는지 확인
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
         animator.speed = inTimeZoneSpeed;
     }
 
-    // �߷� ���� �Լ�
+    // 플레이어 중력 적용
     public void ApplyGravity()
     {
         if (!isGround)
@@ -152,8 +153,8 @@ public class Player : MonoBehaviour
         }
         Vector3 position = transform.position;
 
-        // yVelocity * Time.deltaTime * speedMultiplier => ���� ����
-        // yVelocity * Time.deltaTime                   => �ð� ���� �� ����, �ð� ���� �� ����
+        // yVelocity * Time.deltaTime * speedMultiplier 
+        // yVelocity * Time.deltaTime                   
         position.y += yVelocity * Time.deltaTime * speedMultiplier;
         transform.position = position;
     }
@@ -161,5 +162,13 @@ public class Player : MonoBehaviour
     public void OnDie()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("BossAttackObjects"))
+        {
+            ChangeState(PlayerState.Hit);
+        }
     }
 }

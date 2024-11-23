@@ -2311,6 +2311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: dashFloat
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2592527571675505190, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.75

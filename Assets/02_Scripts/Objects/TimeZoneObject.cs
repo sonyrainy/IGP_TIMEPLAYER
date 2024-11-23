@@ -13,7 +13,6 @@ public class TimeZoneObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 충돌한 오브젝트의 태그 확인
         if (collision.gameObject.CompareTag("BossAttackObjects"))
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
