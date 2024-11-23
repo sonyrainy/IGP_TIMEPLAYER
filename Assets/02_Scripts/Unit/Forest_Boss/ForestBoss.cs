@@ -24,6 +24,9 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] private float logsSpawnTerm = 1f;
     [SerializeField] private float rocksSpawnTerm = 1f;
 
+    [SerializeField] private float logsSpawnWaitTime = 1f;
+    [SerializeField] private float rocksSpawnWaitTime = 1f;
+
     private float playTime = 0f;
 
     public void ChangeState(ForestBossState state) 
@@ -97,7 +100,7 @@ public class ForestBoss : MonoBehaviour
         List<int> randomNumbers = GetUniqueRandomNumbers(0, LogPositions.Length - 1, spawnLogNumber);
         float randomSpawnTime = Random.Range(logsSpawnTerm, logsSpawnTerm * 1.25f);
 
-        // LogTelegraph ¿ÀºêÁ§Æ® »ı¼º
+        // LogTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         List<GameObject> telegraphs = new List<GameObject>();
         foreach (int number in randomNumbers)
         {
@@ -107,15 +110,15 @@ public class ForestBoss : MonoBehaviour
             yield return new WaitForSeconds(randomSpawnTime);
         }
 
-        yield return new WaitForSeconds(3f);
+        // yield return new WaitForSeconds(logsSpawnWaitTime);
 
-        // LogTelegraph ¿ÀºêÁ§Æ® Á¦°Å
+        // LogTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach (GameObject telegraph in telegraphs)
         {
             Destroy(telegraph);
         }
 
-        // log ¿ÀºêÁ§Æ® »ı¼º
+        // log ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach (int number in randomNumbers)
         {
             Instantiate(log, LogPositions[number].position, Quaternion.identity);
@@ -138,7 +141,7 @@ public class ForestBoss : MonoBehaviour
         List<int> randomNumbers = GetUniqueRandomNumbers(0, rockPositions.Length - 1, spawnRockNumber);
         float randomSpawnTime = Random.Range(rocksSpawnTerm, rocksSpawnTerm * 1.5f);
 
-        // RockTelegraph ¿ÀºêÁ§Æ® »ı¼º
+        // RockTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         List<GameObject> telegraphs = new List<GameObject>();
         foreach (int number in randomNumbers)
         {
@@ -147,15 +150,15 @@ public class ForestBoss : MonoBehaviour
             yield return new WaitForSeconds(randomSpawnTime);
         }
 
-        yield return new WaitForSeconds(3f);
+        // yield return new WaitForSeconds(rocksSpawnWaitTime);
 
-        // RockTelegraph ¿ÀºêÁ§Æ® Á¦°Å
+        // RockTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach (GameObject telegraph in telegraphs)
         {
             Destroy(telegraph);
         }
 
-        // Rock ¿ÀºêÁ§Æ® »ı¼º
+        // Rock ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach (int number in randomNumbers)
         {
             Vector3 rockSpawnPoint = new Vector3(rockPositions[number].position.x + 8, rockPositions[number].position.y, rockPositions[number].position.z);
@@ -166,12 +169,13 @@ public class ForestBoss : MonoBehaviour
 
     /*
      * Random Number Function 
+     *
+     * ì¤‘ë³µ ì—†ì´ ë²”ìœ„ ë‚´ ìˆ«ì ëœë¤ìœ¼ë¡œ ì¶œë ¥
      */
     List<int> GetUniqueRandomNumbers(int min, int max, int count)
     {
         List<int> numbers = new List<int>();
 
-        // min~max ¹üÀ§ÀÇ ¼ıÀÚ¸¦ ¸®½ºÆ®·Î »ı¼º
         for (int i = min; i <= max; i++)
         {
             numbers.Add(i);
@@ -179,12 +183,11 @@ public class ForestBoss : MonoBehaviour
 
         List<int> result = new List<int>();
 
-        // Áßº¹ ¾øÀÌ ·£´ı ¼ıÀÚ »Ì±â
         for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0, numbers.Count);
             result.Add(numbers[randomIndex]);
-            numbers.RemoveAt(randomIndex); // ÀÌ¹Ì »ÌÀº ¼ıÀÚ´Â Á¦°Å
+            numbers.RemoveAt(randomIndex);
         }
 
         return result;

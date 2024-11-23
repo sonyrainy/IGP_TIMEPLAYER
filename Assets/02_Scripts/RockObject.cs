@@ -18,6 +18,11 @@ public class RockObject : MonoBehaviour
 
     void Update()
     {
+        HorizontalMove();
+    }
+
+    private void HorizontalMove()
+    {
         // 속도를 점점 증가시킴
         currentSpeed += acceleration * Time.deltaTime;
 
@@ -33,7 +38,14 @@ public class RockObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        // 충돌한 오브젝트의 태그 확인
+        if (collision.gameObject.CompareTag("BossAttackObjects"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }   
+        else
+        {
+            Destroy(gameObject);
+        } 
     }
-
 }

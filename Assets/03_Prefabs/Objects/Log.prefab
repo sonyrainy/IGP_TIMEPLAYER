@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2599296493334673170}
   m_Layer: 0
   m_Name: Log
-  m_TagString: Untagged
+  m_TagString: BossAttackObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,6 @@ MonoBehaviour:
   yVelocity: 3
   gravity: 9.8
   speedMultiplier: 1
-  isInTimeZone: 0
 --- !u!50 &5410937798307046578
 Rigidbody2D:
   serializedVersion: 4
