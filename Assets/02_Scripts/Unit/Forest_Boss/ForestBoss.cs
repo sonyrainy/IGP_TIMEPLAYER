@@ -1,5 +1,4 @@
 using Forest_Boss_States;
-using Player_States;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +13,12 @@ public class ForestBoss : MonoBehaviour
 
     [SerializeField] public Transform[] LogPositions = new Transform[9];
     [SerializeField] public Transform[] rockPositions = new Transform[4];
+
     [SerializeField] public GameObject logTelegraph;
     [SerializeField] public GameObject log;
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
+
     [SerializeField] private int spawnLogNumber = 3;
     [SerializeField] private int spawnRockNumber = 2;
     [SerializeField] private int difficultPerPlayTime = 10;
@@ -65,12 +66,37 @@ public class ForestBoss : MonoBehaviour
         states[(int)forestBossState].OnTransition();
 
         playTime += Time.deltaTime;
+
+        // playTimeÀÌ 3À» ³Ñ¾î°¡°í »óÅÂ º¯°æÀÌ ÁøÇà ÁßÀÌ ¾Æ´Ï¸é »óÅÂ º¯°æ ½ÃÀÛ
+        if (playTime > 3 && !isStateChanging)
+        {
+            StartCoroutine(ChangeStateRoutine());
+        }
     }
 
+    private bool isStateChanging = false;
+
+    private IEnumerator ChangeStateRoutine()
+    {
+        isStateChanging = true;
+
+        while (true)
+        {
+            // »óÅÂ ÀüÈ¯ ÁÖ±â¸¦ ·£´ıÀ¸·Î ¼³Á¤ (3ÃÊ ~ 5ÃÊ)
+            float nextStateTime = Random.Range(5f, 7f);
+            yield return new WaitForSeconds(nextStateTime);
+
+            // »óÅÂ¸¦ ·£´ıÀ¸·Î °áÁ¤
+            ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
+
+            // »óÅÂ º¯°æ È£Ãâ
+            ChangeState(randomState);
+        }
+    }
     void InitFSM()
     {
         animator = GetComponentInChildren<Animator>();
-        forestBossState = ForestBossState.Spawn; 
+        forestBossState = ForestBossState.Spawn;
 
         states = new State<ForestBoss>[(int)ForestBossState.Last];
 
@@ -100,7 +126,7 @@ public class ForestBoss : MonoBehaviour
         List<int> randomNumbers = GetUniqueRandomNumbers(0, LogPositions.Length - 1, spawnLogNumber);
         float randomSpawnTime = Random.Range(logsSpawnTerm, logsSpawnTerm * 1.25f);
 
-        // LogTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Instantiate LogTelegraphs
         List<GameObject> telegraphs = new List<GameObject>();
         foreach (int number in randomNumbers)
         {
@@ -112,13 +138,13 @@ public class ForestBoss : MonoBehaviour
 
         // yield return new WaitForSeconds(logsSpawnWaitTime);
 
-        // LogTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Destory LogTelegraphs
         foreach (GameObject telegraph in telegraphs)
         {
             Destroy(telegraph);
         }
 
-        // log ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Instantiate logs
         foreach (int number in randomNumbers)
         {
             Instantiate(log, LogPositions[number].position, Quaternion.identity);
@@ -141,7 +167,7 @@ public class ForestBoss : MonoBehaviour
         List<int> randomNumbers = GetUniqueRandomNumbers(0, rockPositions.Length - 1, spawnRockNumber);
         float randomSpawnTime = Random.Range(rocksSpawnTerm, rocksSpawnTerm * 1.5f);
 
-        // RockTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Instantiate RockTelegraphs
         List<GameObject> telegraphs = new List<GameObject>();
         foreach (int number in randomNumbers)
         {
@@ -152,13 +178,13 @@ public class ForestBoss : MonoBehaviour
 
         // yield return new WaitForSeconds(rocksSpawnWaitTime);
 
-        // RockTelegraph ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Destroy RockTelegraphs
         foreach (GameObject telegraph in telegraphs)
         {
             Destroy(telegraph);
         }
 
-        // Rock ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        // Instantiate Rocks
         foreach (int number in randomNumbers)
         {
             Vector3 rockSpawnPoint = new Vector3(rockPositions[number].position.x + 8, rockPositions[number].position.y, rockPositions[number].position.z);
@@ -170,7 +196,6 @@ public class ForestBoss : MonoBehaviour
     /*
      * Random Number Function 
      *
-     * ì¤‘ë³µ ì—†ì´ ë²”ìœ„ ë‚´ ìˆ«ì ëœë¤ìœ¼ë¡œ ì¶œë ¥
      */
     List<int> GetUniqueRandomNumbers(int min, int max, int count)
     {
