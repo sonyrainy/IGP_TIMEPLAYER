@@ -266,8 +266,10 @@ MonoBehaviour:
   spawnLogNumber: 3
   spawnRockNumber: 2
   difficultPerPlayTime: 10
-  logsSpawnTerm: 1
-  rocksSpawnTerm: 1
+  logsSpawnTerm: 0.75
+  rocksSpawnTerm: 0.75
+  logsSpawnWaitTime: 1
+  rocksSpawnWaitTime: 1
 --- !u!1001 &159574303
 PrefabInstance:
   m_ObjectHideFlags: 0

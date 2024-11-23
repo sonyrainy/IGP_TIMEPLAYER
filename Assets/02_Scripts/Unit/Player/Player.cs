@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     public float speedMultiplier = 1f;
     public bool isInTimeZone = false; 
-    public float animationSpeed = 1;
+    public float inTimeZoneSpeed = 1;
 
     public void ChangeState(PlayerState state)
     {
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
         {
-            animator.speed = animationSpeed;
+            animator.speed = inTimeZoneSpeed;
         }
         else
         {
@@ -133,12 +133,12 @@ public class Player : MonoBehaviour
         moveSpeed *= speedMultiplier;
 
         // �ִϸ����� �ӵ� ����
-        animationSpeed *= speedMultiplier;
-        animator.speed = animationSpeed;
+        inTimeZoneSpeed *= speedMultiplier;
+        animator.speed = inTimeZoneSpeed;
     }
 
     // �߷� ���� �Լ�
-    private void ApplyGravity()
+    public void ApplyGravity()
     {
         if (!isGround)
         {
@@ -153,4 +153,8 @@ public class Player : MonoBehaviour
         transform.position = position;
     }
 
+    public void OnDie()
+    {
+        
+    }
 }
