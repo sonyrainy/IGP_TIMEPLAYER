@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9220479002825552924}
   m_Layer: 0
   m_Name: SlowTimeZone_NEW
-  m_TagString: Untagged
+  m_TagString: SlowTimeZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
