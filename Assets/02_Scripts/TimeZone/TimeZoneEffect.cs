@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class TimeZoneEffect : MonoBehaviour
 {
-    //Timezone 들어갔을 때 속도 얼만큼 변하게 되도록 할지 배율
+    // Timezone 들어갔을 때 속도 얼만큼 변하게 되도록 할지 배율
     public float speedMultiplier = 1f;
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,21 +20,21 @@ public class TimeZoneEffect : MonoBehaviour
             {
                 player.AdjustObjectSpeed(speedMultiplier);
                 player.isInTimeZone = true;
-
             }
         }
-                else if (other.CompareTag("F_Tree")) // 나무도 천천히 떨어지도록 설정
+        else if (other.CompareTag("F_Tree")) // FallingTree의 경우
         {
             FallingTree fallingTree = other.GetComponent<FallingTree>();
 
-            Debug.Log("Tree TimeZone 입장");
+            Debug.Log("FallingTree TimeZone 입장");
 
             if (fallingTree != null)
             {
                 fallingTree.AdjustFallSpeed(speedMultiplier);
+                fallingTree.EnterTimeZone(tag); // 현재 타임존의 태그를 전달하여 적절한 행동 실행
             }
         }
-                // GrowingTree의 경우
+        // GrowingTree의 경우
         else if (other.CompareTag("GrowingTree"))
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
@@ -56,26 +55,24 @@ public class TimeZoneEffect : MonoBehaviour
             Player player = other.GetComponent<Player>();
             Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
 
-
-            Debug.Log("Player TimeZone 퇴장"); 
+            Debug.Log("Player TimeZone 퇴장");
 
             if (player != null)
             {
                 player.AdjustObjectSpeed(1f / speedMultiplier);
                 player.isInTimeZone = false;
-
-
             }
         }
-                else if (other.CompareTag("F_Tree")) // 나무가 타임존을 벗어나면 다시 원래 속도로
+        else if (other.CompareTag("F_Tree")) // FallingTree의 경우
         {
             FallingTree fallingTree = other.GetComponent<FallingTree>();
 
-            Debug.Log("Tree TimeZone 퇴장");
+            Debug.Log("FallingTree TimeZone 퇴장");
 
             if (fallingTree != null)
             {
                 fallingTree.AdjustFallSpeed(1f / speedMultiplier);
+                fallingTree.ExitTimeZone();
             }
         }
         // GrowingTree의 경우
@@ -90,7 +87,5 @@ public class TimeZoneEffect : MonoBehaviour
                 growingTree.ExitFastTimeZone();
             }
         }
-
     }
-    
 }

@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public Transform pointA; // 시작 지점
-    public Transform pointB; // 끝 지점
-    public float speed = 2f; // 이동 속도
+    public Transform pointA;
+    public Transform pointB;
+    public float speed = 2f;
 
     private Vector3 target;
-    public bool isStopped = false; // 정지 상태를 관리하는 변수
-    private List<Transform> passengers = new List<Transform>(); // 플랫폼 위의 승객들
+    public bool isStopped = false;
+    private List<Transform> passengers = new List<Transform>();
 
     void Start()
     {
-        target = pointB.position; // 초기 목표 지점을 설정
+        target = pointB.position;
     }
 
     void Update()
     {
-        if (!isStopped) // 정지 상태가 아닐 때만 이동
+        if (!isStopped)
         {
             // 타일맵 오브젝트를 목표 지점으로 이동
             Vector3 oldPosition = transform.position;
@@ -40,7 +40,6 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // 정지 상태를 설정하는 메서드
     public void SetStopped(bool stopped)
     {
         isStopped = stopped;
