@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - CameraMove
   - SpawnPoint
   - FastTimeZone
@@ -11,6 +12,9 @@ TagManager:
   - F_Tree
   - Ground
   - GrowingTree
+=======
+  - BossAttackObjects
+>>>>>>> 99a0f2b6e835ecdd31e6754de0797667d3c06c41
   layers:
   - Default
   - TransparentFX

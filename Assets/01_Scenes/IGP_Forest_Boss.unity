@@ -205,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 135774896}
+  - component: {fileID: 135774897}
   m_Layer: 0
   m_Name: Forest_Boss
   m_TagString: Untagged
@@ -228,6 +229,47 @@ Transform:
   - {fileID: 2025910338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &135774897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135774895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231c9c63dd54a4368b31fc45127f88ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forestBossState: 1
+  prevForestBossState: 1
+  animator: {fileID: 0}
+  LogPositions:
+  - {fileID: 816300788}
+  - {fileID: 233819000}
+  - {fileID: 1633175981}
+  - {fileID: 605930027}
+  - {fileID: 1201626437}
+  - {fileID: 1597406630}
+  - {fileID: 66637595}
+  - {fileID: 1444331260}
+  - {fileID: 933618318}
+  rockPositions:
+  - {fileID: 684105644}
+  - {fileID: 1550316019}
+  - {fileID: 159574304}
+  - {fileID: 573147787}
+  logTelegraph: {fileID: 8246399093184620823, guid: ee8c628ebf88d412ca59b7a297a7b5e5, type: 3}
+  log: {fileID: 9122831120121938228, guid: 1e7c344e067d24cacbd915d67adc2081, type: 3}
+  rockTelegraph: {fileID: 3705762635852198040, guid: f49e914655b0f47c59c64cb41a83907b, type: 3}
+  rock: {fileID: 6251864297662117355, guid: 06364f82c873ac049bd10151346228f8, type: 3}
+  spawnLogNumber: 3
+  spawnRockNumber: 2
+  difficultPerPlayTime: 10
+  logsSpawnTerm: 0.75
+  rocksSpawnTerm: 0.75
+  logsSpawnWaitTime: 1
+  rocksSpawnWaitTime: 1
 --- !u!1001 &159574303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2269,6 +2311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: dashFloat
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2592527571675505190, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.75

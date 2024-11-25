@@ -46,6 +46,25 @@ public class TimeZoneEffect : MonoBehaviour
                 growingTree.EnterFastTimeZone();
             }
         }
+        
+        if (other.CompareTag("BossAttackObjects"))
+        {           
+            RockObject rock = other.GetComponent<RockObject>();
+            LogObject log = other.GetComponent<LogObject>();
+            
+            if (rock != null)
+            {
+                rock.AdjustObjectSpeed(speedMultiplier);
+                rock.isInTimeZone = true;
+            }
+
+            if (log != null)
+            {
+                log.AdjustObjectSpeed(speedMultiplier);
+                log.isInTimeZone = true;
+            }
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -87,5 +106,23 @@ public class TimeZoneEffect : MonoBehaviour
                 growingTree.ExitFastTimeZone();
             }
         }
+        if (other.CompareTag("BossAttackObjects"))
+        {           
+            RockObject rock = other.GetComponent<RockObject>();
+            LogObject log = other.GetComponent<LogObject>();
+            
+            if (rock != null)
+            {
+                rock.AdjustObjectSpeed(1f / speedMultiplier);
+                rock.isInTimeZone = false;
+            }
+
+            if (log != null)
+            {
+                log.AdjustObjectSpeed(1f / speedMultiplier);
+                log.isInTimeZone = false;
+            }
+        }
     }
+    
 }

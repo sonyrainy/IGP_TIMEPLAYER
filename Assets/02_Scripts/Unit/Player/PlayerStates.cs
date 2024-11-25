@@ -8,7 +8,7 @@ namespace Player_States
     [System.Serializable]
     public enum PlayerState
     {
-        Spawn, Idle, Run, Jump, Dash, Last
+        Spawn, Idle, Run, Jump, Dash, Hit, Last
     }
 
     public enum PlayerAnimation
@@ -18,6 +18,7 @@ namespace Player_States
         Player_Run,
         Player_Jump,
         Player_Dash,
+        Player_Hit,
         Last
     }
 
@@ -59,8 +60,8 @@ namespace Player_States
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Idle State");
-            user.animator.SetBool("isRun", false);
+            Debug.Log("Player: Idle State");
+            user.ChangeAnimation(PlayerAnimation.Player_Idle);
         }
 
         public override void Execute()
@@ -79,6 +80,16 @@ namespace Player_States
             {
                 user.ChangeState(PlayerState.Run);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                user.ChangeState(PlayerState.Jump);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+            }
         }
     }
 
@@ -89,7 +100,8 @@ namespace Player_States
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Run State");
+            Debug.Log("Player: Run State");
+            user.ChangeAnimation("Player_Run");
         }
 
         public override void Execute()
@@ -117,28 +129,39 @@ namespace Player_States
             {
                 user.ChangeState(PlayerState.Idle);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                user.ChangeState(PlayerState.Jump);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+            }
         }
     }
 
     public class Jump : State<Player>
     {
-        private bool hasJumped;
+        private bool hasJumped = false;
 
         public Jump(Player user) : base(user) { }
         
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Jump State");
+            Debug.Log("Player: Jump State");
+            hasJumped = false;
         }
 
         public override void Execute()
         {
             if (!hasJumped && user.isGround)
             {
-                user.yVelocity = user.jumpForce;  // 점프 시작 시 yVelocity를 jumpForce로 설정
+                user.yVelocity = user.jumpForce;
                 user.isGround = false;
-                user.animator.SetTrigger("Jump");
+                user.ChangeAnimation("Player_Jump");
                 hasJumped = true;
             }
         }
@@ -150,9 +173,26 @@ namespace Player_States
 
         public override void OnTransition()
         {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                user.ChangeState(PlayerState.Dash);
+
+                hasJumped = !hasJumped;
+            }
+
             if (user.isGround == true)
             {
-                user.ChangeState(PlayerState.Idle);
+                if (Input.GetAxisRaw("Horizontal") == 0)
+                {
+                    user.ChangeState(PlayerState.Idle);
+                    hasJumped = !hasJumped;
+                }
+                else
+                {
+                    user.ChangeState(PlayerState.Run);
+                    hasJumped = !hasJumped;
+                }
+                
                 hasJumped = !hasJumped;
             }
         }
@@ -160,17 +200,59 @@ namespace Player_States
 
     public class Dash : State<Player>
     {
+        private bool isAnimationComplete = false;
+        private bool isExit = false;
+        private Vector2 preVelVec;
+
         public Dash(Player user) : base(user) { }
 
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Dash State");
+            Debug.Log("Player: Dash State");
+            Vector2 preVelVec = new Vector2(user.rigidbody.velocity.x, 0);
+            user.ChangeAnimation(PlayerAnimation.Player_Dash);
+            isAnimationComplete = false;
+            isExit = false;
         }
 
         public override void Execute()
         {
-            
+            if (!isAnimationComplete)
+            {
+                if (Input.GetAxisRaw("Horizontal") != 0)
+                {
+                    Vector3 scale = user.transform.localScale;
+                    scale.x = Input.GetAxisRaw("Horizontal");
+                    user.transform.localScale = scale;
+                }
+
+                user.isDash = true;
+                user.yVelocity = 0;
+
+                Vector2 dashVec = new Vector2(Input.GetAxisRaw("Horizontal") * user.dashFloat, user.yVelocity);
+                user.rigidbody.velocity = dashVec;
+
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.IsName("Player_Dash") && stateInfo.normalizedTime >= 0.7f)
+                {
+                    isAnimationComplete = true;
+                }
+            }
+            else
+            {
+                user.isDash = false;
+                user.rigidbody.velocity = preVelVec;
+
+                if (user.isGround == false)
+                {
+                    user.ChangeAnimation("Fall");
+                }
+                else
+                {
+                    isExit = true;
+                }
+            }
         }
 
         public override void Exit()
@@ -180,8 +262,74 @@ namespace Player_States
 
         public override void OnTransition()
         {
-            
+            if (isExit && user.isGround)
+            {
+                if (Input.GetAxisRaw("Horizontal") != 0)
+                {
+                    user.ChangeState(PlayerState.Run);
+                }
+                else
+                {
+                    user.ChangeState(PlayerState.Idle);
+                }
+                
+            }
         }
     }
 
+    public class Hit : State<Player>
+    {
+        private bool isAnimationComplete = false;
+        private bool isExit = false;
+
+        public Hit(Player user) : base(user) { }
+
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("Player: Hit State");
+            user.isDash = false;
+            user.ChangeAnimation(PlayerAnimation.Player_Hit);
+            isAnimationComplete = false;
+            isExit = false;
+        }
+
+        public override void Execute()
+        {
+            if (!isAnimationComplete)
+            {
+                user.rigidbody.velocity = new Vector2(0, 0);
+
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.IsName("Player_Hit") && stateInfo.normalizedTime >= 1f)
+                {
+                    isAnimationComplete = true;
+                }
+            }
+            else
+            {
+                isExit = true;
+            }
+        }
+
+        public override void Exit()
+        {
+            
+        }
+
+        public override void OnTransition()
+        {
+            if (isExit && user.isGround)
+            {
+                if (Input.GetAxisRaw("Horizontal") != 0)
+                {
+                    user.ChangeState(PlayerState.Run);
+                }
+                else
+                {
+                    user.ChangeState(PlayerState.Idle);
+                }
+            }
+        }
+    }
 }
