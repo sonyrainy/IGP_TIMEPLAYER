@@ -39,11 +39,17 @@ public class TimeStopper : MonoBehaviour
                 animator.enabled = false;
             }
 
-            // 움직이는 발판 멈춤
+            // 움직이는 발판 및 나무 멈춤
             MovingPlatform platform = collider.GetComponent<MovingPlatform>();
             if (platform != null)
             {
                 platform.StopPlatformForDuration(stopDuration);
+            }
+
+            FallingTree tree = collider.GetComponent<FallingTree>();
+            if (tree != null)
+            {
+                tree.StopPlatformForDuration(stopDuration);
             }
         }
 

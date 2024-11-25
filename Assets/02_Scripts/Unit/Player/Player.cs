@@ -194,7 +194,7 @@ void GroundCheck()
         transform.position = position;
     }
 
-    private void RespawnAtLastSpawnPoint()
+    public void RespawnAtLastSpawnPoint()
     {
     
         Transform spawnPoint = PlayerRespawnManager.Instance.GetCurrentSpawnPoint();
