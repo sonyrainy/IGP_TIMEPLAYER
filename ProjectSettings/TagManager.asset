@@ -8,6 +8,9 @@ TagManager:
   - SpawnPoint
   - FastTimeZone
   - SlowTimeZone
+  - F_Tree
+  - Ground
+  - GrowingTree
   layers:
   - Default
   - TransparentFX
