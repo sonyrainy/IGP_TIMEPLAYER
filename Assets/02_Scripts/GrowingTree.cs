@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TimeEffect에서 관리
 public class GrowingTree : MonoBehaviour
 {
-    public GameObject[] growthStages;  // 성장 단계에 해당하는 프리팹들
-    public float stayDuration = 2f;  // FastTimeZone 내부에 있어야 하는 시간
-    private float timeInFastZone = 0f; // FastTimeZone 내부에 머문 시간
-    private bool isInFastZone = false; // FastTimeZone 내부에 있는지 여부
-    private int currentGrowthStage = 0; // 현재 성장 단계
+    public GameObject[] growthStages; 
+    public float stayDuration = 2f;  
+    private float timeInFastZone = 0f;
+    private bool isInFastZone = false;
+    private int currentGrowthStage = 0; 
 
     private void Update()
     {
