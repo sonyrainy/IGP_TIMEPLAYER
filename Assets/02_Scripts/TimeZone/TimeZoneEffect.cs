@@ -5,6 +5,7 @@ using UnityEngine;
 public class TimeZoneEffect : MonoBehaviour
 {
     // Timezone 들어갔을 때 속도 얼만큼 변하게 되도록 할지 배율
+    // 타임존마다 prefab에서 다르게 설정되어 있음.
     public float speedMultiplier = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +36,7 @@ public class TimeZoneEffect : MonoBehaviour
             }
         }
         // GrowingTree의 경우
-        else if (other.CompareTag("GrowingTree"))
+        else if (other.CompareTag("GrowingTree")&& CompareTag("FastTimeZone"))
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
 
@@ -44,6 +45,18 @@ public class TimeZoneEffect : MonoBehaviour
             if (growingTree != null)
             {
                 growingTree.EnterFastTimeZone();
+            }
+        } 
+        else if (other.CompareTag("MovingPlatform"))
+        {
+            MovingTilemap movingPlatform = other.GetComponent<MovingTilemap>();
+
+            Debug.Log("MovingPlatform TimeZone 입장");
+
+            if (movingPlatform != null)
+            {
+                movingPlatform.AdjustSpeed(speedMultiplier);
+                movingPlatform.EnterTimeZone(tag);
             }
         }
         
@@ -95,7 +108,7 @@ public class TimeZoneEffect : MonoBehaviour
             }
         }
         // GrowingTree의 경우
-        else if (other.CompareTag("GrowingTree"))
+        else if (other.CompareTag("GrowingTree")&& CompareTag("FastTimeZone"))
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
 
@@ -106,6 +119,21 @@ public class TimeZoneEffect : MonoBehaviour
                 growingTree.ExitFastTimeZone();
             }
         }
+        else if (other.CompareTag("MovingPlatform"))
+        {
+            MovingTilemap movingPlatform = other.GetComponent<MovingTilemap>();
+
+            Debug.Log("MovingPlatform TimeZone 퇴장");
+
+            if (movingPlatform != null)
+            {
+                movingPlatform.AdjustSpeed(1/speedMultiplier);
+                movingPlatform.ExitTimeZone();
+            }
+        }
+
+
+
         if (other.CompareTag("BossAttackObjects"))
         {           
             RockObject rock = other.GetComponent<RockObject>();

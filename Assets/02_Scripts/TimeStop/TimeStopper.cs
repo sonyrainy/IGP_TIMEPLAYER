@@ -40,7 +40,7 @@ public class TimeStopper : MonoBehaviour
             }
 
             // 움직이는 발판 및 나무 멈춤
-            MovingPlatform platform = collider.GetComponent<MovingPlatform>();
+            MovingTilemap platform = collider.GetComponent<MovingTilemap>();
             if (platform != null)
             {
                 platform.StopPlatformForDuration(stopDuration);

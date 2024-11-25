@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingTilemap : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
     public float speed = 2f;
 
     private Vector3 target;
-    public bool isStopped = false;
+    private bool isStopped = false;
+    private bool isInTimeZone = false; // TimeZone에 있는지 여부
     private List<Transform> passengers = new List<Transform>();
+    private float originalSpeed;
 
     void Start()
     {
         target = pointB.position;
+        originalSpeed = speed;
     }
 
     void Update()
@@ -71,5 +74,29 @@ public class MovingPlatform : MonoBehaviour
         SetStopped(true);
         yield return new WaitForSeconds(duration);
         SetStopped(false);
+    }
+
+    public void AdjustSpeed(float speedMultiplier)
+    {
+        speed = originalSpeed * speedMultiplier;
+    }
+
+    public void EnterTimeZone(string zoneType)
+    {
+        isInTimeZone = true;
+        if (zoneType == "SlowTimeZone")
+        {
+            AdjustSpeed(0.1f); // SlowTimeZone에서는 속도를 10%로 감소
+        }
+        else if (zoneType == "FastTimeZone")
+        {
+            AdjustSpeed(3.0f); // FastTimeZone에서는 속도를 3배 증가
+        }
+    }
+
+    public void ExitTimeZone()
+    {
+        isInTimeZone = false;
+        AdjustSpeed(1.0f); // 원래 속도로 되돌림
     }
 }

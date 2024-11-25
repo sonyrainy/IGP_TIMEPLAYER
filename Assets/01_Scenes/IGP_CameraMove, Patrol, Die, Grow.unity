@@ -5716,7 +5716,7 @@ GameObject:
   - component: {fileID: 1624803423}
   m_Layer: 6
   m_Name: MovingGround_1
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5814,7 +5814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790525037}
   m_Layer: 6
-  m_Name: PatrolPoint
+  m_Name: PatrolPoint_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9159,6 +9159,10 @@ PrefabInstance:
     - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: fallThreshold
       value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: speedMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: fallDeathVelocity
