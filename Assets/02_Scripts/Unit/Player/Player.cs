@@ -208,6 +208,7 @@ public class Player : MonoBehaviour
         if (!isGround)
         {
             yVelocity -= gravity * gravity * Time.deltaTime * speedMultiplier;
+            
             //yVelocity = Mathf.Max(yVelocity, yVelocityMin); // yVelocity의 최소값 적용
             //yVelocity = yVelocity;
             
@@ -280,11 +281,11 @@ public class Player : MonoBehaviour
         
     // }
 
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("BossAttackObjects"))
-    //     {
-    //         ChangeState(PlayerState.Hit);
-    //     }
-    // }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("BossAttackObjects"))
+        {
+            ChangeState(PlayerState.Hit);
+        }
+    }
 }
