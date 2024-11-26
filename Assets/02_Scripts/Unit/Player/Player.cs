@@ -14,22 +14,22 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
-    [SerializeField] public float moveSpeed = 0;
-    [SerializeField] public float dashFloat = 0;
-    [SerializeField] public float jumpForce = 1f;
+    [SerializeField] public float moveSpeed = 0; // 이동 속도
+    [SerializeField] public float dashFloat = 0; // 대쉬 속도
+    [SerializeField] public float jumpForce = 1f; // 점프 속도
 
     [SerializeField] float castSize;
     [SerializeField] float gravity = 9.8f;
-    [SerializeField] public float yVelocity = 0;
+    [SerializeField] public float yVelocity = 0; // 중력을 계산하기 위한 y축 방향 속도
 
-    [SerializeField] public bool isGround = false;
-    public bool isDash = false;
+    [SerializeField] public bool isGround = false; // 땅에 붙어 있는지 확인
+    public bool isDash = false; // 대쉬 중인지 확인
 
     public State<Player>[] states;
 
-    public float speedMultiplier = 1f;
-    public bool isInTimeZone = false; 
-    public float animationSpeed = 1;
+    public float speedMultiplier = 1f; // 타임 존 진입 및 탈출 시 감속/가속 효과 부여를 위한 Float 값
+    public bool isInTimeZone = false; // 타임 존에 진입하였는지 확인
+    public float animationSpeed = 1; // 타임존 진입 및 탈출 시 애니메이션의 감속/가속 효과 부여를 위한 Float 값
     
     //현택이 코드
     //public float inTimeZoneSpeed = 1;
@@ -85,15 +85,15 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-    // Q 키를 눌렀을 때 TimeStopper 스크립트의 시간 정지 함수 실행
-    if (Input.GetKeyDown(KeyCode.Q))
-    {
-        TimeStopper timeStopper = GetComponent<TimeStopper>();
-        if (timeStopper != null)
+        // Q 키를 눌렀을 때 TimeStopper 스크립트의 시간 정지 함수 실행
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            timeStopper.StartCoroutine(timeStopper.StopTime());
+            TimeStopper timeStopper = GetComponent<TimeStopper>();
+            if (timeStopper != null)
+            {
+                timeStopper.StartCoroutine(timeStopper.StopTime());
+            }
         }
-    }
 
         // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
         GroundCheck();
         if (!isDash)
         {
+            // 대쉬 상태를 제외한 모든 상태에 중력을 적용
             ApplyGravity();
         }
 
@@ -122,6 +123,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             // 추가적인 액션이 필요하면 여기에 작성
+            // => LeftControl 은 대쉬 키인데 여기에 쓰라고?
         }
     }
 
@@ -182,7 +184,7 @@ public class Player : MonoBehaviour
         // 이동 속도 조정
         moveSpeed *= speedMultiplier;
 
-        //애니메이션 속도 조절절
+        //애니메이션 속도 조절
         animationSpeed *= speedMultiplier;
         animator.speed = animationSpeed;
         //현택이 코드
