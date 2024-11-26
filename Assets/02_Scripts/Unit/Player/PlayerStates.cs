@@ -8,7 +8,7 @@ namespace Player_States
     [System.Serializable]
     public enum PlayerState
     {
-        Spawn, Idle, Run, Jump, Dash, Hit, Last
+        Spawn, Idle, Run, Jump, Dash, Hit, Fall, Last
     }
 
     public enum PlayerAnimation
@@ -19,6 +19,7 @@ namespace Player_States
         Player_Jump,
         Player_Dash,
         Player_Hit,
+        Player_Fall,
         Last
     }
 
@@ -116,6 +117,7 @@ namespace Player_States
             }
 
             user.rigidbody.velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.rigidbody.velocity.y);
+
         }
 
         public override void Exit()
@@ -139,6 +141,11 @@ namespace Player_States
             {
                 user.ChangeState(PlayerState.Dash);
             }
+
+            if (!user.isGround)
+            {
+                user.ChangeState(PlayerState.Fall);
+            }
         }
     }
 
@@ -157,6 +164,16 @@ namespace Player_States
 
         public override void Execute()
         {
+            // 점프 후 공중에서 좌 우 이동 가능
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                Vector3 scale = user.transform.localScale;
+                scale.x = Input.GetAxisRaw("Horizontal");
+                user.transform.localScale = scale;
+                
+                user.rigidbody.velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.rigidbody.velocity.y);
+            }
+
             if (!hasJumped && user.isGround)
             {
                 user.yVelocity = user.jumpForce;
@@ -329,6 +346,32 @@ namespace Player_States
                 {
                     user.ChangeState(PlayerState.Idle);
                 }
+            }
+        }
+    }
+
+    public class Fall : State<Player>
+    {
+        public Fall(Player user) : base(user) { }
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("Player: Fall State");
+            user.ChangeAnimation("Fall");
+        }
+        public override void Execute()
+        {
+
+        }
+        public override void Exit()
+        {
+
+        }
+        public override void OnTransition()
+        {
+            if (user.isGround)
+            {
+                user.ChangeState(PlayerState.Idle);
             }
         }
     }

@@ -4973,7 +4973,6 @@ MonoBehaviour:
   pointA: {fileID: 895126207}
   pointB: {fileID: 1341569027}
   speed: 2
-  isStopped: 0
 --- !u!61 &1624803423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8271,6 +8270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: dashFloat
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: fallThreshold
       value: -4

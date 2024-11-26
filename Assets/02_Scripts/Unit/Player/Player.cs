@@ -36,9 +36,6 @@ public class Player : MonoBehaviour
 // 추가된 변수들
     public Transform[] spawnPoints; // 스폰 포인트들
     private int lastSpawnPointIndex = 0; // 마지막으로 도달한 스폰 포인트의 인덱스
-    
-    
-    
     public float fallDeathVelocity = -36.0f; // 이 속도 이상으로 떨어질 경우 플레이어가 죽음
 
 
@@ -72,16 +69,6 @@ public class Player : MonoBehaviour
         animator.Play(animationName, 0, normalizedTime);
     }
 
-    //현택이 코드
-    //     public void ChangeAnimation(PlayerAnimation newAnimation, float normalizedTime = 0)
-    // {
-    //     animator.Play(newAnimation.ToString(), 0, normalizedTime);
-    // }
-
-    // public void ChangeAnimation(string animationName, float normalizedTime = 0)
-    // {
-    //     animator.Play(animationName, 0, normalizedTime);
-    // }
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -151,6 +138,7 @@ public class Player : MonoBehaviour
         states[(int)PlayerState.Jump] = new Jump(this);
         states[(int)PlayerState.Dash] = new Dash(this);
         states[(int)PlayerState.Hit] = new Hit(this);
+        states[(int)PlayerState.Fall] = new Fall(this);
 
         states[(int)playerState].Enter();
     }
