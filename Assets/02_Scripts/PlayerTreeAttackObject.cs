@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTreeAttackObject : TimeZoneObject
 {
     [SerializeField] GameObject[] colliders;
+    [SerializeField] ForestBoss forestBoss;
 
     public bool isInTimeZone = false;
 
@@ -14,6 +15,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
     void Start()
     {
         animator = GetComponent<Animator>();
+        forestBoss = GetComponent<ForestBoss>();
     }
 
     // Update is called once per frame
@@ -21,11 +23,17 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         if (isInTimeZone == true)
         {
-            animator.speed = 1f;
+            animator.speed = speedMultiplier;
         }
         else
         {
             animator.speed = 0.01f;
+        }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 1.0f)
+        {
+            forestBoss.isHit = true;
         }
     }
 

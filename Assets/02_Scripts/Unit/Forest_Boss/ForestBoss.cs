@@ -18,6 +18,7 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] public GameObject log;
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
+    [SerializeField] public GameObject hitPoint;
 
     [SerializeField] private int spawnLogNumber = 3;
     [SerializeField] private int spawnRockNumber = 2;
@@ -28,6 +29,7 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] private float logsSpawnWaitTime = 1f;
     [SerializeField] private float rocksSpawnWaitTime = 1f;
 
+    public bool isHit = false;
     private float playTime = 0f;
 
     public void ChangeState(ForestBossState state) 
@@ -57,6 +59,7 @@ public class ForestBoss : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        hitPoint.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,10 +70,20 @@ public class ForestBoss : MonoBehaviour
 
         playTime += Time.deltaTime;
 
-        // playTimeÀÌ 3À» ³Ñ¾î°¡°í »óÅÂ º¯°æÀÌ ÁøÇà ÁßÀÌ ¾Æ´Ï¸é »óÅÂ º¯°æ ½ÃÀÛ
+        if (playTime > 4f)
+        {
+            hitPoint.SetActive(true);
+        }
+
+        // playTimeï¿½ï¿½ 3ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (playTime > 3 && !isStateChanging)
         {
             StartCoroutine(ChangeStateRoutine());
+        }
+
+        if (isHit)
+        {
+            ChangeState(ForestBossState.Hit);
         }
     }
 
@@ -82,14 +95,14 @@ public class ForestBoss : MonoBehaviour
 
         while (true)
         {
-            // »óÅÂ ÀüÈ¯ ÁÖ±â¸¦ ·£´ýÀ¸·Î ¼³Á¤ (3ÃÊ ~ 5ÃÊ)
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½Ö±â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (3ï¿½ï¿½ ~ 5ï¿½ï¿½)
             float nextStateTime = Random.Range(5f, 7f);
             yield return new WaitForSeconds(nextStateTime);
 
-            // »óÅÂ¸¦ ·£´ýÀ¸·Î °áÁ¤
+            // ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
 
-            // »óÅÂ º¯°æ È£Ãâ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
             ChangeState(randomState);
         }
     }
@@ -104,6 +117,7 @@ public class ForestBoss : MonoBehaviour
         states[(int)ForestBossState.Idle] = new FBossIdle(this);
         states[(int)ForestBossState.LogAttack] = new LogAttack(this);
         states[(int)ForestBossState.RockAttack] = new RockAttack(this);
+        states[(int)ForestBossState.Hit] = new Hit(this);
 
         states[(int)forestBossState].Enter();
     }
