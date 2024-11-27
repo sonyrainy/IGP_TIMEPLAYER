@@ -7,7 +7,7 @@ namespace Forest_Boss_States
     [System.Serializable]
     public enum ForestBossState
     {
-        Spawn, Idle, damaged, RockAttack, LogAttack, Dead, Last
+        Spawn, Idle, damaged, RockAttack, LogAttack, Hit, Dead, Last
     }
 
     public enum ForestBossAnimation
@@ -17,6 +17,7 @@ namespace Forest_Boss_States
         ForestBoss_Damaged,
         ForestBoss_RockAttack,
         ForestBoss_LogAttack,
+        ForestBoss_Hit,
         ForestBoss_Dead,
         Last
     }
@@ -107,8 +108,8 @@ namespace Forest_Boss_States
         {
             if (!isAnimationComplete)
             {
-                // ¾Ö´Ï¸ÞÀÌ¼Ç »óÅÂ È®ÀÎ
-                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0); // 0Àº ±âº» ·¹ÀÌ¾î
+                // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0); // 0ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½Ì¾ï¿½
                 if (stateInfo.IsName("ForestBoss_LogAttack") && stateInfo.normalizedTime >= 1.0f)
                 {
                     isAnimationComplete = true;
@@ -117,7 +118,7 @@ namespace Forest_Boss_States
             
             if (isAnimationComplete == true)
             {
-                user.InstantiateLogs(); // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³­ ÈÄ Logs »ý¼º
+                user.InstantiateLogs(); // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Logs ï¿½ï¿½ï¿½ï¿½
                 isExit = true;
             }
         }
@@ -156,8 +157,7 @@ namespace Forest_Boss_States
         {
             if (!isAnimationComplete)
             {
-                // ¾Ö´Ï¸ÞÀÌ¼Ç »óÅÂ È®ÀÎ
-                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0); // 0Àº ±âº» ·¹ÀÌ¾î
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.IsName("ForestBoss_RockAttack") && stateInfo.normalizedTime >= 1.0f)
                 {
                     isAnimationComplete = true;
@@ -166,7 +166,7 @@ namespace Forest_Boss_States
 
             if (isAnimationComplete == true)
             {
-                user.InstantiateRocks(); // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³­ ÈÄ Rock »ý¼º
+                user.InstantiateRocks();
                 isExit = true;
             }
         }
