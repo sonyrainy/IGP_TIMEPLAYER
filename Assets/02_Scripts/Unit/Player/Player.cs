@@ -14,32 +14,33 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
-    [SerializeField] public float moveSpeed = 0; // ?�동 ?�도
-    [SerializeField] public float dashFloat = 0; // ?�???�도
-    [SerializeField] public float jumpForce = 1f; // ?�프 ?�도
+    [SerializeField] public float moveSpeed = 0; // ?�동 ?�도
+    [SerializeField] public float dashFloat = 0; // ?�???�도
+    [SerializeField] public float jumpForce = 1f; // ?�프 ?�도
 
     [SerializeField] float castSize;
     [SerializeField] float gravity = 9.8f;
-    [SerializeField] public float yVelocity = 0; // 중력??계산?�기 ?�한 y�?방향 ?�도
+    [SerializeField] public float yVelocity = 0; // 중력??계산?�기 ?�한 y�?방향 ?�도
 
-    [SerializeField] public bool isGround = false; // ?�에 붙어 ?�는지 ?�인
-    public bool isDash = false; // ?�??중인지 ?�인
+    [SerializeField] public bool isGround = false; // ?�에 붙어 ?�는지 ?�인
+    public bool isDash = false; // ?�??중인지 ?�인
 
     public State<Player>[] states;
 
-    public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
-    public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
-    public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
+    public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
+    public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
+    public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
     
-    //?�택??코드
+    //?�택??코드
     //public float inTimeZoneSpeed = 1;
-// 추�???변?�들
-    public Transform[] spawnPoints; // ?�폰 ?�인?�들
-    private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
-    public float fallDeathVelocity = -36.0f; // ???�도 ?�상?�로 ?�어�?경우 ?�레?�어가 죽음
+// 추�???변?�들
+    public Transform[] spawnPoints; // ?�폰 ?�인?�들
+    private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
+    public float fallDeathVelocity = -36.0f; // ???�도 ?�상?�로 ?�어�?경우 ?�레?�어가 죽음
+    private GameObject timeStopEffect;
 
 
-    // yVelocity??최소�??�정
+    // yVelocity??최소�??�정
     //private float yVelocityMinDefault = -20f;
     private float yVelocityMin = -20f;
     private float yVelocityMinSlowTimeZone = -10f;
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
         playerState = state;
         states[(int)playerState].Enter();
 
-        // ?�프 ?�태�?변경될 ????번만 ?�프 ?�리 ?�생
+        // ?�프 ?�태�?변경될 ????번만 ?�프 ?�리 ?�생
         if (state == PlayerState.Jump && prevPlayerState != PlayerState.Jump)
         {
             SoundManager.Instance.PlaySFX("Jump", 0.2f, false);
@@ -74,6 +75,12 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         transform = GetComponentInChildren<Transform>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
+                // TimeStopEffect 자식 오브젝트 찾기
+        timeStopEffect = transform.Find("TimeStopEffect").gameObject;
+        if (timeStopEffect != null)
+        {
+            timeStopEffect.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -85,18 +92,19 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Q ?��? ?��?????TimeStopper ?�크립트???�간 ?��? ?�수 ?�행
+        // Q ?��? ?��?????TimeStopper ?�크립트???�간 ?��? ?�수 ?�행
         if (Input.GetKeyDown(KeyCode.Q))
         {
             TimeStopper timeStopper = GetComponent<TimeStopper>();
             if (timeStopper != null)
             {
                 timeStopper.StartCoroutine(timeStopper.StopTime());
+                timeStopper.StartCoroutine(timeStopper.ActivateTimeStopEffect(timeStopEffect));
             }
-            Debug.Log("?�??");
+            Debug.Log("?�??");
         }
 
-        // ?�?�존???�어가 ?�으�??�니메이???�도 감속 �?가??
+        // ?�?�존???�어가 ?�으�??�니메이???�도 감속 �?가??
         if (isInTimeZone)
         {
             animator.speed = animationSpeed;
@@ -109,7 +117,7 @@ public class Player : MonoBehaviour
         GroundCheck();
         if (!isDash)
         {
-            // ?�???�태�??�외??모든 ?�태??중력???�용
+            // ?�???�태�??�외??모든 ?�태??중력???�용
             ApplyGravity();
         }
 
@@ -123,8 +131,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            // 추�??�인 ?�션???�요?�면 ?�기???�성
-            // => LeftControl ?� ?�???�인???�기???�라�?
+            // 추�??�인 ?�션???�요?�면 ?�기???�성
+            // => LeftControl ?� ?�???�인???�기???�라�?
         }
     }
 
@@ -146,7 +154,7 @@ public class Player : MonoBehaviour
         states[(int)playerState].Enter();
     }
 
-    // ?�레?�어가 바닥??붙어 ?�는지 ?�인
+    // ?�레?�어가 바닥??붙어 ?�는지 ?�인
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -161,16 +169,16 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("OnGround");
                 transform.position = rayHit.point;
 
-                // y ?�도가 ?�정 기�? ?�하??경우(빠르�??�하??경우) ?�레?�어가 ?�해�??�고 ?�폰 ?�치�??�동
+                // y ?�도가 ?�정 기�? ?�하??경우(빠르�??�하??경우) ?�레?�어가 ?�해�??�고 ?�폰 ?�치�??�동
                 if (yVelocity <= fallDeathVelocity) // ?? fallDeathVelocity = -25
                 {
-                    // ?��? 곳에???�어졌을 ?�만 ?�해 발생
+                    // ?��? 곳에???�어졌을 ?�만 ?�해 발생
                     RespawnAtLastSpawnPoint();
-                    return; // 리스?????�래 코드�??�행?��? ?�도�?반환
+                    return; // 리스?????�래 코드�??�행?��? ?�도�?반환
                 }
             }
             isGround = true;
-            yVelocity = 0; // ?�에 ?�으�?yVelocity�?0?�로 초기??
+            yVelocity = 0; // ?�에 ?�으�?yVelocity�?0?�로 초기??
         }
         else
         {
@@ -182,25 +190,25 @@ public class Player : MonoBehaviour
     {
         this.speedMultiplier *= speedMultiplier;
 
-        // ?�동 ?�도 조정
+        // ?�동 ?�도 조정
         moveSpeed *= speedMultiplier;
 
-        //?�니메이???�도 조절
+        //?�니메이???�도 조절
         animationSpeed *= speedMultiplier;
         animator.speed = animationSpeed;
-        //?�택??코드
+        //?�택??코드
         //inTimeZoneSpeed *= speedMultiplier;
         //animator.speed = inTimeZoneSpeed;
     }
 
-    // ?�레?�어 중력 ?�용
+    // ?�레?�어 중력 ?�용
     public void ApplyGravity()
     {
         if (!isGround)
         {
             yVelocity -= gravity * gravity * Time.deltaTime * speedMultiplier;
             
-            //yVelocity = Mathf.Max(yVelocity, yVelocityMin); // yVelocity??최소�??�용
+            //yVelocity = Mathf.Max(yVelocity, yVelocityMin); // yVelocity??최소�??�용
             //yVelocity = yVelocity;
             
             if (isInTimeZone)
@@ -228,7 +236,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ?�폰 ?�인?�에 ?�달?�면 마�?�??�폰 ?�인???�데?�트
+        // ?�폰 ?�인?�에 ?�달?�면 마�?�??�폰 ?�인???�데?�트
         if (collision.CompareTag("SpawnPoint"))
         {
             // for (int i = 0; i < spawnPoints.Length; i++)
@@ -239,16 +247,16 @@ public class Player : MonoBehaviour
             //         break;
             //     }
             // }
-            PlayerRespawnManager.Instance.UpdateSpawnPointIndex(1); // ?�폰 ?�인???�덱??1??증�?
+            PlayerRespawnManager.Instance.UpdateSpawnPointIndex(1); // ?�폰 ?�인???�덱??1??증�?
 
         }
-        // SlowTimeZone???�어�???yVelocity??최솟�?조정
+        // SlowTimeZone???�어�???yVelocity??최솟�?조정
         else if (collision.CompareTag("SlowTimeZone"))
         {
             yVelocityMin = yVelocityMinSlowTimeZone;
             isInTimeZone = true;
         }
-        // FastTimeZone???�어�???yVelocity??최솟�?조정
+        // FastTimeZone???�어�???yVelocity??최솟�?조정
         else if (collision.CompareTag("FastTimeZone"))
         {
             yVelocityMin = yVelocityMinFastTimeZone;
@@ -258,7 +266,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // ?�?�존?�서 ?�갈 ??yVelocity??최솟값을 기본값으�??�정
+        // ?�?�존?�서 ?�갈 ??yVelocity??최솟값을 기본값으�??�정
         if (collision.CompareTag("SlowTimeZone") || collision.CompareTag("FastTimeZone"))
         {
             //yVelocityMin = yVelocityMinDefault;
@@ -266,7 +274,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //?�택??코드
+    //?�택??코드
     //     public void OnDie()
     // {
         
