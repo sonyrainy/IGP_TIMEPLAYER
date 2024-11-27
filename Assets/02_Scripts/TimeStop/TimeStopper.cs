@@ -11,10 +11,11 @@ public class TimeStopper : MonoBehaviour
 
     public IEnumerator StopTime()
     {
-        if (isTimeStopped) yield break; // 이미 시간이 정지 중이면 실행하지 않음
+        // 반복실행X
+        if (isTimeStopped) yield break; 
         isTimeStopped = true;
 
-        Debug.Log("Q 키를 눌러 시간이 정지되었습니다.");
+        //Debug.Log("Q 키를 눌러 시간이 정지되었습니다.");
 
         // 반경 내의 모든 콜라이더 찾기
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, stopRadius, stoppableLayer);
@@ -29,15 +30,16 @@ public class TimeStopper : MonoBehaviour
                 // Rigidbody의 속도를 저장하고 멈춤
                 affectedRigidbodies.Add(rb);
                 rb.velocity = Vector2.zero;
-                rb.constraints = RigidbodyConstraints2D.FreezeAll; // 모든 움직임 멈춤
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
-            // 애니메이터 멈춤 (만약 적 애니메이션이 있다면)
-            Animator animator = collider.GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.enabled = false;
-            }
+            // 애니메이터 멈춤 (적 애니메이션이 있다면)
+            // 적 애니메이터 넣고 움직임 멈추게 하는 로직 넣으면 됨.
+            // Animator animator = collider.GetComponent<Animator>();
+            // if (animator != null)
+            // {
+            //     animator.enabled = false;
+            // }
 
             // 움직이는 발판 및 나무 멈춤
             MovingTilemap platform = collider.GetComponent<MovingTilemap>();
@@ -79,5 +81,11 @@ public class TimeStopper : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stopRadius);
+    }
+    public IEnumerator ActivateTimeStopEffect(GameObject timeStopEffect)
+    {
+        timeStopEffect.SetActive(true); // TimeStopEffect 활성화
+        yield return new WaitForSeconds(1.25f); // 1.25초 동안 유지
+        timeStopEffect.SetActive(false); // TimeStopEffect 비활성화
     }
 }

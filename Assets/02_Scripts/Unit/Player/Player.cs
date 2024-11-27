@@ -37,7 +37,8 @@ public class Player : MonoBehaviour
     public Transform[] spawnPoints; // 스폰 포인트들
     private int lastSpawnPointIndex = 0; // 마지막으로 도달한 스폰 포인트의 인덱스
     
-    
+    private GameObject timeStopEffect;
+
     
     public float fallDeathVelocity = -36.0f; // 이 속도 이상으로 떨어질 경우 플레이어가 죽음
 
@@ -87,6 +88,13 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         transform = GetComponentInChildren<Transform>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
+
+        // TimeStopEffect 자식 오브젝트 찾기
+        timeStopEffect = transform.Find("TimeStopEffect").gameObject;
+        if (timeStopEffect != null)
+        {
+            timeStopEffect.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -104,6 +112,8 @@ public class Player : MonoBehaviour
         TimeStopper timeStopper = GetComponent<TimeStopper>();
         if (timeStopper != null)
         {
+            timeStopper.StartCoroutine(timeStopper.ActivateTimeStopEffect(timeStopEffect));
+
             timeStopper.StartCoroutine(timeStopper.StopTime());
         }
     }
