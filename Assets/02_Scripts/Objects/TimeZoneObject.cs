@@ -10,16 +10,4 @@ public class TimeZoneObject : MonoBehaviour
     {
         this.speedMultiplier = speedMultiplier;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("BossAttackObjects"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }   
-        else
-        {
-            Destroy(gameObject);
-        } 
-    }
 }

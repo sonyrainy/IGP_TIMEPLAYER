@@ -14,32 +14,32 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
-    [SerializeField] public float moveSpeed = 0; // 이동 속도
-    [SerializeField] public float dashFloat = 0; // 대쉬 속도
-    [SerializeField] public float jumpForce = 1f; // 점프 속도
+    [SerializeField] public float moveSpeed = 0; // ?�동 ?�도
+    [SerializeField] public float dashFloat = 0; // ?�???�도
+    [SerializeField] public float jumpForce = 1f; // ?�프 ?�도
 
     [SerializeField] float castSize;
     [SerializeField] float gravity = 9.8f;
-    [SerializeField] public float yVelocity = 0; // 중력을 계산하기 위한 y축 방향 속도
+    [SerializeField] public float yVelocity = 0; // 중력??계산?�기 ?�한 y�?방향 ?�도
 
-    [SerializeField] public bool isGround = false; // 땅에 붙어 있는지 확인
-    public bool isDash = false; // 대쉬 중인지 확인
+    [SerializeField] public bool isGround = false; // ?�에 붙어 ?�는지 ?�인
+    public bool isDash = false; // ?�??중인지 ?�인
 
     public State<Player>[] states;
 
-    public float speedMultiplier = 1f; // 타임 존 진입 및 탈출 시 감속/가속 효과 부여를 위한 Float 값
-    public bool isInTimeZone = false; // 타임 존에 진입하였는지 확인
-    public float animationSpeed = 1; // 타임존 진입 및 탈출 시 애니메이션의 감속/가속 효과 부여를 위한 Float 값
+    public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
+    public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
+    public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
     
-    //현택이 코드
+    //?�택??코드
     //public float inTimeZoneSpeed = 1;
-// 추가된 변수들
-    public Transform[] spawnPoints; // 스폰 포인트들
-    private int lastSpawnPointIndex = 0; // 마지막으로 도달한 스폰 포인트의 인덱스
-    public float fallDeathVelocity = -36.0f; // 이 속도 이상으로 떨어질 경우 플레이어가 죽음
+// 추�???변?�들
+    public Transform[] spawnPoints; // ?�폰 ?�인?�들
+    private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
+    public float fallDeathVelocity = -36.0f; // ???�도 ?�상?�로 ?�어�?경우 ?�레?�어가 죽음
 
 
-    // yVelocity의 최소값 설정
+    // yVelocity??최소�??�정
     //private float yVelocityMinDefault = -20f;
     private float yVelocityMin = -20f;
     private float yVelocityMinSlowTimeZone = -10f;
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         playerState = state;
         states[(int)playerState].Enter();
 
-        // 점프 상태로 변경될 때 한 번만 점프 소리 재생
+        // ?�프 ?�태�?변경될 ????번만 ?�프 ?�리 ?�생
         if (state == PlayerState.Jump && prevPlayerState != PlayerState.Jump)
         {
             SoundManager.Instance.PlaySFX("Jump", 0.2f, false);
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Q 키를 눌렀을 때 TimeStopper 스크립트의 시간 정지 함수 실행
+        // Q ?��? ?��?????TimeStopper ?�크립트???�간 ?��? ?�수 ?�행
         if (Input.GetKeyDown(KeyCode.Q))
         {
             TimeStopper timeStopper = GetComponent<TimeStopper>();
@@ -93,10 +93,10 @@ public class Player : MonoBehaviour
             {
                 timeStopper.StartCoroutine(timeStopper.StopTime());
             }
-            Debug.Log("타임");
+            Debug.Log("?�??");
         }
 
-        // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
+        // ?�?�존???�어가 ?�으�??�니메이???�도 감속 �?가??
         if (isInTimeZone)
         {
             animator.speed = animationSpeed;
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         GroundCheck();
         if (!isDash)
         {
-            // 대쉬 상태를 제외한 모든 상태에 중력을 적용
+            // ?�???�태�??�외??모든 ?�태??중력???�용
             ApplyGravity();
         }
 
@@ -123,8 +123,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            // 추가적인 액션이 필요하면 여기에 작성
-            // => LeftControl 은 대쉬 키인데 여기에 쓰라고?
+            // 추�??�인 ?�션???�요?�면 ?�기???�성
+            // => LeftControl ?� ?�???�인???�기???�라�?
         }
     }
 
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
         states[(int)playerState].Enter();
     }
 
-    // 플레이어가 바닥에 붙어 있는지 확인
+    // ?�레?�어가 바닥??붙어 ?�는지 ?�인
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -161,16 +161,16 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("OnGround");
                 transform.position = rayHit.point;
 
-                // y 속도가 특정 기준 이하일 경우(빠르게 낙하한 경우) 플레이어가 피해를 입고 스폰 위치로 이동
-                if (yVelocity <= fallDeathVelocity) // 예: fallDeathVelocity = -25
+                // y ?�도가 ?�정 기�? ?�하??경우(빠르�??�하??경우) ?�레?�어가 ?�해�??�고 ?�폰 ?�치�??�동
+                if (yVelocity <= fallDeathVelocity) // ?? fallDeathVelocity = -25
                 {
-                    // 높은 곳에서 떨어졌을 때만 피해 발생
+                    // ?��? 곳에???�어졌을 ?�만 ?�해 발생
                     RespawnAtLastSpawnPoint();
-                    return; // 리스폰 후 아래 코드를 실행하지 않도록 반환
+                    return; // 리스?????�래 코드�??�행?��? ?�도�?반환
                 }
             }
             isGround = true;
-            yVelocity = 0; // 땅에 닿으면 yVelocity를 0으로 초기화
+            yVelocity = 0; // ?�에 ?�으�?yVelocity�?0?�로 초기??
         }
         else
         {
@@ -182,25 +182,25 @@ public class Player : MonoBehaviour
     {
         this.speedMultiplier *= speedMultiplier;
 
-        // 이동 속도 조정
+        // ?�동 ?�도 조정
         moveSpeed *= speedMultiplier;
 
-        //애니메이션 속도 조절
+        //?�니메이???�도 조절
         animationSpeed *= speedMultiplier;
         animator.speed = animationSpeed;
-        //현택이 코드
+        //?�택??코드
         //inTimeZoneSpeed *= speedMultiplier;
         //animator.speed = inTimeZoneSpeed;
     }
 
-    // 플레이어 중력 적용
+    // ?�레?�어 중력 ?�용
     public void ApplyGravity()
     {
         if (!isGround)
         {
             yVelocity -= gravity * gravity * Time.deltaTime * speedMultiplier;
             
-            //yVelocity = Mathf.Max(yVelocity, yVelocityMin); // yVelocity의 최소값 적용
+            //yVelocity = Mathf.Max(yVelocity, yVelocityMin); // yVelocity??최소�??�용
             //yVelocity = yVelocity;
             
             if (isInTimeZone)
@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 스폰 포인트에 도달하면 마지막 스폰 포인트 업데이트
+        // ?�폰 ?�인?�에 ?�달?�면 마�?�??�폰 ?�인???�데?�트
         if (collision.CompareTag("SpawnPoint"))
         {
             // for (int i = 0; i < spawnPoints.Length; i++)
@@ -239,16 +239,16 @@ public class Player : MonoBehaviour
             //         break;
             //     }
             // }
-            PlayerRespawnManager.Instance.UpdateSpawnPointIndex(1); // 스폰 포인트 인덱스 1씩 증가
+            PlayerRespawnManager.Instance.UpdateSpawnPointIndex(1); // ?�폰 ?�인???�덱??1??증�?
 
         }
-        // SlowTimeZone에 들어갈 때 yVelocity의 최솟값 조정
+        // SlowTimeZone???�어�???yVelocity??최솟�?조정
         else if (collision.CompareTag("SlowTimeZone"))
         {
             yVelocityMin = yVelocityMinSlowTimeZone;
             isInTimeZone = true;
         }
-        // FastTimeZone에 들어갈 때 yVelocity의 최솟값 조정
+        // FastTimeZone???�어�???yVelocity??최솟�?조정
         else if (collision.CompareTag("FastTimeZone"))
         {
             yVelocityMin = yVelocityMinFastTimeZone;
@@ -258,7 +258,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // 타임존에서 나갈 때 yVelocity의 최솟값을 기본값으로 설정
+        // ?�?�존?�서 ?�갈 ??yVelocity??최솟값을 기본값으�??�정
         if (collision.CompareTag("SlowTimeZone") || collision.CompareTag("FastTimeZone"))
         {
             //yVelocityMin = yVelocityMinDefault;
@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    //현택이 코드
+    //?�택??코드
     //     public void OnDie()
     // {
         
