@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6616283614821853380}
   - component: {fileID: 1183416398106909391}
   - component: {fileID: -6229086208247297822}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FastTimeZone_NEW
   m_TagString: FastTimeZone
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1506296792, guid: 934511f5f76671d488e993f25e8f2b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

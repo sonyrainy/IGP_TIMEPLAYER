@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
 // 추가된 변수들
     public Transform[] spawnPoints; // 스폰 포인트들
     private int lastSpawnPointIndex = 0; // 마지막으로 도달한 스폰 포인트의 인덱스
+    
+    private GameObject timeStopEffect;
+
+    
     public float fallDeathVelocity = -36.0f; // 이 속도 이상으로 떨어질 경우 플레이어가 죽음
 
 
@@ -74,6 +78,13 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         transform = GetComponentInChildren<Transform>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
+
+        // TimeStopEffect 자식 오브젝트 찾기
+        timeStopEffect = transform.Find("TimeStopEffect").gameObject;
+        if (timeStopEffect != null)
+        {
+            timeStopEffect.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -85,16 +96,17 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Q 키를 눌렀을 때 TimeStopper 스크립트의 시간 정지 함수 실행
-        if (Input.GetKeyDown(KeyCode.Q))
+    // Q 키를 눌렀을 때 TimeStopper 스크립트의 시간 정지 함수 실행
+    if (Input.GetKeyDown(KeyCode.Q))
+    {
+        TimeStopper timeStopper = GetComponent<TimeStopper>();
+        if (timeStopper != null)
         {
-            TimeStopper timeStopper = GetComponent<TimeStopper>();
-            if (timeStopper != null)
-            {
-                timeStopper.StartCoroutine(timeStopper.StopTime());
-            }
-            Debug.Log("타임");
+            timeStopper.StartCoroutine(timeStopper.ActivateTimeStopEffect(timeStopEffect));
+
+            timeStopper.StartCoroutine(timeStopper.StopTime());
         }
+    }
 
         // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
