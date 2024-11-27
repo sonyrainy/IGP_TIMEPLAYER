@@ -72,7 +72,7 @@ public class SoundManager : SingletonBase<SoundManager>
             case "IGP_Forest":
                 PlayBGM("Forest", true, 0.3f);
                 break;
-            case "IGP_CameraMove, Patrol, Die":
+            case "IGP_CameraMove, Patrol, Die, Grow":
                 PlayBGM("Forest", true, 0.3f);
                 break;
             // 필요한 씬에 따라 추가

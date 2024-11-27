@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
             {
                 timeStopper.StartCoroutine(timeStopper.StopTime());
             }
+            Debug.Log("타임");
         }
 
         // 타임존에 들어가 있으면 애니메이션 속도 감속 및 가속
