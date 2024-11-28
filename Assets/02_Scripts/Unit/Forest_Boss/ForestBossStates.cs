@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Forest_Boss_States
@@ -108,8 +109,7 @@ namespace Forest_Boss_States
         {
             if (!isAnimationComplete)
             {
-                // �ִϸ��̼� ���� Ȯ��
-                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0); // 0�� �⺻ ���̾�
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.IsName("ForestBoss_LogAttack") && stateInfo.normalizedTime >= 1.0f)
                 {
                     isAnimationComplete = true;
@@ -118,7 +118,7 @@ namespace Forest_Boss_States
             
             if (isAnimationComplete == true)
             {
-                user.InstantiateLogs(); // �ִϸ��̼��� ���� �� Logs ����
+                user.InstantiateLogs();
                 isExit = true;
             }
         }
@@ -167,6 +167,52 @@ namespace Forest_Boss_States
             if (isAnimationComplete == true)
             {
                 user.InstantiateRocks();
+                isExit = true;
+            }
+        }
+
+        public override void Exit()
+        {
+            
+        }
+
+        public override void OnTransition()
+        {
+            if (isExit)
+            {
+                user.ChangeState(ForestBossState.Idle);
+            }
+        }
+    }
+
+    public class Hit : State<ForestBoss>
+    {        
+        private bool isAnimationComplete = false;
+        private bool isExit = false;
+        public Hit(ForestBoss user) : base(user) { }
+
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("F_Boss: Hit State");
+            user.ChangeAnimation(ForestBossAnimation.ForestBoss_Hit);
+            isAnimationComplete = false;
+            isExit = false;
+        }
+
+        public override void Execute()
+        {
+            if (!isAnimationComplete)
+            {
+                AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.IsName("ForestBoss_Hit") && stateInfo.normalizedTime >= 1.0f)
+                {
+                    isAnimationComplete = true;
+                }
+            }
+
+            if (isAnimationComplete == true)
+            {
                 isExit = true;
             }
         }
