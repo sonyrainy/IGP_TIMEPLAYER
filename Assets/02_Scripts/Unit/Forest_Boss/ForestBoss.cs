@@ -18,7 +18,6 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] public GameObject log;
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
-    [SerializeField] public GameObject hitPoint;
 
     [SerializeField] private int spawnLogNumber = 3;
     [SerializeField] private int spawnRockNumber = 2;
@@ -53,52 +52,6 @@ public class ForestBoss : MonoBehaviour
         InitFSM();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
-        hitPoint.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        states[(int)forestBossState].Execute();
-        states[(int)forestBossState].OnTransition();
-
-        playTime += Time.deltaTime;
-
-        if (playTime > 4f)
-        {
-            hitPoint.SetActive(true);
-        }
-
-        // playTime�� 3�� �Ѿ�� ���� ������ ���� ���� �ƴϸ� ���� ���� ����
-        if (playTime > 3 && !isStateChanging)
-        {
-            StartCoroutine(ChangeStateRoutine());
-        }
-    }
-
-    private bool isStateChanging = false;
-
-    private IEnumerator ChangeStateRoutine()
-    {
-        isStateChanging = true;
-
-        while (true)
-        {
-            // ���� ��ȯ �ֱ⸦ �������� ���� (3�� ~ 5��)
-            float nextStateTime = Random.Range(5f, 7f);
-            yield return new WaitForSeconds(nextStateTime);
-
-            // ���¸� �������� ����
-            ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
-
-            // ���� ���� ȣ��
-            ChangeState(randomState);
-        }
-    }
     void InitFSM()
     {
         animator = GetComponentInChildren<Animator>();
@@ -115,14 +68,54 @@ public class ForestBoss : MonoBehaviour
         states[(int)forestBossState].Enter();
     }
 
-    public void InstantiateLogs()
+    // Start is called before the first frame update
+    void Start()
     {
-        StartCoroutine(InstantiateLogsWithDelay());
+        animator = GetComponentInChildren<Animator>();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        states[(int)forestBossState].Execute();
+        states[(int)forestBossState].OnTransition();
+
+        playTime += Time.deltaTime;
+
+        // if playTime is over than 3 and isStateChanging is false, start ChangeStateRoutine coroutine
+        if (playTime > 3 && !isStateChanging)
+        {
+            StartCoroutine(ChangeStateRoutine());
+        }
+    }
+
+    private bool isStateChanging = false;
+
+    private IEnumerator ChangeStateRoutine()
+    {
+        isStateChanging = true;
+
+        while (true)
+        {
+            // The wait time of LogAttack or RockAttack
+            float nextStateTime = Random.Range(5f, 7f);
+            yield return new WaitForSeconds(nextStateTime);
+
+            // Change random states
+            ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
+            ChangeState(randomState);
+        }
+    }
+    
     public void OnDamaged()
     {
         ChangeState(ForestBossState.Hit);
+    }
+
+
+    public void InstantiateLogs()
+    {
+        StartCoroutine(InstantiateLogsWithDelay());
     }
 
     IEnumerator InstantiateLogsWithDelay()
@@ -147,8 +140,6 @@ public class ForestBoss : MonoBehaviour
             telegraphs.Add(telegraphInstance);
             yield return new WaitForSeconds(randomSpawnTime);
         }
-
-        // yield return new WaitForSeconds(logsSpawnWaitTime);
 
         // Destory LogTelegraphs
         foreach (GameObject telegraph in telegraphs)
@@ -188,8 +179,6 @@ public class ForestBoss : MonoBehaviour
             yield return new WaitForSeconds(randomSpawnTime);
         }
 
-        // yield return new WaitForSeconds(rocksSpawnWaitTime);
-
         // Destroy RockTelegraphs
         foreach (GameObject telegraph in telegraphs)
         {
@@ -205,10 +194,7 @@ public class ForestBoss : MonoBehaviour
         }
     }
 
-    /*
-     * Random Number Function 
-     *
-     */
+    // Random Number Function 
     List<int> GetUniqueRandomNumbers(int min, int max, int count)
     {
         List<int> numbers = new List<int>();

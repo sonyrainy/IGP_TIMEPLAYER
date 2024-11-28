@@ -8,6 +8,11 @@ public class TimeZoneEffect : MonoBehaviour
     // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
     public float speedMultiplier = 1f;
 
+    public void setSpeedMultiplier (float speedMultiplier)
+    {
+        this.speedMultiplier = speedMultiplier;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

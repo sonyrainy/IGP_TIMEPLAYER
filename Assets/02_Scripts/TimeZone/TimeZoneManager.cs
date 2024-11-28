@@ -15,6 +15,8 @@ public class TimeZoneManager : MonoBehaviour
 
     private void Awake()
     {
+        
+
         DontDestroyOnLoad(gameObject); // 씬 전환 후에도 이 오브젝트가 유지되도록 설정
     }
 
@@ -91,7 +93,9 @@ public class TimeZoneManager : MonoBehaviour
     private void DestroyCurrentTimeZone()
     {
         if (currentTimeZone != null)
-        {
+        {        
+            currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
+            currentEffect.setSpeedMultiplier(1f);
             Destroy(currentTimeZone);
             currentTimeZone = null;
         }

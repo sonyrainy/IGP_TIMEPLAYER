@@ -76,6 +76,9 @@ public class SoundManager : SingletonBase<SoundManager>
                 PlayBGM("Forest", true, 0.3f);
                 break;
             // 필요한 씬에 따라 추가
+            case "IGP_ForestBoss":
+                PlayBGM("Forest", true, 0.3f);
+                break;
             default:
                 StopBGM();
                 break;
