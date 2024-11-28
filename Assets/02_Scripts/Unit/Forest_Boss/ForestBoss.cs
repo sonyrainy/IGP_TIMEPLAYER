@@ -19,6 +19,8 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
     [SerializeField] public GameObject hitPoint;
+    public TimeStopper timeStopper; // TimeStopper 인스턴스 참조
+    public float stopDuration = 3f; // TimeStopper에서 사용할 stopDuration 값
 
     [SerializeField] private int spawnLogNumber = 3;
     [SerializeField] private int spawnRockNumber = 2;
@@ -58,6 +60,9 @@ public class ForestBoss : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         hitPoint.SetActive(false);
+
+        timeStopper = FindObjectOfType<TimeStopper>();
+
     }
 
     // Update is called once per frame
@@ -159,7 +164,20 @@ public class ForestBoss : MonoBehaviour
         // Instantiate logs
         foreach (int number in randomNumbers)
         {
-            Instantiate(log, LogPositions[number].position, Quaternion.identity);
+            //Instantiate(log, LogPositions[number].position, Quaternion.identity);
+        GameObject logInstance = Instantiate(log, LogPositions[number].position, Quaternion.identity);
+        LogObject logScript = logInstance.GetComponent<LogObject>();
+
+        //logInstance.GetComponent<LogObject>();
+            //HyeonJin Stop Script
+            if (logScript != null)
+            {
+                // 타임스톱이 활성화되어 있는지 확인하고, 멈출 수 있도록 설정
+                if (timeStopper != null && timeStopper.IsTimeStopped())
+                {
+                    logScript.StopMovement(stopDuration);
+                }
+            }
             yield return new WaitForSeconds(randomSpawnTime);
         }
     }

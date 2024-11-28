@@ -92,7 +92,6 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Q ?��? ?��?????TimeStopper ?�크립트???�간 ?��? ?�수 ?�행
         if (Input.GetKeyDown(KeyCode.Q))
         {
             TimeStopper timeStopper = GetComponent<TimeStopper>();
@@ -101,7 +100,6 @@ public class Player : MonoBehaviour
                 timeStopper.StartCoroutine(timeStopper.StopTime());
                 timeStopper.StartCoroutine(timeStopper.ActivateTimeStopEffect(timeStopEffect));
             }
-            Debug.Log("?�??");
         }
 
         // ?�?�존???�어가 ?�으�??�니메이???�도 감속 �?가??
@@ -117,7 +115,6 @@ public class Player : MonoBehaviour
         GroundCheck();
         if (!isDash)
         {
-            // ?�???�태�??�외??모든 ?�태??중력???�용
             ApplyGravity();
         }
 

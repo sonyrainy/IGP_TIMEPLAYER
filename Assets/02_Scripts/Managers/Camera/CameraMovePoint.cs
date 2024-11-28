@@ -20,12 +20,10 @@ public class CameraMovePoint : MonoBehaviour
                 cameraManager.MoveCameraTo(new Vector3(targetPoint.position.x, cameraManager.transform.position.y, cameraManager.transform.position.z));
             }
             
-            // 트리거가 발생했음을 기록하고, 스폰 포인트 업데이트
-            PlayerRespawnManager.Instance.UpdateSpawnPointIndex(1);
             
             // 트리거가 발생했음을 기록하고 isTrigger 비활성화
             hasTriggered = true;
-            StartCoroutine(DisableTriggerAfterDelay(0.5f)); // 약간의 지연 후 isTrigger 비활성화
+            StartCoroutine(DisableTriggerAfterDelay(0.5f));
         }
     }
 

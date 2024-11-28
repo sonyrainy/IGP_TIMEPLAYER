@@ -28,7 +28,11 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         if (isInTimeZone == true)
         {
-            animator.speed = 1f;
+            //animator.speed = 1f;
+            //speedMulitplier 값이 slow, fast timezone에 따라 다르니
+            //이렇게 넣으면 됨.
+            animator.speed = speedMultiplier;
+
         }
         else
         {

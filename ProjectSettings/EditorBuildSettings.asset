@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_Scenes/IGP_Setting.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scenes/IGP_Title.unity
     guid: 751162723ad92784c89fded0e4f69121
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scenes/IGP_Forest.unity
     guid: faf89db7afc0a6541b6b32dabbe1982e
   - enabled: 1
+    path: Assets/01_Scenes/IGP_CameraMove, Patrol, Die, Grow.unity
+    guid: e953ae26c569b4f15a43e3c294116af4
+  - enabled: 0
     path: Assets/01_Scenes/IGP_Sound.unity
     guid: 58d06628df6f39b478b36428be5fd416
+  - enabled: 1
+    path: Assets/01_Scenes/IGP_Forest_Boss.unity
+    guid: 083ee14b783940b48b1ad8048cfa9026
+  - enabled: 0
+    path: Assets/01_Scenes/TimeZone.unity
+    guid: 8e7dcac9b91d29846acc7232e496a57c
   m_configObjects: {}

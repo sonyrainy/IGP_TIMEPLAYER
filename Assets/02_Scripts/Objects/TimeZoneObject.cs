@@ -8,6 +8,6 @@ public class TimeZoneObject : MonoBehaviour
 
     public void AdjustObjectSpeed(float speedMultiplier)
     {
-        this.speedMultiplier = speedMultiplier;
+        this.speedMultiplier *= speedMultiplier;
     }
 }

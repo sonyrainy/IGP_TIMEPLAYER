@@ -8,25 +8,62 @@ public class LogObject : TimeZoneObject
     [SerializeField] float yVelocity = 0;
     [SerializeField] float gravity = 9.8f;
 
+    private float originalGravity;
+    private float originalYVelocity;
+
     public bool isInTimeZone = false;
+    private bool isStopped = false;
 
     // Start is called before the first frame update
     void Start()
     {
         transform = GetComponent<Transform>();
+        originalGravity = gravity;
+        originalYVelocity = yVelocity;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ApplyGravity();
+        if (!isStopped) 
+        {
+            ApplyGravity();
+        }
     }
 
     private void ApplyGravity()
     {
         Vector3 position = transform.position;
-        position.y -= yVelocity * gravity * Time.deltaTime * speedMultiplier;
-        transform.position = position;
+        if (!isStopped)
+        {
+            position.y -= yVelocity * gravity * Time.deltaTime * speedMultiplier;
+            transform.position = position;
+        }
+    }
+
+    public void StopMovement(float duration)
+    {
+        if (!isStopped)
+        {
+            StartCoroutine(StopMovementCoroutine(duration));
+        }
+    }
+
+    private IEnumerator StopMovementCoroutine(float duration)
+    {
+        isStopped = true; 
+
+        // 중력과 yVelocity를 0으로 설정하여 오브젝트가 멈추게 함
+        yVelocity = 0;
+        gravity = 0;
+
+        yield return new WaitForSeconds(duration); 
+
+        gravity = originalGravity;
+
+        yVelocity = originalYVelocity; 
+        isStopped = false; 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,6 +74,9 @@ public class LogObject : TimeZoneObject
         }
         else
         {
+
+            isStopped = false;
+
             Destroy(gameObject);
         }
     }
