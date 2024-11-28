@@ -130,6 +130,8 @@ MonoBehaviour:
   - {fileID: 5805571437016448811}
   - {fileID: 5361655362140683700}
   - {fileID: 7151861256168515265}
+  copyObject: {fileID: 773436421322981274}
+  fadeDuration: 2
   isInTimeZone: 0
 --- !u!50 &5592111652452195683
 Rigidbody2D:
@@ -146,7 +148,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

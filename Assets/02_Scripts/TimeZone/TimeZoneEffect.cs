@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TimeZoneEffect : MonoBehaviour
 {
-    // Timezone ?�어갔을 ???�도 ?�만??변?�게 ?�도�??��? 배율
-    // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
+    // Timezone ?�어갔을 ???�도 ?�만??변?�게 ?�도�??��? 배율
+    // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
     public float speedMultiplier = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -15,7 +15,7 @@ public class TimeZoneEffect : MonoBehaviour
             Player player = other.GetComponent<Player>();
             Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
 
-            Debug.Log("Player TimeZone ?�장");
+            Debug.Log("Player TimeZone ?�장");
 
             if (player != null)
             {
@@ -27,12 +27,12 @@ public class TimeZoneEffect : MonoBehaviour
         {
             FallingTree fallingTree = other.GetComponent<FallingTree>();
 
-            Debug.Log("FallingTree TimeZone ?�장");
+            Debug.Log("FallingTree TimeZone ?�장");
 
             if (fallingTree != null)
             {
                 fallingTree.AdjustFallSpeed(speedMultiplier);
-                fallingTree.EnterTimeZone(tag); // ?�재 ?�?�존???�그�??�달?�여 ?�절???�동 ?�행
+                fallingTree.EnterTimeZone(tag); // ?�재 ?�?�존???�그�??�달?�여 ?�절???�동 ?�행
             }
         }
         // GrowingTree??경우
@@ -40,7 +40,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
 
-            Debug.Log("GrowingTree TimeZone ?�장");
+            Debug.Log("GrowingTree TimeZone ?�장");
 
             if (growingTree != null)
             {
@@ -51,7 +51,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             MovingTilemap movingPlatform = other.GetComponent<MovingTilemap>();
 
-            Debug.Log("MovingPlatform TimeZone ?�장");
+            Debug.Log("MovingPlatform TimeZone ?�장");
 
             if (movingPlatform != null)
             {
@@ -78,18 +78,12 @@ public class TimeZoneEffect : MonoBehaviour
             }
         }
 
-
-        Debug.Log("1111");
-        Debug.Log(other.gameObject.name);
         if (other.attachedRigidbody.CompareTag("PlayerTreeAttackObjects"))
         {
-            Debug.Log("2222");
-
             PlayerTreeAttackObject playerTreeAttackObject = other.attachedRigidbody.GetComponent<PlayerTreeAttackObject>();
 
             if (playerTreeAttackObject != null)
             {
-                Debug.Log("3333");
                 playerTreeAttackObject.AdjustObjectSpeed(speedMultiplier);
                 playerTreeAttackObject.isInTimeZone = true;
             }
@@ -104,7 +98,7 @@ public class TimeZoneEffect : MonoBehaviour
             Player player = other.GetComponent<Player>();
             Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
 
-            Debug.Log("Player TimeZone ?�장");
+            Debug.Log("Player TimeZone ?�장");
 
             if (player != null)
             {
@@ -116,7 +110,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             FallingTree fallingTree = other.GetComponent<FallingTree>();
 
-            Debug.Log("FallingTree TimeZone ?�장");
+            Debug.Log("FallingTree TimeZone ?�장");
 
             if (fallingTree != null)
             {
@@ -129,7 +123,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
 
-            Debug.Log("GrowingTree TimeZone ?�장");
+            Debug.Log("GrowingTree TimeZone ?�장");
 
             if (growingTree != null)
             {
@@ -140,7 +134,7 @@ public class TimeZoneEffect : MonoBehaviour
         {
             MovingTilemap movingPlatform = other.GetComponent<MovingTilemap>();
 
-            Debug.Log("MovingPlatform TimeZone ?�장");
+            Debug.Log("MovingPlatform TimeZone ?�장");
 
             if (movingPlatform != null)
             {
@@ -167,9 +161,9 @@ public class TimeZoneEffect : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("PlayerTreeAttackObjects"))
+        if (other.attachedRigidbody.CompareTag("PlayerTreeAttackObjects"))
         {
-            PlayerTreeAttackObject playerTreeAttackObject = other.GetComponent<PlayerTreeAttackObject>();
+            PlayerTreeAttackObject playerTreeAttackObject = other.attachedRigidbody.GetComponent<PlayerTreeAttackObject>();
 
             if (playerTreeAttackObject != null)
             {

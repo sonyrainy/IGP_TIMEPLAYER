@@ -122,73 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &39520621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 39520622}
-  - component: {fileID: 39520623}
-  m_Layer: 0
-  m_Name: HitPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &39520622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39520621}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 135774896}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &39520623
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39520621}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!1001 &66637594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,7 +208,7 @@ GameObject:
   - component: {fileID: 135774897}
   m_Layer: 0
   m_Name: Forest_Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +227,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2025910338}
-  - {fileID: 39520622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &135774897
@@ -331,6 +263,7 @@ MonoBehaviour:
   log: {fileID: 9122831120121938228, guid: 1e7c344e067d24cacbd915d67adc2081, type: 3}
   rockTelegraph: {fileID: 3705762635852198040, guid: f49e914655b0f47c59c64cb41a83907b, type: 3}
   rock: {fileID: 6251864297662117355, guid: 06364f82c873ac049bd10151346228f8, type: 3}
+  hitPoint: {fileID: 0}
   spawnLogNumber: 3
   spawnRockNumber: 2
   difficultPerPlayTime: 10
@@ -3886,7 +3819,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9161243643617314906, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: -9161243643617314906, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayerID
@@ -3982,7 +3915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5547982660784086739, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: -5547982660784086739, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayerID
@@ -3994,7 +3927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4354045350511224685, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: -4354045350511224685, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayerID
@@ -4086,7 +4019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6219882082518608126, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6219882082518608126, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayerID
@@ -4094,7 +4027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6337466783016565233, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6337466783016565233, guid: e128cf338ee034617bb421258df2cf7a, type: 3}
       propertyPath: m_SortingLayerID
@@ -4215,6 +4148,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_TreeAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 6550461873095972557, guid: b26666a1b6dc0a844a457f0a522b36cd, type: 3}
+      propertyPath: copyObject
+      value: 
+      objectReference: {fileID: 773436421322981274, guid: b26666a1b6dc0a844a457f0a522b36cd, type: 3}
+    - target: {fileID: 6550461873095972557, guid: b26666a1b6dc0a844a457f0a522b36cd, type: 3}
+      propertyPath: forestBoss
+      value: 
+      objectReference: {fileID: 135774897}
     - target: {fileID: 7257201068248538338, guid: b26666a1b6dc0a844a457f0a522b36cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6
