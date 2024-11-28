@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Forest_Boss_States
@@ -226,7 +227,6 @@ namespace Forest_Boss_States
             if (isExit)
             {
                 user.ChangeState(ForestBossState.Idle);
-                user.isHit = false;
             }
         }
     }

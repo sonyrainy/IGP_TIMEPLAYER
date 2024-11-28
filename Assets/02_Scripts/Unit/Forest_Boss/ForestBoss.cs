@@ -28,8 +28,6 @@ public class ForestBoss : MonoBehaviour
 
     [SerializeField] private float logsSpawnWaitTime = 1f;
     [SerializeField] private float rocksSpawnWaitTime = 1f;
-
-    public bool isHit = false;
     private float playTime = 0f;
 
     public void ChangeState(ForestBossState state) 
@@ -80,11 +78,6 @@ public class ForestBoss : MonoBehaviour
         {
             StartCoroutine(ChangeStateRoutine());
         }
-
-        if (isHit)
-        {
-            ChangeState(ForestBossState.Hit);
-        }
     }
 
     private bool isStateChanging = false;
@@ -125,6 +118,11 @@ public class ForestBoss : MonoBehaviour
     public void InstantiateLogs()
     {
         StartCoroutine(InstantiateLogsWithDelay());
+    }
+
+    public void OnDamaged()
+    {
+        ChangeState(ForestBossState.Hit);
     }
 
     IEnumerator InstantiateLogsWithDelay()

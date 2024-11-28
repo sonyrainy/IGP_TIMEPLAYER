@@ -5,17 +5,22 @@ using UnityEngine;
 public class PlayerTreeAttackObject : TimeZoneObject
 {
     [SerializeField] GameObject[] colliders;
+    [SerializeField] GameObject copyObject;
     [SerializeField] ForestBoss forestBoss;
-
+    [SerializeField] float fadeDuration = 2.0f;
+    [SerializeField] bool isAttack = false;
     public bool isInTimeZone = false;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        forestBoss = GetComponent<ForestBoss>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        forestBoss = FindObjectOfType<ForestBoss>();
     }
 
     // Update is called once per frame
@@ -23,7 +28,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         if (isInTimeZone == true)
         {
-            animator.speed = speedMultiplier;
+            animator.speed = 1f;
         }
         else
         {
@@ -31,9 +36,11 @@ public class PlayerTreeAttackObject : TimeZoneObject
         }
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 1.0f)
+        if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 1.0f && !isAttack)
         {
-            forestBoss.isHit = true;
+            isAttack = !isAttack;
+            forestBoss.OnDamaged();
+            StartCoroutine(fadeDestroy());
         }
     }
 
@@ -45,5 +52,27 @@ public class PlayerTreeAttackObject : TimeZoneObject
         }
 
         colliders[index].SetActive(true);
+    }
+
+    IEnumerator fadeDestroy() 
+    {
+        if (spriteRenderer == null)
+        {
+            yield break;
+        }
+
+        Color originalColor = spriteRenderer.color;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime/fadeDuration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+
+        Destroy(gameObject);
+        spriteRenderer.color = originalColor;
     }
 }
