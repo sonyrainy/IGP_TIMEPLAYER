@@ -10,6 +10,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
     [SerializeField] float fadeDuration = 2.0f;
     [SerializeField] bool isAttack = false;
     public bool isInTimeZone = false;
+    public bool isTreeDestroied = false;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -73,6 +74,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
         }
 
         Destroy(gameObject);
+        isTreeDestroied = true;
         spriteRenderer.color = originalColor;
     }
 }

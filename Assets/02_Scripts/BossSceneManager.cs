@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BossSceneManager : MonoBehaviour
 {
+    [SerializeField] GameObject seed;
+    [SerializeField] GameObject tree;
+
+    public bool isTreeDestroied = false;
+
     // Start is called before the first frame update
     void Start()
     {
