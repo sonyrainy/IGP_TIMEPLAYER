@@ -26,7 +26,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
     // Update is called once per frame
     void Update()
     {
-        if (isInTimeZone == true)
+        if (isInTimeZone == true && speedMultiplier > 1)
         {
             //animator.speed = 1f;
             //speedMulitplier 값이 slow, fast timezone에 따라 다르니
