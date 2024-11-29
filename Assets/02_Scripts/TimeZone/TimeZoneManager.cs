@@ -41,8 +41,6 @@ public class TimeZoneManager : MonoBehaviour
         // 클릭 해제
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
-            // 타임 존 없어지면 SpeedMultiplier를 1로 고정하려고 하려 했는데 왜 안되징...
-            currentEffect.setSpeedMultiplier();
             DestroyCurrentTimeZone();
             isCreatingTimeZone = false;
         }
@@ -92,7 +90,7 @@ public class TimeZoneManager : MonoBehaviour
     private void DestroyCurrentTimeZone()
     {
         if (currentTimeZone != null)
-        {        
+        {
             Destroy(currentTimeZone);
             currentTimeZone = null;
         }
