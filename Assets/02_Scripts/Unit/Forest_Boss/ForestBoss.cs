@@ -18,7 +18,6 @@ public class ForestBoss : MonoBehaviour
     [SerializeField] public GameObject log;
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
-    [SerializeField] public GameObject hitPoint;
     public TimeStopper timeStopper; // TimeStopper 인스턴스 참조
     public float stopDuration = 3f; // TimeStopper에서 사용할 stopDuration 값
 
@@ -59,7 +58,6 @@ public class ForestBoss : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        hitPoint.SetActive(false);
 
         timeStopper = FindObjectOfType<TimeStopper>();
 
@@ -72,11 +70,6 @@ public class ForestBoss : MonoBehaviour
         states[(int)forestBossState].OnTransition();
 
         playTime += Time.deltaTime;
-
-        if (playTime > 4f)
-        {
-            hitPoint.SetActive(true);
-        }
 
         // playTime�� 3�� �Ѿ�� ���� ������ ���� ���� �ƴϸ� ���� ���� ����
         if (playTime > 3 && !isStateChanging)
