@@ -283,5 +283,10 @@ public class Player : MonoBehaviour
         {
             ChangeState(PlayerState.Hit);
         }
+            else if (collision.gameObject.CompareTag("DeadGround"))
+        {
+            // DeadGround에 닿으면 가장 최근 리스폰 포인트로 이동
+            RespawnAtLastSpawnPoint(); 
+        }
     }
 }

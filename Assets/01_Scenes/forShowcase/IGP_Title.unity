@@ -1053,7 +1053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &766719359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,8 +1067,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGMClip:
-  - {fileID: 8300000, guid: d57cc1a7594a7c046b7f88a512170c30, type: 3}
   - {fileID: 8300000, guid: 8f7ff8b56f737ad438b1c77830fe2f48, type: 3}
+  - {fileID: 8300000, guid: d57cc1a7594a7c046b7f88a512170c30, type: 3}
+  - {fileID: 8300000, guid: 886f2c6c233ab2941b52d00f6f04a8af, type: 3}
+  - {fileID: 8300000, guid: b37771d3cfd6c244996dc2555e979392, type: 3}
   SFXClip:
   - {fileID: 8300000, guid: 29a1266455b15e545af3eb6dc2111946, type: 3}
   - {fileID: 8300000, guid: 26642bb6b5ca0f44284315e9c06feb8d, type: 3}
@@ -1215,7 +1217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -394, y: 56}
+  m_AnchoredPosition: {x: -318, y: 45}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023002192
@@ -1987,7 +1989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -394, y: 125}
+  m_AnchoredPosition: {x: -318, y: 114}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1572092895

@@ -7,8 +7,6 @@ public class CameraManager : MonoBehaviour
     public Transform playerTransform; // 플레이어의 Transform
     private GameObject mainCamera;
     private Vector3 destination;
-        private Vector3 originalPosition;
-
     private bool moveCamera = false;
     private float cameraSpeed = 45.0f;
     public float yOffset = 2.0f; // 카메라가 플레이어보다 얼마나 위에 위치할지 설정
@@ -16,9 +14,7 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main.gameObject;
-                originalPosition = mainCamera.transform.position;
-
-        destination = originalPosition;
+        destination = mainCamera.transform.position;
     }
 
     private void Update()
