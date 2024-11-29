@@ -28,13 +28,13 @@ public class TimeZoneManager : MonoBehaviour
         // Slow TimeZone, 좌클릭
         if (Input.GetMouseButtonDown(0) && !isCreatingTimeZone)
         {
-            CreateTimeZone(slowTimeZonePrefab, 0.5f);
+            CreateTimeZone(slowTimeZonePrefab);
             isCreatingTimeZone = true;
         }
         // Fast TimeZone, 우클릭
         else if (Input.GetMouseButtonDown(1) && !isCreatingTimeZone)
         {
-            CreateTimeZone(fastTimeZonePrefab, 2.0f); 
+            CreateTimeZone(fastTimeZonePrefab); 
             isCreatingTimeZone = true;
         }
 
@@ -53,7 +53,7 @@ public class TimeZoneManager : MonoBehaviour
         }
     }
 
-    private void CreateTimeZone(GameObject timeZonePrefab, float speedMultiplier)
+    private void CreateTimeZone(GameObject timeZonePrefab)
     {
         // timeZonePrefab 존재 확인
         if (timeZonePrefab == null)
@@ -62,21 +62,20 @@ public class TimeZoneManager : MonoBehaviour
             return;
         }
 
-        // 마우스 위치에 TimeZone 생성
+  
+        // TimeZoneEffect 컴포넌트가 존재하는지 확인
+        //currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
+        // if (currentEffect != null)
+        // {
+        //     currentEffect.speedMultiplier = speedMultiplier;
+        // }
+        else
+        {
+      // 마우스 위치에 TimeZone 생성
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
         currentTimeZone = Instantiate(timeZonePrefab, mousePos, Quaternion.identity);
-
-        // TimeZoneEffect 컴포넌트가 존재하는지 확인
-        currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
-        if (currentEffect != null)
-        {
-            currentEffect.speedMultiplier = speedMultiplier;
-        }
-        else
-        {
-            Debug.LogError("TimeZone prefab does not contain a TimeZoneEffect component.");
         }
     }
 
