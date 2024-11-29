@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_Scenes/IGP_Setting.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/01_Scenes/IGP_Title.unity
     guid: 751162723ad92784c89fded0e4f69121
   - enabled: 0

@@ -74,9 +74,7 @@ public class LogObject : TimeZoneObject
         }
         else
         {
-
             isStopped = false;
-
             Destroy(gameObject);
         }
     }

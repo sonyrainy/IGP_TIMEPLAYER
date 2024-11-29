@@ -15,8 +15,6 @@ public class TimeZoneManager : MonoBehaviour
 
     private void Awake()
     {
-        
-
         DontDestroyOnLoad(gameObject); // 씬 전환 후에도 이 오브젝트가 유지되도록 설정
     }
 
@@ -43,6 +41,8 @@ public class TimeZoneManager : MonoBehaviour
         // 클릭 해제
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
+            // 타임 존 없어지면 SpeedMultiplier를 1로 고정하려고 하려 했는데 왜 안되징...
+            currentEffect.setSpeedMultiplier();
             DestroyCurrentTimeZone();
             isCreatingTimeZone = false;
         }
@@ -94,8 +94,6 @@ public class TimeZoneManager : MonoBehaviour
     {
         if (currentTimeZone != null)
         {        
-            currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
-            currentEffect.setSpeedMultiplier(1f);
             Destroy(currentTimeZone);
             currentTimeZone = null;
         }

@@ -8,7 +8,7 @@ public class TimeZoneEffect : MonoBehaviour
     // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
     public float speedMultiplier = 1.0f;
 
-    public void setSpeedMultiplier (float speedMultiplier)
+    public void setSpeedMultiplier (float speedMultiplier = 1.0f)
     {
         this.speedMultiplier = speedMultiplier;
     }
