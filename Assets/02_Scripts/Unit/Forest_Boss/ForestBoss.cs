@@ -11,7 +11,7 @@ public class ForestBoss : MonoBehaviour
 
     public State<ForestBoss>[] states;
 
-    [SerializeField] public Transform[] LogPositions = new Transform[9];
+    [SerializeField] public Transform[] logPositions = new Transform[9];
     [SerializeField] public Transform[] rockPositions = new Transform[4];
 
     [SerializeField] public GameObject logTelegraph;
@@ -132,7 +132,7 @@ public class ForestBoss : MonoBehaviour
                 spawnLogNumber = 5;
         }
 
-        List<int> randomNumbers = GetUniqueRandomNumbers(0, LogPositions.Length - 1, spawnLogNumber);
+        List<int> randomNumbers = GetUniqueRandomNumbers(0, logPositions.Length - 1, spawnLogNumber);
         float randomSpawnTime = Random.Range(logsSpawnTerm, logsSpawnTerm * 1.25f);
 
         // Instantiate LogTelegraphs
@@ -140,7 +140,7 @@ public class ForestBoss : MonoBehaviour
         foreach (int number in randomNumbers)
         {
             Quaternion rotation = Quaternion.Euler(0, 0, -90);
-            GameObject telegraphInstance = Instantiate(logTelegraph, LogPositions[number].position, rotation);
+            GameObject telegraphInstance = Instantiate(logTelegraph, logPositions[number].position, rotation);
             telegraphs.Add(telegraphInstance);
             yield return new WaitForSeconds(randomSpawnTime);
         }
@@ -156,20 +156,8 @@ public class ForestBoss : MonoBehaviour
         // Instantiate logs
         foreach (int number in randomNumbers)
         {
-            //Instantiate(log, LogPositions[number].position, Quaternion.identity);
-        GameObject logInstance = Instantiate(log, LogPositions[number].position, Quaternion.identity);
-        LogObject logScript = logInstance.GetComponent<LogObject>();
-
-        //logInstance.GetComponent<LogObject>();
-            //HyeonJin Stop Script
-            if (logScript != null)
-            {
-                // 타임스톱이 활성화되어 있는지 확인하고, 멈출 수 있도록 설정
-                if (timeStopper != null && timeStopper.IsTimeStopped())
-                {
-                    logScript.StopMovement(stopDuration);
-                }
-            }
+            Vector3 logPosition = new Vector3(logPositions[number].position.x + 8, logPositions[number].position.y, logPositions[number].position.z);
+            Instantiate(log, logPositions[number].position, Quaternion.identity);
             yield return new WaitForSeconds(randomSpawnTime);
         }
     }
