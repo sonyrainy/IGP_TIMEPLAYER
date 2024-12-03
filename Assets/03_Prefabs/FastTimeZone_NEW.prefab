@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6616283614821853380}
   - component: {fileID: 1183416398106909391}
   - component: {fileID: -6229086208247297822}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FastTimeZone_NEW
   m_TagString: FastTimeZone
   m_Icon: {fileID: 0}
@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4354c53a0d1221c49b949abd5ae12d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 20
+  speedMultiplier: 2

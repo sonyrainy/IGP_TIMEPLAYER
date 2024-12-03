@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class LogObject : TimeZoneObject
 {
-    Transform transform;
     [SerializeField] float yVelocity = 0;
     [SerializeField] float gravity = 9.8f;
 
     private float originalGravity;
     private float originalYVelocity;
-
-    public bool isInTimeZone = false;
     private bool isStopped = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform = GetComponent<Transform>();
         originalGravity = gravity;
         originalYVelocity = yVelocity;
 
@@ -68,16 +64,6 @@ public class LogObject : TimeZoneObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("BossAttackObjects"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }
-        else
-        {
-
-            isStopped = false;
-
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RockObject : TimeZoneObject
 {
-    private Transform transform;
     public float xVelocity = 0;
     public float acceleration = 0.5f; // 가속도
     public float destroyXPosition = -10f; // 파괴될 X축 위치
@@ -13,11 +12,9 @@ public class RockObject : TimeZoneObject
     private float originalAcceleration; // 원래의 가속도 값을 저장
 
     private bool isStopped = false; // 타임스톱 상태 플래그
-    public bool isInTimeZone = false;
 
     void Start()
     {
-        transform = GetComponent<Transform>();
         originalXVelocity = xVelocity;
         originalAcceleration = acceleration; 
     }
@@ -52,7 +49,6 @@ public class RockObject : TimeZoneObject
     {
         isStopped = true;
 
-
         // 속도와 가속도를 0으로 설정하여 정지
         xVelocity = 0;
         acceleration = 0;
@@ -65,16 +61,8 @@ public class RockObject : TimeZoneObject
         isStopped = false;
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("BossAttackObjects"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8610637297137186874}
   - component: {fileID: 2599296493334673170}
   - component: {fileID: -3490991073542154885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log_Boss
   m_TagString: BossAttackObjects
   m_Icon: {fileID: 0}

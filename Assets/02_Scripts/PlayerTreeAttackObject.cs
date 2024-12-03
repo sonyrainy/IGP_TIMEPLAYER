@@ -9,7 +9,6 @@ public class PlayerTreeAttackObject : TimeZoneObject
     [SerializeField] ForestBoss forestBoss;
     [SerializeField] float fadeDuration = 2.0f;
     [SerializeField] bool isAttack = false;
-    public bool isInTimeZone = false;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -19,7 +18,6 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         forestBoss = FindObjectOfType<ForestBoss>();
     }
 

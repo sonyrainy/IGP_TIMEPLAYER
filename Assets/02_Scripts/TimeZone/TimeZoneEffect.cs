@@ -4,37 +4,21 @@ using UnityEngine;
 
 public class TimeZoneEffect : MonoBehaviour
 {
-    // Timezone ?�어갔을 ???�도 ?�만??변?�게 ?�도�??��? 배율
-    // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
+    // Timezone ?�어갔을 ???�도 ?�만??변?�게 ?�도�??��? 배율
+    // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
     public float speedMultiplier = 1.0f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        TimeZoneObject timeZoneObject = other.attachedRigidbody.GetComponent<TimeZoneObject>();
+
+        if (timeZoneObject != null)
         {
-            Player player = other.GetComponent<Player>();
-            Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
-
-            Debug.Log("Player TimeZone ?�장");
-
-            if (player != null)
-            {
-                player.AdjustObjectSpeed(speedMultiplier);
-                player.isInTimeZone = true;
-            }
+            Debug.Log("TimeZoneObject: Enter the TimeZone ");
+            timeZoneObject.AdjustObjectSpeed(speedMultiplier);
+            timeZoneObject.isInTimeZone = true;
         }
-        else if (other.CompareTag("FallingTree")) // FallingTree??경우
-        {
-            FallingTree_ForSpawn fallingTree = other.GetComponent<FallingTree_ForSpawn>();
 
-            Debug.Log("FallingTree TimeZone ?�장");
-
-            // if (fallingTree != null)
-            // {
-            //     fallingTree.AdjustFallSpeed(speedMultiplier);
-            //     fallingTree.EnterTimeZone(tag); // ?�재 ?�?�존???�그�??�달?�여 ?�절???�동 ?�행
-            // }
-        }
         // GrowingTree??경우
         else if (other.CompareTag("GrowingTree")&& CompareTag("FastTimeZone"))
         {
@@ -59,65 +43,20 @@ public class TimeZoneEffect : MonoBehaviour
                 movingPlatform.EnterTimeZone(tag);
             }
         }
-        
-        if (other.CompareTag("BossAttackObjects"))
-        {           
-            RockObject rock = other.GetComponent<RockObject>();
-            LogObject log = other.GetComponent<LogObject>();
-            
-            if (rock != null)
-            {
-                rock.AdjustObjectSpeed(speedMultiplier);
-                //rock.isInTimeZone = true;
-            }
-
-            if (log != null)
-            {
-                log.AdjustObjectSpeed(speedMultiplier);
-                log.isInTimeZone = true;
-            }
-        }
-
-        if (other.attachedRigidbody.CompareTag("PlayerTreeAttackObjects"))
-        {
-            PlayerTreeAttackObject playerTreeAttackObject = other.attachedRigidbody.GetComponent<PlayerTreeAttackObject>();
-
-            if (playerTreeAttackObject != null)
-            {
-                playerTreeAttackObject.AdjustObjectSpeed(speedMultiplier);
-                playerTreeAttackObject.isInTimeZone = true;
-            }
-        }
 
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        TimeZoneObject timeZoneObject = other.attachedRigidbody.GetComponent<TimeZoneObject>();
+
+        if (timeZoneObject != null)
         {
-            Player player = other.GetComponent<Player>();
-            Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
-
-            Debug.Log("Player TimeZone ?�장");
-
-            if (player != null)
-            {
-                player.AdjustObjectSpeed(1f / speedMultiplier);
-                player.isInTimeZone = false;
-            }
+            Debug.Log("TimeZoneObject: Exit the TimeZone");
+            timeZoneObject.AdjustObjectSpeed(1f / speedMultiplier);
+            timeZoneObject.isInTimeZone = false;
         }
-        else if (other.CompareTag("FallingTree")) // FallingTree??경우
-        {
-            FallingTree_ForSpawn fallingTree = other.GetComponent<FallingTree_ForSpawn>();
 
-            Debug.Log("FallingTree TimeZone ?�장");
-
-            // if (fallingTree != null)
-            // {
-            //     fallingTree.AdjustFallSpeed(1f / speedMultiplier);
-            //     fallingTree.ExitTimeZone();
-            // }
-        }
         else if (other.CompareTag("GrowingTree")&& CompareTag("FastTimeZone"))
         {
             GrowingTree growingTree = other.GetComponent<GrowingTree>();
@@ -139,36 +78,6 @@ public class TimeZoneEffect : MonoBehaviour
             {
                 movingPlatform.AdjustSpeed(1/speedMultiplier);
                 movingPlatform.ExitTimeZone();
-            }
-        }
-
-        if (other.CompareTag("BossAttackObjects"))
-        {           
-            RockObject rock = other.GetComponent<RockObject>();
-            LogObject log = other.GetComponent<LogObject>();
-            
-            if (rock != null)
-            {
-                rock.AdjustObjectSpeed(1f / speedMultiplier);
-                rock.isInTimeZone = false;
-
-            }
-
-            if (log != null)
-            {
-                log.AdjustObjectSpeed(1f / speedMultiplier);
-                log.isInTimeZone = false;
-            }
-        }
-        
-        if (other.attachedRigidbody.CompareTag("PlayerTreeAttackObjects"))
-        {
-            PlayerTreeAttackObject playerTreeAttackObject = other.attachedRigidbody.GetComponent<PlayerTreeAttackObject>();
-
-            if (playerTreeAttackObject != null)
-            {
-                playerTreeAttackObject.AdjustObjectSpeed(1f / speedMultiplier);
-                playerTreeAttackObject.isInTimeZone = false;
             }
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6550461873095972557}
   - component: {fileID: 5592111652452195683}
   m_Layer: 0
-  m_Name: Player_TreeAttack
+  m_Name: PlayerTreeAttack
   m_TagString: PlayerTreeAttackObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
