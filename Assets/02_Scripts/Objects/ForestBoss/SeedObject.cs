@@ -11,7 +11,10 @@ public class SeedObject : TimeZoneObject
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.velocity = new Vector2(1, 1) * speed;
+
+        float seedVelocityX = Random.Range(1, 2);
+        float seedVelocityY = Random.Range(1, 2);
+        rigidbody2D.velocity = new Vector2(seedVelocityX, seedVelocityY) * speed;
     }
 
     // Update is called once per frame
@@ -31,7 +34,10 @@ public class SeedObject : TimeZoneObject
     {
         if (collision.collider.CompareTag("Player"))
         {
+            BossSceneManager.Instance.isSeedSpawned = false;
             Destroy(gameObject);
+            BossSceneManager.Instance.SetActiveTrueTreeAttackObject();
+            BossSceneManager.Instance.DelaySpawnSeed();
         }
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerTreeAttackObject : TimeZoneObject
 {
     [SerializeField] GameObject[] colliders;
-    [SerializeField] GameObject copyObject;
-    [SerializeField] ForestBoss forestBoss;
     [SerializeField] float fadeDuration = 2.0f;
     [SerializeField] bool isAttack = false;
 
@@ -18,7 +16,6 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        forestBoss = FindObjectOfType<ForestBoss>();
     }
 
     // Update is called once per frame
@@ -37,7 +34,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
         if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 1.0f && !isAttack)
         {
             isAttack = !isAttack;
-            forestBoss.OnDamaged();
+            ForestBoss.Instance.OnDamaged();
             StartCoroutine(fadeDestroy());
         }
     }
@@ -70,7 +67,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
             yield return null;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         spriteRenderer.color = originalColor;
     }
 }

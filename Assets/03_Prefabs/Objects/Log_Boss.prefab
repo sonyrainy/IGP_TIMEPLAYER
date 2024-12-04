@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 1
+  isInTimeZone: 0
   yVelocity: 0.75
   gravity: 9.8
-  isInTimeZone: 0
 --- !u!212 &8610637297137186874
 SpriteRenderer:
   m_ObjectHideFlags: 0

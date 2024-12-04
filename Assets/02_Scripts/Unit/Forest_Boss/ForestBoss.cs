@@ -5,6 +5,25 @@ using UnityEngine;
 
 public class ForestBoss : MonoBehaviour
 {
+    private static ForestBoss _instance;
+    public static ForestBoss Instance 
+    { 
+        get
+        {
+            if (!_instance)
+            {
+                _instance = FindObjectOfType(typeof(ForestBoss)) as ForestBoss;
+
+                if (_instance == null)
+                {
+                    Debug.Log("No ForestBoss object");
+                }
+            }
+            return _instance;
+        }
+    }
+
+
     public ForestBossState forestBossState = ForestBossState.Idle;
     public ForestBossState prevForestBossState = ForestBossState.Idle;
     public Animator animator;
