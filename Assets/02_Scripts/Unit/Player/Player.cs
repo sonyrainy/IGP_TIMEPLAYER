@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     //?�택??코드
     //public float inTimeZoneSpeed = 1;
 // 추�???변?�들
-    public Transform[] spawnPoints; // ?�폰 ?�인?�들
+    //public Transform[] spawnPoints; // ?�폰 ?�인?�들
     private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
     public float fallDeathVelocity = -36.0f; // ???�도 ?�상?�로 ?�어�?경우 ?�레?�어가 죽음
     private GameObject timeStopEffect;

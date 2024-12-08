@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01_Scenes/IGP_Sound.unity
     guid: 58d06628df6f39b478b36428be5fd416
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scenes/forShowcase/IGP_Title.unity
     guid: 39435de82ace4d44ebdb84e7093f0431
   - enabled: 1
