@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : TimeZoneObject
 {
     public PlayerState prevPlayerState = PlayerState.Idle;
     public PlayerState playerState = PlayerState.Idle;
@@ -26,10 +26,11 @@ public class Player : MonoBehaviour
     public bool isDash = false; // 대쉬중인지 확인
 
     public State<Player>[] states;
+    public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
 
-    public float speedMultiplier = 1f; // 타임 존 진입 및 탈출 시 감속/가속 효과 부여를 위한 Float 값
-    public bool isInTimeZone = false; // 타임 존에 진입했는지 확인
-    public float animationSpeed = 1; // 타임 존 진입/탈출 시 애니메이션의 감속/가속 효과 부여를 위한 Float 값
+    // public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
+     public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
+    // public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
     
     //?�택??코드
     //public float inTimeZoneSpeed = 1;
@@ -151,7 +152,7 @@ public class Player : MonoBehaviour
         states[(int)playerState].Enter();
     }
 
-    // 플레이어가 바닥에 붙어 있는지 확인
+    // Check player is on the Ground
     void GroundCheck()
     {
         if (yVelocity <= 0)
@@ -183,9 +184,9 @@ public class Player : MonoBehaviour
         }
     }
 }
-    public void AdjustObjectSpeed(float speedMultiplier)
+    public override void AdjustObjectSpeed(float speedMultiplier)
     {
-        this.speedMultiplier *= speedMultiplier;
+        base.AdjustObjectSpeed(speedMultiplier);
 
         // 이동 속도 조정
         moveSpeed *= speedMultiplier;

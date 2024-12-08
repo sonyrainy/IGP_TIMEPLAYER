@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6616283614821853380}
   - component: {fileID: 1183416398106909391}
   - component: {fileID: -6229086208247297822}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FastTimeZone_NEW
   m_TagString: FastTimeZone
   m_Icon: {fileID: 0}

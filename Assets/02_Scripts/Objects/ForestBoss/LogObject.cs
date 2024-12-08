@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class LogObject : TimeZoneObject
 {
-    Transform transform;
     [SerializeField] float yVelocity = 0;
     [SerializeField] float gravity = 9.8f;
 
     private float originalGravity;
     private float originalYVelocity;
-
-    public bool isInTimeZone = false;
     private bool isStopped = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform = GetComponent<Transform>();
         originalGravity = gravity;
         originalYVelocity = yVelocity;
 
@@ -74,8 +70,14 @@ public class LogObject : TimeZoneObject
         }
         else
         {
+
             isStopped = false;
+
             Destroy(gameObject);
         }
+
+
+        //hyuntaek
+        //Destroy(gameobject);
     }
 }

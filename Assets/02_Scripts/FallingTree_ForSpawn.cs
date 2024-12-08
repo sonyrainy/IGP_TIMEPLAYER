@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingTree_ForSpawn : MonoBehaviour
+public class FallingTree_ForSpawn : TimeZoneObject
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            // 플레이어와 충돌 시 현재 리스폰 포인트로 이동
+            // ?�레?�어?� 충돌 ???�재 리스???�인?�로 ?�동
             Player player = collision.collider.GetComponent<Player>();
             if (player != null)
             {
@@ -17,8 +17,8 @@ public class FallingTree_ForSpawn : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Ground"))
         {
-            // 땅과 충돌 시 나무 삭제
-            Destroy(gameObject); // 나무 오브젝트를 삭제
+            // ?�과 충돌 ???�무 ??��
+            Destroy(gameObject); // ?�무 ?�브?�트�???��
         }
     }
 }
