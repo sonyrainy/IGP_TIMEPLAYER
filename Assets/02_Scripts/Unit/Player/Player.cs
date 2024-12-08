@@ -31,10 +31,12 @@ public class Player : MonoBehaviour
     public bool isInTimeZone = false; // 타임 존에 진입했는지 확인
     public float animationSpeed = 1; // 타임 존 진입/탈출 시 애니메이션의 감속/가속 효과 부여를 위한 Float 값
     
-    // SHJ: 추가 변수
-    public Transform[] spawnPoints; // 스폰 포인트들
-    private int lastSpawnPointIndex = 0; // 마지막으로 도달한 스폰 포인트의 인덱스
-    public float fallDeathVelocity = -36.0f; // 이 정도 이상으로 떨어질경우 플레이어 사망
+    //?�택??코드
+    //public float inTimeZoneSpeed = 1;
+// 추�???변?�들
+    //public Transform[] spawnPoints; // ?�폰 ?�인?�들
+    private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
+    public float fallDeathVelocity = -36.0f; // ???�도 ?�상?�로 ?�어�?경우 ?�레?�어가 죽음
     private GameObject timeStopEffect;
 
 
@@ -277,6 +279,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("BossAttackObjects"))
         {
             ChangeState(PlayerState.Hit);
+        }
+            else if (collision.gameObject.CompareTag("DeadGround"))
+        {
+            // DeadGround에 닿으면 가장 최근 리스폰 포인트로 이동
+            RespawnAtLastSpawnPoint(); 
         }
     }
 }

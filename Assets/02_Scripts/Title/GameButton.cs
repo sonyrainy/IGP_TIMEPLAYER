@@ -9,7 +9,7 @@ public class GameButton : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("IGP_CameraMove, Patrol, Die, Grow");
+        SceneManager.LoadScene("IGP_Forest_Normal_forShowcase");
     }
 
     public void SettingActiveButton()
