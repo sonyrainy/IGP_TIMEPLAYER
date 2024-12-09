@@ -28,7 +28,7 @@ public class TimeStopper : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             // 특정 태그를 가진 오브젝트만 멈추게 합니다.
-            if (collider.CompareTag("MovingPlatform") || collider.CompareTag("BossAttackObjects"))
+            if (collider.CompareTag("MovingPlatform")||collider.CompareTag("BossAttackObjects")||collider.CompareTag("Seed"))
             {
                 Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
                 if (rb != null)
@@ -39,12 +39,6 @@ public class TimeStopper : MonoBehaviour
                     rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 }
 
-                // 애니메이터 멈춤 (적 애니메이션이 있다면)
-                // Animator animator = collider.GetComponent<Animator>();
-                // if (animator != null)
-                // {
-                //     animator.enabled = false;
-                // }
 
                 // 움직이는 발판 및 나무 멈춤 (특정 태그로 구분)
                 if (collider.CompareTag("MovingPlatform"))
@@ -55,8 +49,18 @@ public class TimeStopper : MonoBehaviour
                         platform.StopPlatformForDuration(stopDuration);
                     }
                 }
+                //temp shj
+                if (collider.CompareTag("Seed"))
+                {
+                        Debug.Log("SeedObject detected and stopping.");
 
-
+                    SeedObject seed = collider.GetComponent<SeedObject>();
+                    if (seed != null)
+                    {
+                        seed.StopMovement(stopDuration);
+                    }
+                }
+                //~ temp shj
                 if (collider.CompareTag("BossAttackObjects"))
                 {
                     LogObject bossTree = collider.GetComponent<LogObject>();
@@ -87,10 +91,11 @@ public class TimeStopper : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
         }
 
+        //안씀.
         foreach (Collider2D collider in colliders)
         {
             // 활성화
-            if ( collider.CompareTag("MovingPlatform") || collider.CompareTag("BossAttackObjects"))
+            if ( collider.CompareTag("MovingPlatform") || collider.CompareTag("BossAttackObjects")|| collider.CompareTag("Seed"))
             {
                 Animator animator = collider.GetComponent<Animator>();
                 if (animator != null)

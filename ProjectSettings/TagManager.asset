@@ -16,6 +16,7 @@ TagManager:
   - Boss
   - FallingTree
   - DeadGround
+  - Seed
   layers:
   - Default
   - TransparentFX

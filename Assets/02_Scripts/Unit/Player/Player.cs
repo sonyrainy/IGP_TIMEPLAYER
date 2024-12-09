@@ -279,6 +279,12 @@ public class Player : TimeZoneObject
         if (collision.gameObject.CompareTag("BossAttackObjects"))
         {
             ChangeState(PlayerState.Hit);
+            
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1); // 1만큼의 피해
+            }
         }
             else if (collision.gameObject.CompareTag("DeadGround"))
         {
