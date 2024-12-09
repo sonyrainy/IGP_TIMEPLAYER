@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793c597b2c32bce44bc87efa0be0c7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoint: {fileID: 1865269696}
 --- !u!61 &1866628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -608,7 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793c597b2c32bce44bc87efa0be0c7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoint: {fileID: 1706117631}
 --- !u!61 &328874545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3544,8 +3542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24196bfe15326d544929f935c6fdea79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 399303440}
-  yOffset: 2
+  player: {fileID: 399303440}
+  cameraMovePoints: []
+  cameraMoveSpeed: 2
+  verticalFollowSpeed: 2
+  verticalOffset: 1.3
 --- !u!4 &895126207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3934147427901478814, guid: 87da68e39400b4944bbf0a97c7cc2939, type: 3}
@@ -17785,6 +17786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: IGP_Forest_Boss_forShowCase
+  delay: 5
 --- !u!1001 &1591900826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18037,11 +18039,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4025931619439975286, guid: 68a103fd092a55048b22a495cd3e45e0, type: 3}
   m_PrefabInstance: {fileID: 5187942525018865281}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1706117631 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2420251534222273720, guid: 63e67bb67eb83d64a86a4880bc4c6318, type: 3}
-  m_PrefabInstance: {fileID: 4853664945353925767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1757522297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3934147427901478814, guid: 87da68e39400b4944bbf0a97c7cc2939, type: 3}
@@ -18124,11 +18121,6 @@ PrefabInstance:
 --- !u!4 &1865269695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8208055896621023231, guid: 63e67bb67eb83d64a86a4880bc4c6318, type: 3}
-  m_PrefabInstance: {fileID: 1865269694}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1865269696 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2420251534222273720, guid: 63e67bb67eb83d64a86a4880bc4c6318, type: 3}
   m_PrefabInstance: {fileID: 1865269694}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1872498062
