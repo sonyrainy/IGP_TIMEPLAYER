@@ -5,11 +5,8 @@ using UnityEngine;
 public class PlayerTreeAttackObject : TimeZoneObject
 {
     [SerializeField] GameObject[] colliders;
-    [SerializeField] GameObject copyObject;
-    [SerializeField] ForestBoss forestBoss;
     [SerializeField] float fadeDuration = 2.0f;
     [SerializeField] bool isAttack = false;
-    public bool isInTimeZone = false;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -19,20 +16,14 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        forestBoss = FindObjectOfType<ForestBoss>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isInTimeZone == true)
+        if (isInTimeZone == true && speedMultiplier > 1)
         {
-            //animator.speed = 1f;
-            //speedMulitplier 값이 slow, fast timezone에 따라 다르니
-            //이렇게 넣으면 됨.
-            animator.speed = speedMultiplier;
-
+            animator.speed = 1f;
         }
         else
         {

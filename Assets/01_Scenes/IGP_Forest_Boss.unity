@@ -4628,7 +4628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1934357884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5b9bbfa9b761d4397e3eee74366677, type: 3}
+  m_Script: {fileID: 11500000, guid: 90417751bb7023b4b99711ef66d416cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   seed: {fileID: 3869059643310811265, guid: 2e263a8781f0c5f478e1db2bedff0b27, type: 3}
@@ -4639,7 +4639,7 @@ MonoBehaviour:
   - {fileID: 2140460073}
   - {fileID: 1353562100}
   playerTreeAttackOjbect: {fileID: 773436421461557482}
-  seedSpawnDelayTime: 3
+  seedSpawnDelayTime: 1
   isSeedSpawned: 0
 --- !u!4 &1934357886
 Transform:
