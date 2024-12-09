@@ -35,8 +35,17 @@ public class PlayerTreeAttackObject : TimeZoneObject
         {
             isAttack = !isAttack;
             ForestBoss.Instance.OnDamaged();
+            BossSceneManager.Instance.DelaySpawnSeed();
             StartCoroutine(fadeDestroy());
         }
+    }
+
+    public void animationPlay()
+    {
+        if (animator == null)
+            return;
+
+        animator.SetTrigger("Initialize");
     }
 
     public void ChangeCollider(int index)
@@ -68,6 +77,7 @@ public class PlayerTreeAttackObject : TimeZoneObject
         }
 
         gameObject.SetActive(false);
+        isAttack = !isAttack;
         spriteRenderer.color = originalColor;
     }
 }
