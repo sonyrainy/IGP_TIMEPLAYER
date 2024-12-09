@@ -72,10 +72,19 @@ public class SoundManager : SingletonBase<SoundManager>
             case "IGP_Forest":
                 PlayBGM("Forest", true, 0.3f);
                 break;
-            case "IGP_CameraMove, Patrol, Die, Grow":
+            case "IGP_Forest_Normal_forShowcase":
                 PlayBGM("Forest", true, 0.3f);
                 break;
+            case "IGP_Forest_Boss_forShowcase":
+                PlayBGM("ForestBoss", true, 0.3f);
+                break;
+            case "Final_forShowcase":
+                PlayBGM("Ending", true, 0.3f);
+                break;
             // 필요한 씬에 따라 추가
+            case "IGP_ForestBoss":
+                PlayBGM("Forest", true, 0.3f);
+                break;
             default:
                 StopBGM();
                 break;

@@ -64,6 +64,20 @@ public class LogObject : TimeZoneObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("BossAttackObjects"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+        else
+        {
+
+            isStopped = false;
+
+            Destroy(gameObject);
+        }
+
+
+        //hyuntaek
+        //Destroy(gameobject);
     }
 }

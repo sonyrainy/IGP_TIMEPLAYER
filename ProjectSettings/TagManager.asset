@@ -15,6 +15,7 @@ TagManager:
   - PlayerTreeAttackObjects
   - Boss
   - FallingTree
+  - DeadGround
   layers:
   - Default
   - TransparentFX

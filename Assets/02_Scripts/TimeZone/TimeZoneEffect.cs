@@ -8,6 +8,11 @@ public class TimeZoneEffect : MonoBehaviour
     // ?�?�존마다 prefab?�서 ?�르�??�정?�어 ?�음.
     public float speedMultiplier = 1.0f;
 
+    public void setSpeedMultiplier (float speedMultiplier = 1.0f)
+    {
+        this.speedMultiplier = speedMultiplier;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         TimeZoneObject timeZoneObject = other.attachedRigidbody.GetComponent<TimeZoneObject>();
