@@ -1,45 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class RockObject : TimeZoneObject
 {
-    Transform transform;
     public float xVelocity = 0;
     public float acceleration = 0.5f; // 가속도
     public float destroyXPosition = -10f; // 파괴될 X축 위치
-    public bool isInTimeZone = false;
+
+    private float originalXVelocity; // 원래의 xVelocity 값을 저장
+    private float originalAcceleration; // 원래의 가속도 값을 저장
+
+    private bool isStopped = false; // 타임스톱 상태 플래그
 
     void Start()
     {
-        transform = GetComponent<Transform>();
+        originalXVelocity = xVelocity;
+        originalAcceleration = acceleration; 
     }
 
     void Update()
     {
-        HorizontalMove();
+        if (!isStopped)
+        {
+            HorizontalMove();
+        }
     }
 
     private void HorizontalMove()
     {
-        xVelocity -= Time.deltaTime * speedMultiplier;
-        xVelocity = Mathf.Max(xVelocity, -10);
+        xVelocity -= Time.deltaTime * acceleration;
+        xVelocity = Mathf.Max(xVelocity, -2);
 
         Vector3 position = transform.position;
-
         position.x += xVelocity * Time.deltaTime * speedMultiplier;
         transform.position = position;
     }
+
+    public void StopMovement(float duration)
+    {
+        if (!isStopped)
+        {
+            StartCoroutine(StopMovementCoroutine(duration));
+        }
+    }
+
+    private IEnumerator StopMovementCoroutine(float duration)
+    {
+        isStopped = true;
+
+        // 속도와 가속도를 0으로 설정하여 정지
+        xVelocity = 0;
+        acceleration = 0;
+
+        yield return new WaitForSeconds(duration);
+
+        xVelocity = originalXVelocity;
+        acceleration = originalAcceleration;
+
+        isStopped = false;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("BossAttackObjects"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

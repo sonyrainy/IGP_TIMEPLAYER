@@ -5,20 +5,40 @@ using UnityEngine;
 
 public class ForestBoss : MonoBehaviour
 {
+    private static ForestBoss _instance;
+    public static ForestBoss Instance 
+    { 
+        get
+        {
+            if (!_instance)
+            {
+                _instance = FindObjectOfType(typeof(ForestBoss)) as ForestBoss;
+
+                if (_instance == null)
+                {
+                    Debug.Log("No ForestBoss object");
+                }
+            }
+            return _instance;
+        }
+    }
+
+
     public ForestBossState forestBossState = ForestBossState.Idle;
     public ForestBossState prevForestBossState = ForestBossState.Idle;
     public Animator animator;
 
     public State<ForestBoss>[] states;
 
-    [SerializeField] public Transform[] LogPositions = new Transform[9];
+    [SerializeField] public Transform[] logPositions = new Transform[9];
     [SerializeField] public Transform[] rockPositions = new Transform[4];
 
     [SerializeField] public GameObject logTelegraph;
     [SerializeField] public GameObject log;
     [SerializeField] public GameObject rockTelegraph;
     [SerializeField] public GameObject rock;
-    [SerializeField] public GameObject hitPoint;
+    public TimeStopper timeStopper; // TimeStopper 인스턴스 참조
+    public float stopDuration = 3f; // TimeStopper에서 사용할 stopDuration 값
 
     [SerializeField] private int spawnLogNumber = 3;
     [SerializeField] private int spawnRockNumber = 2;
@@ -53,52 +73,6 @@ public class ForestBoss : MonoBehaviour
         InitFSM();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
-        hitPoint.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        states[(int)forestBossState].Execute();
-        states[(int)forestBossState].OnTransition();
-
-        playTime += Time.deltaTime;
-
-        if (playTime > 4f)
-        {
-            hitPoint.SetActive(true);
-        }
-
-        // playTime�� 3�� �Ѿ�� ���� ������ ���� ���� �ƴϸ� ���� ���� ����
-        if (playTime > 3 && !isStateChanging)
-        {
-            StartCoroutine(ChangeStateRoutine());
-        }
-    }
-
-    private bool isStateChanging = false;
-
-    private IEnumerator ChangeStateRoutine()
-    {
-        isStateChanging = true;
-
-        while (true)
-        {
-            // ���� ��ȯ �ֱ⸦ �������� ���� (3�� ~ 5��)
-            float nextStateTime = Random.Range(5f, 7f);
-            yield return new WaitForSeconds(nextStateTime);
-
-            // ���¸� �������� ����
-            ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
-
-            // ���� ���� ȣ��
-            ChangeState(randomState);
-        }
-    }
     void InitFSM()
     {
         animator = GetComponentInChildren<Animator>();
@@ -115,14 +89,56 @@ public class ForestBoss : MonoBehaviour
         states[(int)forestBossState].Enter();
     }
 
-    public void InstantiateLogs()
+    // Start is called before the first frame update
+    void Start()
     {
-        StartCoroutine(InstantiateLogsWithDelay());
+        animator = GetComponentInChildren<Animator>();
+        timeStopper = FindObjectOfType<TimeStopper>();
+
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        states[(int)forestBossState].Execute();
+        states[(int)forestBossState].OnTransition();
+
+        playTime += Time.deltaTime;
+
+        // if playTime is over than 3 and isStateChanging is false, start ChangeStateRoutine coroutine
+        if (playTime > 3 && !isStateChanging)
+        {
+            StartCoroutine(ChangeStateRoutine());
+        }
+    }
+
+    private bool isStateChanging = false;
+
+    private IEnumerator ChangeStateRoutine()
+    {
+        isStateChanging = true;
+
+        while (true)
+        {
+            // The wait time of LogAttack or RockAttack
+            float nextStateTime = Random.Range(5f, 7f);
+            yield return new WaitForSeconds(nextStateTime);
+
+            // Change random states
+            ForestBossState randomState = (Random.Range(0, 2) == 0) ? ForestBossState.LogAttack : ForestBossState.RockAttack;
+            ChangeState(randomState);
+        }
+    }
+    
     public void OnDamaged()
     {
         ChangeState(ForestBossState.Hit);
+    }
+
+
+    public void InstantiateLogs()
+    {
+        StartCoroutine(InstantiateLogsWithDelay());
     }
 
     IEnumerator InstantiateLogsWithDelay()
@@ -135,7 +151,7 @@ public class ForestBoss : MonoBehaviour
                 spawnLogNumber = 5;
         }
 
-        List<int> randomNumbers = GetUniqueRandomNumbers(0, LogPositions.Length - 1, spawnLogNumber);
+        List<int> randomNumbers = GetUniqueRandomNumbers(0, logPositions.Length - 1, spawnLogNumber);
         float randomSpawnTime = Random.Range(logsSpawnTerm, logsSpawnTerm * 1.25f);
 
         // Instantiate LogTelegraphs
@@ -143,12 +159,10 @@ public class ForestBoss : MonoBehaviour
         foreach (int number in randomNumbers)
         {
             Quaternion rotation = Quaternion.Euler(0, 0, -90);
-            GameObject telegraphInstance = Instantiate(logTelegraph, LogPositions[number].position, rotation);
+            GameObject telegraphInstance = Instantiate(logTelegraph, logPositions[number].position, rotation);
             telegraphs.Add(telegraphInstance);
             yield return new WaitForSeconds(randomSpawnTime);
         }
-
-        // yield return new WaitForSeconds(logsSpawnWaitTime);
 
         // Destory LogTelegraphs
         foreach (GameObject telegraph in telegraphs)
@@ -159,7 +173,8 @@ public class ForestBoss : MonoBehaviour
         // Instantiate logs
         foreach (int number in randomNumbers)
         {
-            Instantiate(log, LogPositions[number].position, Quaternion.identity);
+            Vector3 logPosition = new Vector3(logPositions[number].position.x + 8, logPositions[number].position.y, logPositions[number].position.z);
+            Instantiate(log, logPositions[number].position, Quaternion.identity);
             yield return new WaitForSeconds(randomSpawnTime);
         }
     }
@@ -188,8 +203,6 @@ public class ForestBoss : MonoBehaviour
             yield return new WaitForSeconds(randomSpawnTime);
         }
 
-        // yield return new WaitForSeconds(rocksSpawnWaitTime);
-
         // Destroy RockTelegraphs
         foreach (GameObject telegraph in telegraphs)
         {
@@ -205,10 +218,7 @@ public class ForestBoss : MonoBehaviour
         }
     }
 
-    /*
-     * Random Number Function 
-     *
-     */
+    // Random Number Function 
     List<int> GetUniqueRandomNumbers(int min, int max, int count)
     {
         List<int> numbers = new List<int>();

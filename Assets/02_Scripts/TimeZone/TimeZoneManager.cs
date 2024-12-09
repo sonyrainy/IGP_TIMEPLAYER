@@ -9,13 +9,13 @@ public class TimeZoneManager : MonoBehaviour
 
     private GameObject currentTimeZone;
 
-    // 타임존 생성 상태
+    // ?�?�존 ?�성 ?�태
     private bool isCreatingTimeZone = false;
     private TimeZoneEffect currentEffect;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject); // 씬 전환 후에도 이 오브젝트가 유지되도록 설정
+        DontDestroyOnLoad(gameObject); // ???�환 ?�에?????�브?�트가 ?��??�도�??�정
     }
 
     void Update()
@@ -25,20 +25,20 @@ public class TimeZoneManager : MonoBehaviour
 
     private void HandleTimeZoneCreation()
     {
-        // Slow TimeZone, 좌클릭
+        // Slow TimeZone, 좌클�?
         if (Input.GetMouseButtonDown(0) && !isCreatingTimeZone)
         {
-            CreateTimeZone(slowTimeZonePrefab, 0.5f);
+            CreateTimeZone(slowTimeZonePrefab);
             isCreatingTimeZone = true;
         }
-        // Fast TimeZone, 우클릭
+        // Fast TimeZone, ?�클�?
         else if (Input.GetMouseButtonDown(1) && !isCreatingTimeZone)
         {
-            CreateTimeZone(fastTimeZonePrefab, 2.0f); 
+            CreateTimeZone(fastTimeZonePrefab); 
             isCreatingTimeZone = true;
         }
 
-        // 클릭 해제
+        // ?�릭 ?�제
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
             DestroyCurrentTimeZone();
@@ -51,26 +51,26 @@ public class TimeZoneManager : MonoBehaviour
         }
     }
 
-    private void CreateTimeZone(GameObject timeZonePrefab, float speedMultiplier)
+    private void CreateTimeZone(GameObject timeZonePrefab)
     {
-        // timeZonePrefab 존재 확인
+        // timeZonePrefab 존재 ?�인
         if (timeZonePrefab == null)
         {
             Debug.LogError("TimeZone prefab is null. Assign the prefab in the Inspector.");
             return;
         }
 
-        // 마우스 위치에 TimeZone 생성
+        // 마우???�치??TimeZone ?�성
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
         currentTimeZone = Instantiate(timeZonePrefab, mousePos, Quaternion.identity);
 
-        // TimeZoneEffect 컴포넌트가 존재하는지 확인
+        // TimeZoneEffect 컴포?�트가 존재?�는지 ?�인
         currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
         if (currentEffect != null)
         {
-            currentEffect.speedMultiplier = speedMultiplier;
+            // currentEffect.speedMultiplier = speedMultiplier;
         }
         else
         {

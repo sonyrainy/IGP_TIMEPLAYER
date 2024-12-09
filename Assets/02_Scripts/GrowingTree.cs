@@ -15,16 +15,16 @@ public class GrowingTree : MonoBehaviour
     {
         if (isInFastZone)
         {
-            Debug.Log("FastTimeZone 내부에 머무는 중... 시간 증가 중.");
+            Debug.Log("FastTimeZone...");
             // FastTimeZone 내부에 있는 경우 시간 증가
             timeInFastZone += Time.deltaTime;
 
             // 시간이 설정된 지속 시간 이상이면 성장 단계 변경
             if (timeInFastZone >= stayDuration)
             {
-                Debug.Log("성장 단계 변경 조건 충족. 성장 단계 변경.");
+                Debug.Log("next level");
                 ChangeGrowthStage();
-                timeInFastZone = 0f; // 시간 초기화
+                timeInFastZone = 0f;
             }
         }
         else
@@ -51,12 +51,12 @@ public class GrowingTree : MonoBehaviour
         if (currentGrowthStage < growthStages.Length - 1)
         {
             Debug.Log("나무 성장 단계 변경: " + (currentGrowthStage + 1));
-            // 현재 오브젝트를 성장 단계 프리팹으로 교체
+
             currentGrowthStage++;
 
             // 현재 오브젝트를 파괴하고 새로운 프리팹 생성
             GameObject newTree = Instantiate(growthStages[currentGrowthStage], transform.position, transform.rotation);
-            newTree.transform.localScale = transform.localScale; // 기존 스케일 유지
+            newTree.transform.localScale = transform.localScale;
 
             // 기존 오브젝트 제거
             Destroy(gameObject);
