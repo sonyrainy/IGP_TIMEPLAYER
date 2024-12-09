@@ -5,12 +5,8 @@ using UnityEngine;
 public class PlayerTreeAttackObject : TimeZoneObject
 {
     [SerializeField] GameObject[] colliders;
-    [SerializeField] GameObject copyObject;
-    [SerializeField] ForestBoss forestBoss;
     [SerializeField] float fadeDuration = 2.0f;
     [SerializeField] bool isAttack = false;
-    public bool isInTimeZone = false;
-    public bool isTreeDestroied = false;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -20,14 +16,12 @@ public class PlayerTreeAttackObject : TimeZoneObject
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        forestBoss = FindObjectOfType<ForestBoss>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isInTimeZone == true)
+        if (isInTimeZone == true && speedMultiplier > 1)
         {
             animator.speed = 1f;
         }
@@ -40,9 +34,18 @@ public class PlayerTreeAttackObject : TimeZoneObject
         if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 1.0f && !isAttack)
         {
             isAttack = !isAttack;
-            forestBoss.OnDamaged();
+            ForestBoss.Instance.OnDamaged();
+            BossSceneManager.Instance.DelaySpawnSeed();
             StartCoroutine(fadeDestroy());
         }
+    }
+
+    public void animationPlay()
+    {
+        if (animator == null)
+            return;
+
+        animator.SetTrigger("Initialize");
     }
 
     public void ChangeCollider(int index)
@@ -73,8 +76,8 @@ public class PlayerTreeAttackObject : TimeZoneObject
             yield return null;
         }
 
-        Destroy(gameObject);
-        isTreeDestroied = true;
+        gameObject.SetActive(false);
+        isAttack = !isAttack;
         spriteRenderer.color = originalColor;
     }
 }
