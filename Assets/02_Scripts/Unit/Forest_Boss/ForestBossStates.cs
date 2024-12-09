@@ -77,7 +77,6 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            /*
             if (Input.GetKeyDown(KeyCode.L))
             {
                 user.ChangeState(ForestBossState.LogAttack);
@@ -87,7 +86,6 @@ namespace Forest_Boss_States
             {
                 user.ChangeState(ForestBossState.RockAttack);
             }
-            */
         }
     }
 
@@ -204,7 +202,7 @@ namespace Forest_Boss_States
 
         public override void Execute()
         {
-            if (isAnimationComplete == false)
+            if (!isAnimationComplete)
             {
                 AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.IsName("ForestBoss_Hit") && stateInfo.normalizedTime >= 1.0f)

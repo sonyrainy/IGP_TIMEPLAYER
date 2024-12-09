@@ -8,14 +8,13 @@ TagManager:
   - SpawnPoint
   - FastTimeZone
   - SlowTimeZone
+  - F_Tree
   - Ground
   - GrowingTree
   - BossAttackObjects
   - MovingPlatform
   - PlayerTreeAttackObjects
   - Boss
-  - FallingTree
-  - DeadGround
   layers:
   - Default
   - TransparentFX
@@ -24,8 +23,8 @@ TagManager:
   - Water
   - UI
   - Floor
-  - BossObject
-  - Seed
+  - 
+  - 
   - 
   - 
   - 
