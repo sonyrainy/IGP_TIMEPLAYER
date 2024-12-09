@@ -37,7 +37,6 @@ public class SeedObject : TimeZoneObject
             BossSceneManager.Instance.isSeedSpawned = false;
             Destroy(gameObject);
             BossSceneManager.Instance.SetActiveTrueTreeAttackObject();
-            BossSceneManager.Instance.DelaySpawnSeed();
         }
     }
 }

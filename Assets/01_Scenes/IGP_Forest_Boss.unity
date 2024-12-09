@@ -4804,8 +4804,7 @@ MonoBehaviour:
   - {fileID: 2095134709}
   - {fileID: 2140460073}
   - {fileID: 1353562100}
-  treeAttackSpawnPoint: {fileID: 773436421461557482}
-  playerTreeAttackOjbect: {fileID: 9122831120121938228, guid: 1e7c344e067d24cacbd915d67adc2081, type: 3}
+  playerTreeAttackOjbect: {fileID: 773436421461557482}
   seedSpawnDelayTime: 3
   isSeedSpawned: 0
 --- !u!4 &1934357886

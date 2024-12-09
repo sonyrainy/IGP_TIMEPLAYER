@@ -24,8 +24,7 @@ public class BossSceneManager : MonoBehaviour
 
     [SerializeField] GameObject seed;
     [SerializeField] GameObject[] seedSpawnPoints;
-    [SerializeField] GameObject treeAttackSpawnPoint;
-    [SerializeField] public GameObject playerTreeAttackOjbect;
+    [SerializeField] GameObject playerTreeAttackOjbect;
 
     [SerializeField] float seedSpawnDelayTime = 1;
 
@@ -65,6 +64,8 @@ public class BossSceneManager : MonoBehaviour
     public void SetActiveTrueTreeAttackObject()
     {
         playerTreeAttackOjbect.gameObject.SetActive(true);
+        PlayerTreeAttackObject ptao = playerTreeAttackOjbect.GetComponent<PlayerTreeAttackObject>();
+        ptao.animationPlay();
     }
 
 }
