@@ -67,7 +67,7 @@ namespace Player_States
 
         public override void Execute()
         {
-            user.rigidbody.velocity = new Vector2(0, 0);
+            user.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
 
         public override void Exit()
@@ -116,7 +116,7 @@ namespace Player_States
                 user.transform.localScale = scale;
             }
 
-            user.rigidbody.velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.rigidbody.velocity.y);
+            user.GetComponent<Rigidbody2D>().velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.GetComponent<Rigidbody2D>().velocity.y);
 
         }
 
@@ -171,7 +171,7 @@ namespace Player_States
                 scale.x = Input.GetAxisRaw("Horizontal");
                 user.transform.localScale = scale;
                 
-                user.rigidbody.velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.rigidbody.velocity.y);
+                user.GetComponent<Rigidbody2D>().velocity = new Vector2(user.moveSpeed * Input.GetAxisRaw("Horizontal"), user.GetComponent<Rigidbody2D>().velocity.y);
             }
 
             // 점프 실행 코드
@@ -220,7 +220,7 @@ namespace Player_States
     {
         private bool isAnimationComplete = false; // 애니메이션이 끝까지 진행 되었는지 확인하기 위한 bool 변수
         private bool isExit = false; // Dash 상태를 나가도 되는 지 확인하기 위한 bool변수
-        private Vector2 preVelVec; // Dash 진입 직전의 player.rigidbody.velocity를 저장하기 위한 Vector2 변수
+        private Vector2 preVelVec; // Dash 진입 직전의 player.Rigidbody2D.velocity를 저장하기 위한 Vector2 변수
 
         public Dash(Player user) : base(user) { }
 
@@ -228,7 +228,7 @@ namespace Player_States
         {
             base.Enter();
             Debug.Log("Player: Dash State");
-            Vector2 preVelVec = new Vector2(user.rigidbody.velocity.x, 0);
+            Vector2 preVelVec = new Vector2(user.GetComponent<Rigidbody2D>().velocity.x, 0);
             user.ChangeAnimation(PlayerAnimation.Player_Dash);
 
             // 대쉬 상태를 진입할 때마다 모든 지역 bool 변수를 false로 초기화
@@ -254,7 +254,7 @@ namespace Player_States
 
                 // 애니메이션 방향에 맞게, 그리고 dashFloat값에 따라 대쉬
                 Vector2 dashVec = new Vector2(Input.GetAxisRaw("Horizontal") * user.dashFloat, user.yVelocity);
-                user.rigidbody.velocity = dashVec;
+                user.GetComponent<Rigidbody2D>().velocity = dashVec;
 
                 // 애니메이션이 70%까지 진행되면 애니메이션 바로 종료
                 AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);
@@ -265,9 +265,9 @@ namespace Player_States
             }
             else
             {
-                // 대쉬 상태 종료 및 이전에 저장한 player.rigidbody.velocity를 다시 가져옴
+                // 대쉬 상태 종료 및 이전에 저장한 player.Rigidbody2D.velocity를 다시 가져옴
                 user.isDash = false;
-                user.rigidbody.velocity = preVelVec;
+                user.GetComponent<Rigidbody2D>().velocity = preVelVec;
 
                 if (user.isGround == false)
                 {
@@ -326,7 +326,7 @@ namespace Player_States
             if (!isAnimationComplete)
             {
                 // 플레이어 피격 시 모든 속도를 0으로 만듬. (중력은 계속 적용, Player.cs의 Update함수 참고)
-                user.rigidbody.velocity = new Vector2(0, 0);
+                user.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
                 // 애니메이션이 100%가 되면 상태를 종료하기 위한 지연 코드
                 AnimatorStateInfo stateInfo = user.animator.GetCurrentAnimatorStateInfo(0);

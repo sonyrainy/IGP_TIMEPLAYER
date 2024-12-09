@@ -2827,6 +2827,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3486095345243204742, guid: f49e914655b0f47c59c64cb41a83907b, type: 3}
   m_PrefabInstance: {fileID: 1550316018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1568869994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568869996}
+  - component: {fileID: 1568869995}
+  m_Layer: 0
+  m_Name: TimeZoneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1568869995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568869994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaae33fa65151944da228fdc58076c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowTimeZonePrefab: {fileID: 2542277593963403044, guid: b98985a41b506804093404f5cc6ceda6, type: 3}
+  fastTimeZonePrefab: {fileID: 1843158086716845431, guid: 6dc14d44a2db8244dbcb0ff3abd1327c, type: 3}
+--- !u!4 &1568869996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568869994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1478138, y: -0.5351605, z: 0.03525173}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1597406629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5568,3 +5614,4 @@ SceneRoots:
   - {fileID: 393649929}
   - {fileID: 7257201067842397074}
   - {fileID: 1934357886}
+  - {fileID: 1568869996}

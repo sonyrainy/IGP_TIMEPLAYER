@@ -10,8 +10,6 @@ public class Player : TimeZoneObject
     public PlayerState playerState = PlayerState.Idle;
 
     public Animator animator;
-    public Transform transform;
-    public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
     [SerializeField] public float moveSpeed = 0; // 이동 속도
@@ -29,7 +27,6 @@ public class Player : TimeZoneObject
     public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
 
     // public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
-     public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
     // public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
     
     //?�택??코드
@@ -74,8 +71,6 @@ public class Player : TimeZoneObject
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        transform = GetComponentInChildren<Transform>();
-        rigidbody = GetComponentInChildren<Rigidbody2D>();
         // TimeStopEffect 자식 오브젝트 찾기
         timeStopEffect = transform.Find("TimeStopEffect").gameObject;
         if (timeStopEffect != null)
@@ -155,6 +150,8 @@ public class Player : TimeZoneObject
     // Check player is on the Ground
     void GroundCheck()
     {
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+
         if (yVelocity <= 0)
         {
             Debug.DrawLine(rigidbody.position + Vector2.up, rigidbody.position + Vector2.up + (Vector2.down* castSize), Color.red);
