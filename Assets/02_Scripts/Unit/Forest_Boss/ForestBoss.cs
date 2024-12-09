@@ -173,8 +173,7 @@ public class ForestBoss : MonoBehaviour
         // Instantiate logs
         foreach (int number in randomNumbers)
         {
-            Vector3 logPosition = new Vector3(logPositions[number].position.x + 8, logPositions[number].position.y, logPositions[number].position.z);
-            Instantiate(log, logPosition, Quaternion.identity);
+            Instantiate(log, logPositions[number].position, Quaternion.identity);
             yield return new WaitForSeconds(randomSpawnTime);
         }
     }
