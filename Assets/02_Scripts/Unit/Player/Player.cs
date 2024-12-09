@@ -103,6 +103,8 @@ public class Player : TimeZoneObject
             }
         }
 
+
+
         // 타임 존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
         {

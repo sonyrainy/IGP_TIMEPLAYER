@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1910671807105307404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592116934358828706}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592116934358828706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910671807105307404}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0122561455, y: 0.8135586, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2592527571675505190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2357630769661401127
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,8 +59,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 991114888113282874}
+  m_Children: []
   m_Father: {fileID: 2592527571675505190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4786632248286876449
@@ -60,10 +90,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2678700052433642954}
+  m_Father: {fileID: 2592527571675505190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8903948463114858811
 SpriteRenderer:
@@ -147,12 +177,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2592527571675505190}
-  - component: {fileID: 1206677432900578854}
   - component: {fileID: 1520301719376686092}
   - component: {fileID: 4130010102610563740}
-  - component: {fileID: 1384037276008596393}
+  - component: {fileID: 1088005828284662838}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Clone
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,41 +202,10 @@ Transform:
   m_Children:
   - {fileID: 2678700052433642954}
   - {fileID: 6524215689406233371}
+  - {fileID: 991114888113282874}
+  - {fileID: 1592116934358828706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1206677432900578854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7573281634456108756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b7a921c2df4d64789e07c8e7447eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMultiplier: 1
-  isInTimeZone: 0
-  prevPlayerState: 0
-  playerState: 0
-  animator: {fileID: 0}
-  transform: {fileID: 0}
-  rigidbody: {fileID: 0}
-  floorLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  moveSpeed: 4
-  dashFloat: 10
-  jumpForce: 27
-  castSize: 1.1
-  gravity: 9.8
-  yVelocity: 0
-  isGround: 0
-  isDash: 0
-  animationSpeed: 1
-  isInTimeZone: 0
-  fallDeathVelocity: -36
 --- !u!50 &1520301719376686092
 Rigidbody2D:
   serializedVersion: 4
@@ -280,7 +278,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.63232124, y: 1.7228748}
   m_EdgeRadius: 0
---- !u!114 &1384037276008596393
+--- !u!114 &1088005828284662838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,11 +287,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7573281634456108756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7460f504c1cbe4db0249771d1a1a72, type: 3}
+  m_Script: {fileID: 11500000, guid: dff3a1c3506d7bf4ea7532f64335e90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopRadius: 7
-  stopDuration: 3
 --- !u!1001 &1436567929033252486
 PrefabInstance:
   m_ObjectHideFlags: 0
