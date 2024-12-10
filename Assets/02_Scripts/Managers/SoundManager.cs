@@ -66,19 +66,19 @@ public class SoundManager : SingletonBase<SoundManager>
         
         switch (scene.name)
         {
-            case "IGP_Title":
+            case "01_FINAL_Title":
                 PlayBGM("Start", true, 0.3f);
                 break;
-            case "IGP_Forest":
+            case "02_FINAL_Forest_Normal":
                 PlayBGM("Forest", true, 0.3f);
                 break;
             case "IGP_Forest_Normal_forShowcase":
                 PlayBGM("Forest", true, 0.3f);
                 break;
-            case "IGP_Forest_Boss_forShowcase":
+            case "03_FINAL_ForestBoss_Final":
                 PlayBGM("ForestBoss", true, 0.3f);
                 break;
-            case "Final_forShowcase":
+            case "04_FINAL_Finale":
                 PlayBGM("Ending", true, 0.3f);
                 break;
             // 필요한 씬에 따라 추가

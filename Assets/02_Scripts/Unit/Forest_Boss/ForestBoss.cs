@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class ForestBoss : MonoBehaviour
 {
+
+    //shj 실례하겠습니다.
+    [SerializeField] private GameObject portal; // 비활성화된 상태의 포탈 오브젝트
+
+    //~shj
+
     private static ForestBoss _instance;
     public static ForestBoss Instance 
     { 
@@ -259,5 +265,16 @@ public class ForestBoss : MonoBehaviour
     {
         Debug.Log("Forest Boss is dead...");
         ChangeState(ForestBossState.Dead);
+
+                // 포탈 활성화
+        if (portal != null)
+        {
+            portal.SetActive(true);
+            Debug.Log("Portal activated after Boss's death.");
+        }
+        else
+        {
+            Debug.LogError("Portal object is not assigned!");
+        }
     }
 }

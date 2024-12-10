@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5114344230910394778}
   - component: {fileID: 4493119179841569398}
   - component: {fileID: 3415167122578878272}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Rock
   m_TagString: BossAttackObjects
   m_Icon: {fileID: 0}

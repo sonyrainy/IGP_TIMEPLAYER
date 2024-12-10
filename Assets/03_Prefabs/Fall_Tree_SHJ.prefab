@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 190554030409549159}
   - component: {fileID: 5042014170450636727}
   - component: {fileID: 4281995685474738644}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fall_Tree_SHJ
   m_TagString: BossAttackObjects
   m_Icon: {fileID: 0}
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 1
+  isInTimeZone: 0
   yVelocity: 0
   gravity: 9.8
-  isInTimeZone: 0
 --- !u!212 &3210086921091664727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15f5b2b2702f91498b80dae643e13a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  isInTimeZone: 0
 --- !u!61 &4281995685474738644
 BoxCollider2D:
   m_ObjectHideFlags: 0
