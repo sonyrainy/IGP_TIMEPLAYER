@@ -77,15 +77,10 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            if (Input.GetKeyDown(KeyCode.L))
+            if (user.isDead)
             {
-                user.ChangeState(ForestBossState.LogAttack);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                user.ChangeState(ForestBossState.RockAttack);
-            }
+                user.ChangeState(ForestBossState.Dead);
+            }   
         }
     }
 
@@ -130,9 +125,16 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            if (isExit)
+            if (user.isDead)
             {
-                user.ChangeState(ForestBossState.Idle);
+                user.ChangeState(ForestBossState.Dead);
+            }
+            else
+            {
+                if (isExit)
+                {
+                    user.ChangeState(ForestBossState.Idle);
+                }
             }
         }
     }
@@ -178,9 +180,16 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            if (isExit)
+            if (user.isDead)
             {
-                user.ChangeState(ForestBossState.Idle);
+                user.ChangeState(ForestBossState.Dead);
+            }
+            else
+            {
+                if (isExit)
+                {
+                    user.ChangeState(ForestBossState.Idle);
+                }
             }
         }
     }
@@ -195,6 +204,7 @@ namespace Forest_Boss_States
         {
             base.Enter();
             Debug.Log("F_Boss: Hit State");
+            user.TakeDamage(1);
             user.ChangeAnimation(ForestBossAnimation.ForestBoss_Hit);
             isAnimationComplete = false;
             isExit = false;
@@ -224,10 +234,44 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            if (isExit)
+            if (user.isDead)
             {
-                user.ChangeState(ForestBossState.Idle);
+                user.ChangeState(ForestBossState.Dead);
             }
+            else
+            {
+                if (isExit)
+                {
+                    user.ChangeState(ForestBossState.Idle);
+                }
+            }
+        }
+    }
+
+    public class Dead : State<ForestBoss>
+    {       
+        public Dead(ForestBoss user) : base(user) { }
+
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("F_Boss: Dead State");
+            user.ChangeAnimation(ForestBossAnimation.ForestBoss_Dead);
+        }
+
+        public override void Execute()
+        {
+
+        }
+
+        public override void Exit()
+        {
+            
+        }
+
+        public override void OnTransition()
+        {
+
         }
     }
 }

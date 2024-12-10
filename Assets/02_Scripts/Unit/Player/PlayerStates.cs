@@ -228,7 +228,6 @@ namespace Player_States
         {
             base.Enter();
             Debug.Log("Player: Dash State");
-            Vector2 preVelVec = new Vector2(user.GetComponent<Rigidbody2D>().velocity.x, 0);
             user.ChangeAnimation(PlayerAnimation.Player_Dash);
 
             // 대쉬 상태를 진입할 때마다 모든 지역 bool 변수를 false로 초기화

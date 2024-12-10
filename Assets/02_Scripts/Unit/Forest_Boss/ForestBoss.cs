@@ -48,7 +48,11 @@ public class ForestBoss : MonoBehaviour
 
     [SerializeField] private float logsSpawnWaitTime = 1f;
     [SerializeField] private float rocksSpawnWaitTime = 1f;
+    [SerializeField] private int maxHealth = 3; // 보스의 최대 체력
+
     private float playTime = 0f;
+    private int currentHealth;
+    public bool isDead = false;
 
     public void ChangeState(ForestBossState state) 
     {
@@ -70,6 +74,8 @@ public class ForestBoss : MonoBehaviour
 
     private void OnEnable()
     {
+        isDead = false;
+        currentHealth = maxHealth; // 시작 시 체력을 최대 체력으로 초기화
         InitFSM();
     }
 
@@ -85,6 +91,7 @@ public class ForestBoss : MonoBehaviour
         states[(int)ForestBossState.LogAttack] = new LogAttack(this);
         states[(int)ForestBossState.RockAttack] = new RockAttack(this);
         states[(int)ForestBossState.Hit] = new Hit(this);
+        states[(int)ForestBossState.Dead] = new Dead(this);
 
         states[(int)forestBossState].Enter();
     }
@@ -118,7 +125,7 @@ public class ForestBoss : MonoBehaviour
     {
         isStateChanging = true;
 
-        while (true)
+        while (true && !isDead)
         {
             // The wait time of LogAttack or RockAttack
             float nextStateTime = Random.Range(5f, 7f);
@@ -237,5 +244,23 @@ public class ForestBoss : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log($"Forest Boss Health: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Forest Boss is dead...");
+        ChangeState(ForestBossState.Dead);
     }
 }

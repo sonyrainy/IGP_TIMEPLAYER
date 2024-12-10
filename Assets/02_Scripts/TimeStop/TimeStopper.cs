@@ -52,7 +52,7 @@ public class TimeStopper : MonoBehaviour
                 //temp shj
                 if (collider.CompareTag("Seed"))
                 {
-                        Debug.Log("SeedObject detected and stopping.");
+                    Debug.Log("SeedObject detected and stopping.");
 
                     SeedObject seed = collider.GetComponent<SeedObject>();
                     if (seed != null)
@@ -102,9 +102,6 @@ public class TimeStopper : MonoBehaviour
                 {
                     animator.enabled = true;
                 }
-
-
-
             }
         }
 

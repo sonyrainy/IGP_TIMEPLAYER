@@ -5,7 +5,6 @@ using UnityEngine;
 public class SeedObject : TimeZoneObject
 {
     [SerializeField] float speed = 0;
-    Rigidbody2D rigidbody2D;
 
     //temp shj
     private Vector2 storedVelocity;
@@ -20,7 +19,7 @@ public class SeedObject : TimeZoneObject
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 
         float seedVelocityX = Random.Range(1, 2);
         float seedVelocityY = Random.Range(1, 2);
@@ -33,6 +32,7 @@ public class SeedObject : TimeZoneObject
 
     public override void AdjustObjectSpeed(float speedMultiplier)
     {
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         base.AdjustObjectSpeed(speedMultiplier);
 
 //            rigidbody2D.velocity *= speedMultiplier;
@@ -62,6 +62,8 @@ public class SeedObject : TimeZoneObject
 //temp shj~
     private IEnumerator StopMovementCoroutine(float duration)
     {
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+
         isStopped = true;
         //storedVelocity = rigidbody2D.velocity; // 2D 벡터로 전체 속도 저장
         rigidbody2D.velocity = Vector2.zero; // 속도 초기화

@@ -402,6 +402,8 @@ MonoBehaviour:
   rocksSpawnTerm: 0.75
   logsSpawnWaitTime: 1
   rocksSpawnWaitTime: 1
+  maxHealth: 5
+  isDead: 0
 --- !u!1001 &159574303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2992,6 +2994,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206677432900578854, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: dashFloat
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2592527571675505190, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.6
@@ -3035,6 +3041,14 @@ PrefabInstance:
     - target: {fileID: 7573281634456108756, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
       propertyPath: m_Name
       value: 'Player '
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062509472302939611, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136417330577314274, guid: 900cb8ecd59af4cccae7ba6a5a50b441, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
