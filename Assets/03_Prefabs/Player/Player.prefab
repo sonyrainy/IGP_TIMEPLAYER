@@ -198,7 +198,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 4
-  dashFloat: 10
+  dashSpeed: 2
   jumpForce: 27
   castSize: 1.1
   gravity: 9.8
