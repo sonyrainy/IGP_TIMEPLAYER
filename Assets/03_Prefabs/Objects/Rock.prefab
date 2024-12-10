@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5114344230910394778}
   - component: {fileID: 4493119179841569398}
   - component: {fileID: 3415167122578878272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rock
   m_TagString: BossAttackObjects
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1142087269
-  m_SortingLayer: -5
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1127a4a0c2bf4026aaaff2ab3d94d15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -161,8 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b32318847eb634b8c4e7547dbe66b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  isInTimeZone: 0
   xVelocity: -2
   acceleration: 10
   destroyXPosition: -10
-  speedMultiplier: 1
-  isInTimeZone: 0

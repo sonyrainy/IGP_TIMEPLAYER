@@ -70,7 +70,7 @@ public class TimeZoneManager : MonoBehaviour
         currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
         if (currentEffect != null)
         {
-            currentEffect.speedMultiplier = speedMultiplier;
+            // currentEffect.speedMultiplier = speedMultiplier;
         }
         else
         {

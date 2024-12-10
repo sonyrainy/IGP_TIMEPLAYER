@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : TimeZoneObject
 {
     public PlayerState prevPlayerState = PlayerState.Idle;
     public PlayerState playerState = PlayerState.Idle;
@@ -27,9 +27,6 @@ public class Player : MonoBehaviour
 
     // public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
     public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
-    
-    //?�택??코드
-    //public float inTimeZoneSpeed = 1;
 // 추�???변?�들
     public Transform[] spawnPoints; // ?�폰 ?�인?�들
     private int lastSpawnPointIndex = 0; // 마�?막으�??�달???�폰 ?�인?�의 ?�덱??
@@ -185,7 +182,7 @@ public class Player : MonoBehaviour
         }
     }
 }
-    public void AdjustObjectSpeed(float speedMultiplier)
+    public override void AdjustObjectSpeed(float speedMultiplier)
     {
         this.speedMultiplier *= speedMultiplier;
 

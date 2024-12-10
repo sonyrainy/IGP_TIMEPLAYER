@@ -10,7 +10,7 @@ public class SeedObject : TimeZoneObject
     //temp shj
     private Vector2 storedVelocity;
     private float storedVX = 0;
-        private float storedVY = 0;
+    private float storedVY = 0;
 
     //~temp shj
     private bool isStopped = false;
@@ -38,14 +38,14 @@ public class SeedObject : TimeZoneObject
 //            rigidbody2D.velocity *= speedMultiplier;
 
         //temp shj
-      if (!isStopped)
+        if (!isStopped)
         {
             rigidbody2D.velocity *= speedMultiplier;
         }   
         
         //~temp shj
         
-     }
+    }
 
 //temp shj~
     public void StopMovement(float duration)
@@ -60,7 +60,7 @@ public class SeedObject : TimeZoneObject
     //~temp shj
 
 //temp shj~
-   private IEnumerator StopMovementCoroutine(float duration)
+    private IEnumerator StopMovementCoroutine(float duration)
     {
         isStopped = true;
         //storedVelocity = rigidbody2D.velocity; // 2D 벡터로 전체 속도 저장
