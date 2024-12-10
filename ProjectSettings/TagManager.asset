@@ -15,6 +15,9 @@ TagManager:
   - MovingPlatform
   - PlayerTreeAttackObjects
   - Boss
+  - FallingTree
+  - DeadGround
+  - Seed
   layers:
   - Default
   - TransparentFX

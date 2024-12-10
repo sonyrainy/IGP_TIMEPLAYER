@@ -86,17 +86,17 @@ public class MovingTilemap : MonoBehaviour
         isInTimeZone = true;
         if (zoneType == "SlowTimeZone")
         {
-            AdjustSpeed(0.1f); // SlowTimeZone에서는 속도를 10%로 감소
+            AdjustSpeed(0.1f);
         }
         else if (zoneType == "FastTimeZone")
         {
-            AdjustSpeed(3.0f); // FastTimeZone에서는 속도를 3배 증가
+            AdjustSpeed(3.0f);
         }
     }
 
     public void ExitTimeZone()
     {
         isInTimeZone = false;
-        AdjustSpeed(1.0f); // 원래 속도로 되돌림
+        AdjustSpeed(1.0f);
     }
 }

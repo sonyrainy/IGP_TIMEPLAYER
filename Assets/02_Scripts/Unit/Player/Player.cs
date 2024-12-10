@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     public PlayerState playerState = PlayerState.Idle;
 
     public Animator animator;
-    public Transform transform;
-    public Rigidbody2D rigidbody;
 
     [SerializeField] LayerMask floorLayer;
     [SerializeField] public float moveSpeed = 0; // ?�동 ?�도
@@ -27,8 +25,7 @@ public class Player : MonoBehaviour
 
     public State<Player>[] states;
 
-    public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
-    public bool isInTimeZone = false; // ?�??존에 진입?��??��? ?�인
+    // public float speedMultiplier = 1f; // ?�??�?진입 �??�출 ??감속/가???�과 부?��? ?�한 Float �?
     public float animationSpeed = 1; // ?�?�존 진입 �??�출 ???�니메이?�의 감속/가???�과 부?��? ?�한 Float �?
     
     //?�택??코드
@@ -73,9 +70,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        transform = GetComponentInChildren<Transform>();
-        rigidbody = GetComponentInChildren<Rigidbody2D>();
-                // TimeStopEffect 자식 오브젝트 찾기
+        // TimeStopEffect 자식 오브젝트 찾기
         timeStopEffect = transform.Find("TimeStopEffect").gameObject;
         if (timeStopEffect != null)
         {
@@ -104,7 +99,9 @@ public class Player : MonoBehaviour
             Debug.Log("?�??");
         }
 
-        // ?�?�존???�어가 ?�으�??�니메이???�도 감속 �?가??
+
+
+        // 타임 존에 들어가 있으면 애니메이션 속도 감속 및 가속
         if (isInTimeZone)
         {
             animator.speed = animationSpeed;
@@ -157,6 +154,8 @@ public class Player : MonoBehaviour
     // ?�레?�어가 바닥??붙어 ?�는지 ?�인
     void GroundCheck()
     {
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+
         if (yVelocity <= 0)
         {
             Debug.DrawLine(rigidbody.position + Vector2.up, rigidbody.position + Vector2.up + (Vector2.down* castSize), Color.red);
@@ -285,6 +284,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("BossAttackObjects"))
         {
             ChangeState(PlayerState.Hit);
+            
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1); // 1만큼의 피해
+            }
         }
     }
 }
