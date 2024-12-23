@@ -34,7 +34,7 @@ Youtube: [Walkthrough Video](https://youtu.be/eWNVUPxRnD8) (컷편집 & 자막)
 - 생성형 AI
   - SUNO AI Music
   - Midjourney
-  - Chat GPT 개발 참고용
+  - Chat GPT: 개발 참고
     
  - 디자인
     - adobe photoshop
