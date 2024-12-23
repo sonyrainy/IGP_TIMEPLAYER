@@ -6,48 +6,48 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/01_Scenes/IGP_Setting.unity
+    path: Assets/01_Scenes/ING/IGP_Setting.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
-    path: Assets/01_Scenes/IGP_Title.unity
+    path: Assets/01_Scenes/ING/IGP_Title.unity
     guid: 751162723ad92784c89fded0e4f69121
   - enabled: 0
-    path: Assets/01_Scenes/IGP_Forest.unity
+    path: Assets/01_Scenes/ING/IGP_Forest.unity
     guid: faf89db7afc0a6541b6b32dabbe1982e
   - enabled: 0
-    path: Assets/01_Scenes/IGP_CameraMove, Patrol, Die, Grow.unity
+    path: Assets/01_Scenes/ING/IGP_CameraMove, Patrol, Die, Grow.unity
     guid: e953ae26c569b4f15a43e3c294116af4
   - enabled: 0
-    path: Assets/01_Scenes/IGP_Sound.unity
+    path: Assets/01_Scenes/ING/IGP_Sound.unity
     guid: 58d06628df6f39b478b36428be5fd416
   - enabled: 0
-    path: Assets/01_Scenes/forShowcase/IGP_Title.unity
+    path: Assets/01_Scenes/For_Showcase/IGP_Title.unity
     guid: 39435de82ace4d44ebdb84e7093f0431
   - enabled: 0
-    path: Assets/01_Scenes/forShowcase/IGP_Forest_Normal_forShowcase.unity
+    path: Assets/01_Scenes/For_Showcase/IGP_Forest_Normal_forShowcase.unity
     guid: 110793a3e86fd32448139a75e70390d1
   - enabled: 0
-    path: Assets/01_Scenes/forShowcase/IGP_Forest_Boss_forShowcase.unity
+    path: Assets/01_Scenes/For_Showcase/IGP_Forest_Boss_forShowcase.unity
     guid: 4c6d1cedcab28fb4c8b85b4222b88988
   - enabled: 0
-    path: Assets/01_Scenes/forShowcase/Final_forShowcase.unity
+    path: Assets/01_Scenes/For_Showcase/Final_forShowcase.unity
     guid: d51a596d3883eeb4199b1a6709afb0e3
   - enabled: 0
-    path: Assets/01_Scenes/IGP_Forest_Boss.unity
+    path: Assets/01_Scenes/ING/IGP_Forest_Boss.unity
     guid: 083ee14b783940b48b1ad8048cfa9026
   - enabled: 0
-    path: Assets/01_Scenes/TimeZone.unity
+    path: Assets/01_Scenes/ING/TimeZone.unity
     guid: 8e7dcac9b91d29846acc7232e496a57c
   - enabled: 1
-    path: Assets/01_Scenes/Final/01_FINAL_Title.unity
+    path: Assets/01_Scenes/_Final_IGP_Project/01_FINAL_Title.unity
     guid: 183924f89dd327241ad36bd0682e04ef
   - enabled: 1
-    path: Assets/01_Scenes/Final/02_FINAL_Forest_Normal.unity
+    path: Assets/01_Scenes/_Final_IGP_Project/02_FINAL_Forest_Normal.unity
     guid: 775a977b8b7bb4a42b0d2a22fb0230aa
   - enabled: 1
-    path: Assets/01_Scenes/Final/03_FINAL_ForestBoss_Final.unity
+    path: Assets/01_Scenes/_Final_IGP_Project/03_FINAL_ForestBoss_Final.unity
     guid: 3ad34de8cb17a3f41828e63e39d3d1b1
   - enabled: 1
-    path: Assets/01_Scenes/Final/04_FINAL_Finale.unity
+    path: Assets/01_Scenes/_Final_IGP_Project/04_FINAL_Finale.unity
     guid: cb553856dfd970148b92384c910e0859
   m_configObjects: {}
