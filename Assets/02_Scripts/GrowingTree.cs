@@ -51,8 +51,9 @@ public class GrowingTree : MonoBehaviour
         if (currentGrowthStage < growthStages.Length - 1)
         {
             Debug.Log("나무 성장 단계 변경: " + (currentGrowthStage + 1));
-            // 현재 오브젝트를 성장 단계 프리팹으로 교체
-            currentGrowthStage++;
+
+            //currentGrowthStage++;
+            currentGrowthStage = (currentGrowthStage + 1) % growthStages.Length;
 
             // 현재 오브젝트를 파괴하고 새로운 프리팹 생성
             GameObject newTree = Instantiate(growthStages[currentGrowthStage], transform.position, transform.rotation);

@@ -197,7 +197,6 @@ namespace Forest_Boss_States
     public class Hit : State<ForestBoss>
     {        
         private bool isAnimationComplete = false;
-        private bool isExit = false;
         public Hit(ForestBoss user) : base(user) { }
 
         public override void Enter()
@@ -207,7 +206,6 @@ namespace Forest_Boss_States
             user.TakeDamage(1);
             user.ChangeAnimation(ForestBossAnimation.ForestBoss_Hit);
             isAnimationComplete = false;
-            isExit = false;
         }
 
         public override void Execute()
@@ -220,11 +218,6 @@ namespace Forest_Boss_States
                     isAnimationComplete = true;
                 }
             }
-
-            if (isAnimationComplete == true)
-            {
-                isExit = true;
-            }
         }
 
         public override void Exit()
@@ -234,44 +227,10 @@ namespace Forest_Boss_States
 
         public override void OnTransition()
         {
-            if (user.isDead)
+            if (isExit)
             {
-                user.ChangeState(ForestBossState.Dead);
+                user.ChangeState(ForestBossState.Idle);
             }
-            else
-            {
-                if (isExit)
-                {
-                    user.ChangeState(ForestBossState.Idle);
-                }
-            }
-        }
-    }
-
-    public class Dead : State<ForestBoss>
-    {       
-        public Dead(ForestBoss user) : base(user) { }
-
-        public override void Enter()
-        {
-            base.Enter();
-            Debug.Log("F_Boss: Dead State");
-            user.ChangeAnimation(ForestBossAnimation.ForestBoss_Dead);
-        }
-
-        public override void Execute()
-        {
-
-        }
-
-        public override void Exit()
-        {
-            
-        }
-
-        public override void OnTransition()
-        {
-
         }
     }
 }

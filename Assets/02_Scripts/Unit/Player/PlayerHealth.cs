@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // 씬 재시작을 위해 필요
+using UnityEngine.SceneManagement; 
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 3; // 플레이어의 최대 체력
+    [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
 
     private void Start()
     {
-        currentHealth = maxHealth; // 시작 시 체력을 최대 체력으로 초기화
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)

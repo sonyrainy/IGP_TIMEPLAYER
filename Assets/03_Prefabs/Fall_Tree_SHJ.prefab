@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 190554030409549159}
   - component: {fileID: 5042014170450636727}
   - component: {fileID: 4281995685474738644}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Fall_Tree_SHJ
   m_TagString: F_Tree
   m_Icon: {fileID: 0}
@@ -35,6 +35,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5482237077359738888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209405000877694447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1d3be3cca358e43a9ddbb97f54952a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  yVelocity: 0
+  gravity: 9.8
+  isInTimeZone: 0
 --- !u!212 &3210086921091664727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,8 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15f5b2b2702f91498b80dae643e13a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 0
-  originalLinearDrag: 0
 --- !u!61 &4281995685474738644
 BoxCollider2D:
   m_ObjectHideFlags: 0
