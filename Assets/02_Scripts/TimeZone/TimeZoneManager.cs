@@ -53,7 +53,7 @@ public class TimeZoneManager : MonoBehaviour
 
     private void CreateTimeZone(GameObject timeZonePrefab, float speedMultiplier)
     {
-        // timeZonePrefab이 null인지 확인
+        // timeZonePrefab 존재 확인
         if (timeZonePrefab == null)
         {
             Debug.LogError("TimeZone prefab is null. Assign the prefab in the Inspector.");
@@ -70,7 +70,7 @@ public class TimeZoneManager : MonoBehaviour
         currentEffect = currentTimeZone.GetComponent<TimeZoneEffect>();
         if (currentEffect != null)
         {
-            currentEffect.speedMultiplier = speedMultiplier;
+            // currentEffect.speedMultiplier = speedMultiplier;
         }
         else
         {

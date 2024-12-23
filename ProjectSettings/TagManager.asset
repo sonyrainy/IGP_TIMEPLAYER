@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CameraMove
+  - SpawnPoint
+  - FastTimeZone
+  - SlowTimeZone
+  - F_Tree
+  - Ground
+  - GrowingTree
+  - BossAttackObjects
+  - MovingPlatform
+  - PlayerTreeAttackObjects
+  - Boss
+  - FallingTree
+  - DeadGround
+  - Seed
   layers:
   - Default
   - TransparentFX
@@ -12,9 +26,10 @@ TagManager:
   - Water
   - UI
   - Floor
-  - 
-  - 
-  - 
+  - Seed
+  - BossObject
+  - Seed
+  - DeadGround
   - 
   - 
   - 
@@ -43,6 +58,21 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 586336335
+    locked: 0
+  - name: Boss
+    uniqueID: 2075985735
+    locked: 0
+  - name: PlayerAttack
+    uniqueID: 1506397813
+    locked: 0
+  - name: BossHead
+    uniqueID: 2038845403
+    locked: 0
+  - name: Telegraph
+    uniqueID: 3817291393
+    locked: 0
+  - name: Object
+    uniqueID: 3152880027
     locked: 0
   - name: Ground
     uniqueID: 3014277089
