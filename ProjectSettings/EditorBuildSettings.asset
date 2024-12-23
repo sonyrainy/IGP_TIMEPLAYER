@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/01_Scenes/For_Showcase/IGP_Forest_Boss_forShowcase.unity
     guid: 4c6d1cedcab28fb4c8b85b4222b88988
   - enabled: 0
-    path: Assets/01_Scenes/For_Showcase/Final_forShowcase.unity
+    path: Assets/01_Scenes/For_Showcase/IGP_Final_forShowcase.unity
     guid: d51a596d3883eeb4199b1a6709afb0e3
   - enabled: 0
     path: Assets/01_Scenes/ING/IGP_Forest_Boss.unity
@@ -39,15 +39,15 @@ EditorBuildSettings:
     path: Assets/01_Scenes/ING/TimeZone.unity
     guid: 8e7dcac9b91d29846acc7232e496a57c
   - enabled: 1
-    path: Assets/01_Scenes/_Final_IGP_Project/01_FINAL_Title.unity
+    path: Assets/01_Scenes/Final_IGP_Project/01_FINAL_Title.unity
     guid: 183924f89dd327241ad36bd0682e04ef
   - enabled: 1
-    path: Assets/01_Scenes/_Final_IGP_Project/02_FINAL_Forest_Normal.unity
+    path: Assets/01_Scenes/Final_IGP_Project/02_FINAL_Forest_Normal.unity
     guid: 775a977b8b7bb4a42b0d2a22fb0230aa
   - enabled: 1
-    path: Assets/01_Scenes/_Final_IGP_Project/03_FINAL_ForestBoss_Final.unity
+    path: Assets/01_Scenes/Final_IGP_Project/03_FINAL_ForestBoss_Final.unity
     guid: 3ad34de8cb17a3f41828e63e39d3d1b1
   - enabled: 1
-    path: Assets/01_Scenes/_Final_IGP_Project/04_FINAL_Finale.unity
+    path: Assets/01_Scenes/Final_IGP_Project/04_FINAL_Finale.unity
     guid: cb553856dfd970148b92384c910e0859
   m_configObjects: {}
